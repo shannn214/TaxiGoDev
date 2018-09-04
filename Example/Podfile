@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TaxiGoDev_Example' do
+  pod 'TaxiGoDev', :path => '../'
+
+  target 'TaxiGoDev_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
