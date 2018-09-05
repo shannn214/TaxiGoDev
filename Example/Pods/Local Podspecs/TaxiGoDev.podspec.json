@@ -18,5 +18,13 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "TaxiGoDev/Classes/"
+  "source_files": "TaxiGoDev/Classes/",
+  "dependencies": {
+    "AFNetworking": [
+      "~> 2.3"
+    ],
+    "HandyJSON": [
+      "~> 4.1.1"
+    ]
+  }
 }
