@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import HandyJSON
 
 extension TaxiGo.API {
     
-    func requestARide(param: [String: Any], success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
+    public func requestARide(param: [String: Any], success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
         
         call(.post, path: "/ride", parameter: param) { (err, dic, array) in
            
@@ -17,7 +18,10 @@ extension TaxiGo.API {
 
                 // TODO: transfer dic and pass out
 //                success(rideData(data: data))
-                
+                if let ride = JSONDeserializer<Ride>.deserializeFrom(dict: dic) {
+                    success(ride)
+                    print(ride.toJSONString(prettyPrint: true))
+                }
 
                 
             } else if let err = err {

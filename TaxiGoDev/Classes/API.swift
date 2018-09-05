@@ -6,18 +6,23 @@
 //
 
 import Foundation
+import HandyJSON
 
 public class TaxiGo {
     
-    class API {
+    public init() {}
+    
+    public class API {
         
         let auth = Auth()
+        
+        public init() {}
         
         func call(_ method: SHHTTPMethod, path: String?, parameter: [String: Any], complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
         
             let url = URL(string: "\(Constants.taxiGoUrl)" + "\(path ?? "")")
             let body = parameter
-            let token = "Bearer \(auth.accessToken)"
+            let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjYzODE0OTMsImtleSI6IlUyRnNkR1ZrWDE5Ty9zdUZsTHR5WitENVIza1FTWjBoaGZ0ZmVVYW44blo1aWVaRmpLKytHbjdoUFMrZTl6M3crTk44dURJQ0RrWlkrRGFuT0xOOHd3PT0iLCJhcHBfaWQiOiItTEtQWXlzS0RjSWROczdDTFlhMyIsImlhdCI6MTUzNDg0NTQ5M30.zA7PfY4Q23_iBQ89M5n8VIpnA5ORqC8QXpuoVzDSBy8"
             
             var request = URLRequest(url: url!)
             request.httpMethod = method.rawValue
@@ -41,9 +46,9 @@ public class TaxiGo {
                 print("=====")
                 
                 DispatchQueue.main.async {
-                    
+                
                     do {
-                        
+
                         if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                             complete?(nil, json, nil)
                         } else if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
@@ -51,13 +56,13 @@ public class TaxiGo {
                             print("====")
                             complete?(nil, nil, json)
                         }
-                        
+
                     } catch {
-                        
+
                         complete?(error, nil, nil)
-                        
+
                     }
-                    
+                
                 }
                 
             }
@@ -69,17 +74,19 @@ public class TaxiGo {
         
     }
     
-    class Auth {
+    public class Auth {
         
-        var appID: String?
+        public var appID: String?
         
-        var appSecret: String?
+        public var appSecret: String?
         
-        var authCode: String?
+        public var authCode: String?
         
-        var redirectURL: String?
+        public var redirectURL: String?
         
-        var accessToken: String?
+        public var accessToken: String?
+        
+        public init() {}
         
         func getUserToken(success: @escaping () -> Void, failure: @escaping () -> Void) {
             

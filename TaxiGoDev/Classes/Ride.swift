@@ -10,65 +10,65 @@ import HandyJSON
 
 extension TaxiGo.API {
     
-    class Ride: HandyJSON {
+    public class Ride: HandyJSON {
         
         var id: String?
         
-        var startLatitude: Double?
+        var start_latitude: Double?
         
-        var startLongitude: Double?
+        var start_longitude: Double?
         
-        var startAddress: String?
+        var start_address: String?
         
-        var endLatitude: Double?
+        var end_latitude: Double?
         
-        var endLongitude: Double?
+        var end_longitude: Double?
         
-        var endAddress: String?
+        var end_address: String?
         
-        var requestTime: Double?
+        var request_time: Double?
         
         var status: String?
         
         var driver: Driver?
         
-        required init() {}
+        public required init() {}
         
     }
     
-    class Driver: HandyJSON {
+    public class Driver: HandyJSON {
         
-        var driverId: Double?
+        var driver_id: Double?
         
-        var driverLatitude: Double?
+        var driver_latitude: Double?
         
-        var driverLongitude: Double?
+        var driver_longitude: Double?
         
         var eta: Double?
         
         var name: String?
         
-        var plateNumber: String?
+        var plate_number: String?
         
         var vehicle: String?
         
-        required init() {}
+        public required init() {}
         
     }
     
-    class Rider: HandyJSON {
+    public class Rider: HandyJSON {
         
         var name: String?
         
-        var profileImg: String?
+        var profile_img: String?
         
         var favorite: [Favorite]?
         
-        required init() {}
+        public required init() {}
         
     }
     
-    class Favorite: HandyJSON {
+    public class Favorite: HandyJSON {
         
         var address: String?
         
@@ -76,35 +76,35 @@ extension TaxiGo.API {
         
         var lng: Double?
         
-        required init() {}
+        public required init() {}
 
     }
     
-    class NearbyDrivers: HandyJSON {
+    public class NearbyDrivers: HandyJSON {
         
         var lat: Double?
         
         var lng: Double?
         
-        required init() {}
+        public required init() {}
 
     }
     
-    class RequestRideLocation: HandyJSON {
+    public class RequestRideLocation: HandyJSON {
         
-        var startLatitude: Double?
+        var start_latitude: Double?
         
-        var startLongitude: Double?
+        var start_longitude: Double?
         
-        var startAddress: String?
+        var start_address: String?
         
-        var endLatitude: Double?
+        var end_latitude: Double?
         
-        var endLongitude: Double?
+        var end_longitude: Double?
         
-        var endAddress: String?
+        var end_address: String?
         
-        required init() {}
+        public required init() {}
 
     }
 
