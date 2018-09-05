@@ -1,0 +1,6 @@
+framework module TaxiGoDev {
+  umbrella header "TaxiGoDev-umbrella.h"
+
+  export *
+  module * { export * }
+}

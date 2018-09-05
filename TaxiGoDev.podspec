@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'TaxiGoDev'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of TaxiGoDev.'
+  s.summary          = 'Open API of TaxiGo.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,12 +25,12 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'shannn214' => 'gracejin214@gmail.com' }
-  s.source           = { :git => 'https://github.com/shannn214/TaxiGoDev.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/shannn214/TaxiGoDev.git', :tag => s.version }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'TaxiGoDev/Classes/**/*'
+s.source_files = 'TaxiGoDev/Classes/'
   
   # s.resource_bundles = {
   #   'TaxiGoDev' => ['TaxiGoDev/Assets/*.png']

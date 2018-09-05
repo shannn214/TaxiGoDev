@@ -1,0 +1,16 @@
+PODS:
+  - TaxiGoDev (0.1.0)
+
+DEPENDENCIES:
+  - TaxiGoDev (from `../`)
+
+EXTERNAL SOURCES:
+  TaxiGoDev:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  TaxiGoDev: bbc447463a302d07d617d32b13ed6f570610e753
+
+PODFILE CHECKSUM: e030e6b5aced4626bdef59ebcf0b655400507cb6
+
+COCOAPODS: 1.5.0
