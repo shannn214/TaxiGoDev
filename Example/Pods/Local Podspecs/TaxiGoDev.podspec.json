@@ -18,5 +18,5 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "TaxiGoDev/Classes/*.{h,m,swift}"
+  "source_files": "TaxiGoDev/Classes/"
 }

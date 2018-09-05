@@ -8,11 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		16C67914BEBBB229AFB584AE54628FD5 /* Pods-TaxiGoDev_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 668B4862E73E0E8983AF198494411821 /* Pods-TaxiGoDev_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27C30A48319C4D330865C958170B0144 /* Pods-TaxiGoDev_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BE5A94D919545688E3BB225293A15AB2 /* Pods-TaxiGoDev_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A8826BAE69F2BB76E2E8A0AE4C70302 /* Pods-TaxiGoDev_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AAB987217B5ACB72FFC255BA136A34 /* Pods-TaxiGoDev_Example-dummy.m */; };
+		17C2E60A9BF7C87900C4E6BBD37508B7 /* TaxiGoDev-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88355D98408A31D5A2FBFAF7A1ED18E5 /* TaxiGoDev-dummy.m */; };
+		36B0CCB8C9FB7227E58CD381F8AF87E0 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DAA217474895F3FA32B7D9BD46E796 /* Ride.swift */; };
+		60DA426F02E60D03AFC92D351BA38571 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC441ABEC431EE8790D56E5A9BA7F62 /* Request.swift */; };
+		6EE1AEB1D4E1F2473E5967166AF38B01 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E56B2BB8709281EFDBAA88CA3AA2D /* Constants.swift */; };
+		94F0F95E7CC479B981D1F96A3AF0D542 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D271E93090DB8087A2B8AF9C12A8CC /* API.swift */; };
 		B64869CA9625A41BB82BCB578AC0E8EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		B697BDEF452F90E420BE543A80A300DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		BA5FB9BD2E65F8B598A48F1390C90DE7 /* Pods-TaxiGoDev_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDDDDC31916005F87E52E0CA339CFA9 /* Pods-TaxiGoDev_Tests-dummy.m */; };
-		CBC2D5EF37DC7D31CB87F2A0DD86C605 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		C679BD066CDF841775AADD55D97ABD29 /* Pods-TaxiGoDev_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BE5A94D919545688E3BB225293A15AB2 /* Pods-TaxiGoDev_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD88CCBB7935D59D0B7D31141FF61620 /* Pods-TaxiGoDev_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AAB987217B5ACB72FFC255BA136A34 /* Pods-TaxiGoDev_Example-dummy.m */; };
+		DF37A93AC7FB4546FF001951FAF940B8 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F318C177EF81D70DDCA60108C9059B /* HTTP.swift */; };
+		F0FFEB294490A1BBD43F61CF6DF9A174 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		F31641E67F5BB4ED9BB1DEFA85856796 /* TaxiGoDev-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C7552C336BEC241FEAEAAEA8C348DA2B /* TaxiGoDev-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,47 +28,74 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A235C8BD7428ED97D766350D38CE4E96;
+			remoteGlobalIDString = 360CFAA9F1EF5F8886D4BB56317C7368;
 			remoteInfo = "Pods-TaxiGoDev_Example";
+		};
+		D3BB3CB3815337D755768BB894ACE92D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 574741303587761CF0371663FE3C8953;
+			remoteInfo = TaxiGoDev;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0BF5BED37EEE89232C6798164CB2F577 /* Pods_TaxiGoDev_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TaxiGoDev_Example.framework; path = "Pods-TaxiGoDev_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05D2FF71A41F30B6034EB185474EDAD4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		1C2FA8D62A4B6A573A72665D9B41A26D /* Pods-TaxiGoDev_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TaxiGoDev_Example.modulemap"; sourceTree = "<group>"; };
+		2ED528E58C60D41C16FAB21CBFD15B42 /* TaxiGoDev.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TaxiGoDev.modulemap; sourceTree = "<group>"; };
+		36A6717060D264676EC90FA57FC908FB /* TaxiGoDev.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = TaxiGoDev.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		36FD0164EEFEE7CEC7DF9BF9AC5C83A9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		410B6881A33B1B842012D46718B44197 /* Pods-TaxiGoDev_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TaxiGoDev_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4551CACC6DE0C337DB7757FBAD15E77D /* Pods-TaxiGoDev_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TaxiGoDev_Example.release.xcconfig"; sourceTree = "<group>"; };
 		49C2A258DC8EE66CB6102DB9862D10E5 /* Pods-TaxiGoDev_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TaxiGoDev_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		4A8E56B2BB8709281EFDBAA88CA3AA2D /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = TaxiGoDev/Classes/Constants.swift; sourceTree = "<group>"; };
 		4CCE2A975A22E1FDC394EBB161DAF8F5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5E5184B28AC1D2A21C619D26424CD5D7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		660D0B6A1B81920F31169128DC690848 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		668B4862E73E0E8983AF198494411821 /* Pods-TaxiGoDev_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TaxiGoDev_Tests-umbrella.h"; sourceTree = "<group>"; };
+		77D271E93090DB8087A2B8AF9C12A8CC /* API.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = API.swift; path = TaxiGoDev/Classes/API.swift; sourceTree = "<group>"; };
 		78359EC96F290248F4CE658B43380EC0 /* Pods-TaxiGoDev_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TaxiGoDev_Example-resources.sh"; sourceTree = "<group>"; };
-		8360AA17C15F90861AAD9BF9D4982C40 /* Pods_TaxiGoDev_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TaxiGoDev_Tests.framework; path = "Pods-TaxiGoDev_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83DAA217474895F3FA32B7D9BD46E796 /* Ride.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Ride.swift; path = TaxiGoDev/Classes/Ride.swift; sourceTree = "<group>"; };
+		88355D98408A31D5A2FBFAF7A1ED18E5 /* TaxiGoDev-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TaxiGoDev-dummy.m"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9A58CC0417AB68477C11160A7BE69447 /* Pods-TaxiGoDev_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TaxiGoDev_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		9F06A0A481BE36B556A18B5D63EC9E07 /* Pods_TaxiGoDev_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TaxiGoDev_Tests.framework; path = "Pods-TaxiGoDev_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60D2C42101B2B40943813E9F60ED46A /* Pods-TaxiGoDev_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TaxiGoDev_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		A70C7CA8CE9B868C8713278D997EB5E5 /* Pods-TaxiGoDev_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TaxiGoDev_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		A82C3FB13688005DB1690FA986DA58DB /* Pods-TaxiGoDev_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TaxiGoDev_Tests-resources.sh"; sourceTree = "<group>"; };
-		B4E794F3F8DA9041DCDE016FF279F3E2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		BE5A94D919545688E3BB225293A15AB2 /* Pods-TaxiGoDev_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TaxiGoDev_Example-umbrella.h"; sourceTree = "<group>"; };
-		C7BB065354F3BE2C2FAFA8CE089060E5 /* TaxiGoDev.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = TaxiGoDev.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C7552C336BEC241FEAEAAEA8C348DA2B /* TaxiGoDev-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TaxiGoDev-umbrella.h"; sourceTree = "<group>"; };
+		C8F318C177EF81D70DDCA60108C9059B /* HTTP.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTP.swift; path = TaxiGoDev/Classes/HTTP.swift; sourceTree = "<group>"; };
 		CA506C9143C272799ABA38C5D1EF5820 /* Pods-TaxiGoDev_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TaxiGoDev_Example-frameworks.sh"; sourceTree = "<group>"; };
+		CBC441ABEC431EE8790D56E5A9BA7F62 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = TaxiGoDev/Classes/Request.swift; sourceTree = "<group>"; };
 		D18DEC89C9E8D773E91831DC447D443B /* Pods-TaxiGoDev_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TaxiGoDev_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D212B9632CD08567C2163A24BA191D57 /* Pods-TaxiGoDev_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TaxiGoDev_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		DA3054AFC6B72F467FA660AF115B535E /* Pods-TaxiGoDev_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TaxiGoDev_Tests.modulemap"; sourceTree = "<group>"; };
 		DD398FCD73FE64CD8C54BEA4B5EB9A97 /* Pods-TaxiGoDev_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TaxiGoDev_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E0C128F1EB920265E401DD7BE7A676E2 /* TaxiGoDev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TaxiGoDev.xcconfig; sourceTree = "<group>"; };
+		ED0AD7A7F112B17E6CC55BDBDCD4C8E4 /* TaxiGoDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TaxiGoDev.framework; path = TaxiGoDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEDDDDC31916005F87E52E0CA339CFA9 /* Pods-TaxiGoDev_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TaxiGoDev_Tests-dummy.m"; sourceTree = "<group>"; };
+		F015FBF76CF1067ABF0DA89E8ABCF0B1 /* TaxiGoDev-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TaxiGoDev-prefix.pch"; sourceTree = "<group>"; };
 		F0AAB987217B5ACB72FFC255BA136A34 /* Pods-TaxiGoDev_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TaxiGoDev_Example-dummy.m"; sourceTree = "<group>"; };
+		F0C526184FE55AD1C90BA8639DF53DD2 /* Pods_TaxiGoDev_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TaxiGoDev_Example.framework; path = "Pods-TaxiGoDev_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F86ABE1FD4744A656D07833BD9573AD4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1C325AB272A21E1520750880C365308F /* Frameworks */ = {
+		1C2D01178DFE2DF38A7982F9DDC462CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBC2D5EF37DC7D31CB87F2A0DD86C605 /* Foundation.framework in Frameworks */,
+				B697BDEF452F90E420BE543A80A300DF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8368014FFE3E1D26CB5E0357A8B092E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0FFEB294490A1BBD43F61CF6DF9A174 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,21 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1096293FE14B6A67B2114651C131091D /* Development Pods */ = {
+		3B688C395B21CE5D9373A8495ED9F9D5 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				43702EE6B0706731A4063CC48B4B53C3 /* TaxiGoDev */,
+				05D2FF71A41F30B6034EB185474EDAD4 /* LICENSE */,
+				660D0B6A1B81920F31169128DC690848 /* README.md */,
+				36A6717060D264676EC90FA57FC908FB /* TaxiGoDev.podspec */,
 			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		43702EE6B0706731A4063CC48B4B53C3 /* TaxiGoDev */ = {
-			isa = PBXGroup;
-			children = (
-				9AABC330F4F28B02ABD90A23AB18028E /* Pod */,
-			);
-			name = TaxiGoDev;
-			path = ../..;
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		567ED9D0631AE974A63DD48A5D1EB47A /* Targets Support Files */ = {
@@ -101,25 +129,52 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		65015500DDF454D69E3AF20EE6265B06 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				75FA31489BF9B6F5A17C8BA1C0F81A3A /* TaxiGoDev */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		75FA31489BF9B6F5A17C8BA1C0F81A3A /* TaxiGoDev */ = {
+			isa = PBXGroup;
+			children = (
+				77D271E93090DB8087A2B8AF9C12A8CC /* API.swift */,
+				4A8E56B2BB8709281EFDBAA88CA3AA2D /* Constants.swift */,
+				C8F318C177EF81D70DDCA60108C9059B /* HTTP.swift */,
+				CBC441ABEC431EE8790D56E5A9BA7F62 /* Request.swift */,
+				83DAA217474895F3FA32B7D9BD46E796 /* Ride.swift */,
+				3B688C395B21CE5D9373A8495ED9F9D5 /* Pod */,
+				A6A854C30A8C6F5DB4E0D446B9AABB3A /* Support Files */,
+			);
+			name = TaxiGoDev;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				1096293FE14B6A67B2114651C131091D /* Development Pods */,
+				65015500DDF454D69E3AF20EE6265B06 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				D22AFF68F86A1BB4F3B296020785ADA3 /* Products */,
+				AF90A78C36F6E0756AD14B25B9EADD7F /* Products */,
 				567ED9D0631AE974A63DD48A5D1EB47A /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		9AABC330F4F28B02ABD90A23AB18028E /* Pod */ = {
+		A6A854C30A8C6F5DB4E0D446B9AABB3A /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				5E5184B28AC1D2A21C619D26424CD5D7 /* LICENSE */,
-				B4E794F3F8DA9041DCDE016FF279F3E2 /* README.md */,
-				C7BB065354F3BE2C2FAFA8CE089060E5 /* TaxiGoDev.podspec */,
+				36FD0164EEFEE7CEC7DF9BF9AC5C83A9 /* Info.plist */,
+				2ED528E58C60D41C16FAB21CBFD15B42 /* TaxiGoDev.modulemap */,
+				E0C128F1EB920265E401DD7BE7A676E2 /* TaxiGoDev.xcconfig */,
+				88355D98408A31D5A2FBFAF7A1ED18E5 /* TaxiGoDev-dummy.m */,
+				F015FBF76CF1067ABF0DA89E8ABCF0B1 /* TaxiGoDev-prefix.pch */,
+				C7552C336BEC241FEAEAAEA8C348DA2B /* TaxiGoDev-umbrella.h */,
 			);
-			name = Pod;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/TaxiGoDev";
 			sourceTree = "<group>";
 		};
 		AE2CF0C0D4BE1C2D9DABA729389BA7BB /* Pods-TaxiGoDev_Example */ = {
@@ -140,21 +195,22 @@
 			path = "Target Support Files/Pods-TaxiGoDev_Example";
 			sourceTree = "<group>";
 		};
+		AF90A78C36F6E0756AD14B25B9EADD7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F0C526184FE55AD1C90BA8639DF53DD2 /* Pods_TaxiGoDev_Example.framework */,
+				9F06A0A481BE36B556A18B5D63EC9E07 /* Pods_TaxiGoDev_Tests.framework */,
+				ED0AD7A7F112B17E6CC55BDBDCD4C8E4 /* TaxiGoDev.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D22AFF68F86A1BB4F3B296020785ADA3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0BF5BED37EEE89232C6798164CB2F577 /* Pods_TaxiGoDev_Example.framework */,
-				8360AA17C15F90861AAD9BF9D4982C40 /* Pods_TaxiGoDev_Tests.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
@@ -194,11 +250,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		40111A9EBCCFB05C9E6FD51982BE754A /* Headers */ = {
+		D394C013417A5112CA63BCCBF93A0B8F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27C30A48319C4D330865C958170B0144 /* Pods-TaxiGoDev_Example-umbrella.h in Headers */,
+				C679BD066CDF841775AADD55D97ABD29 /* Pods-TaxiGoDev_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7BBC7F926AED1FC5FEABB90CC81427F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F31641E67F5BB4ED9BB1DEFA85856796 /* TaxiGoDev-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,24 +284,42 @@
 			);
 			name = "Pods-TaxiGoDev_Tests";
 			productName = "Pods-TaxiGoDev_Tests";
-			productReference = 8360AA17C15F90861AAD9BF9D4982C40 /* Pods_TaxiGoDev_Tests.framework */;
+			productReference = 9F06A0A481BE36B556A18B5D63EC9E07 /* Pods_TaxiGoDev_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		A235C8BD7428ED97D766350D38CE4E96 /* Pods-TaxiGoDev_Example */ = {
+		360CFAA9F1EF5F8886D4BB56317C7368 /* Pods-TaxiGoDev_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAF915B75FE0F7942F230A0A60591B14 /* Build configuration list for PBXNativeTarget "Pods-TaxiGoDev_Example" */;
+			buildConfigurationList = 21550BEEC02B99F9B9D3B99E88DB9383 /* Build configuration list for PBXNativeTarget "Pods-TaxiGoDev_Example" */;
 			buildPhases = (
-				7D78DBBF80281C45B1A6F4954828E9E3 /* Sources */,
-				1C325AB272A21E1520750880C365308F /* Frameworks */,
-				40111A9EBCCFB05C9E6FD51982BE754A /* Headers */,
+				558D97D5F042E38B9D6FF1F82FF11ED4 /* Sources */,
+				1C2D01178DFE2DF38A7982F9DDC462CE /* Frameworks */,
+				D394C013417A5112CA63BCCBF93A0B8F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EBB19741C05BB829A38CB6360C50A5D /* PBXTargetDependency */,
+			);
+			name = "Pods-TaxiGoDev_Example";
+			productName = "Pods-TaxiGoDev_Example";
+			productReference = F0C526184FE55AD1C90BA8639DF53DD2 /* Pods_TaxiGoDev_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		574741303587761CF0371663FE3C8953 /* TaxiGoDev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0ECE0905E95BF7AA153E70503583B5B5 /* Build configuration list for PBXNativeTarget "TaxiGoDev" */;
+			buildPhases = (
+				2838E697E44CAD08EF0FF0BEA77B5452 /* Sources */,
+				8368014FFE3E1D26CB5E0357A8B092E1 /* Frameworks */,
+				F7BBC7F926AED1FC5FEABB90CC81427F /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-TaxiGoDev_Example";
-			productName = "Pods-TaxiGoDev_Example";
-			productReference = 0BF5BED37EEE89232C6798164CB2F577 /* Pods_TaxiGoDev_Example.framework */;
+			name = TaxiGoDev;
+			productName = TaxiGoDev;
+			productReference = ED0AD7A7F112B17E6CC55BDBDCD4C8E4 /* TaxiGoDev.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -257,30 +339,44 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = D22AFF68F86A1BB4F3B296020785ADA3 /* Products */;
+			productRefGroup = AF90A78C36F6E0756AD14B25B9EADD7F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A235C8BD7428ED97D766350D38CE4E96 /* Pods-TaxiGoDev_Example */,
+				360CFAA9F1EF5F8886D4BB56317C7368 /* Pods-TaxiGoDev_Example */,
 				107C24E0503A6CDFE741242C725883EE /* Pods-TaxiGoDev_Tests */,
+				574741303587761CF0371663FE3C8953 /* TaxiGoDev */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2838E697E44CAD08EF0FF0BEA77B5452 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94F0F95E7CC479B981D1F96A3AF0D542 /* API.swift in Sources */,
+				6EE1AEB1D4E1F2473E5967166AF38B01 /* Constants.swift in Sources */,
+				DF37A93AC7FB4546FF001951FAF940B8 /* HTTP.swift in Sources */,
+				60DA426F02E60D03AFC92D351BA38571 /* Request.swift in Sources */,
+				36B0CCB8C9FB7227E58CD381F8AF87E0 /* Ride.swift in Sources */,
+				17C2E60A9BF7C87900C4E6BBD37508B7 /* TaxiGoDev-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		558D97D5F042E38B9D6FF1F82FF11ED4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD88CCBB7935D59D0B7D31141FF61620 /* Pods-TaxiGoDev_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5790B751C7DFDDBC7BED081EFC776A59 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BA5FB9BD2E65F8B598A48F1390C90DE7 /* Pods-TaxiGoDev_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7D78DBBF80281C45B1A6F4954828E9E3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A8826BAE69F2BB76E2E8A0AE4C70302 /* Pods-TaxiGoDev_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,12 +386,85 @@
 		31C821C4027742982BFCE70A95CDB1F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-TaxiGoDev_Example";
-			target = A235C8BD7428ED97D766350D38CE4E96 /* Pods-TaxiGoDev_Example */;
+			target = 360CFAA9F1EF5F8886D4BB56317C7368 /* Pods-TaxiGoDev_Example */;
 			targetProxy = 364EF0993C3585C1FCE48E225D9A7C45 /* PBXContainerItemProxy */;
+		};
+		3EBB19741C05BB829A38CB6360C50A5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TaxiGoDev;
+			target = 574741303587761CF0371663FE3C8953 /* TaxiGoDev */;
+			targetProxy = D3BB3CB3815337D755768BB894ACE92D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		087AE20AB03FBA05AA7413955A36A2E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49C2A258DC8EE66CB6102DB9862D10E5 /* Pods-TaxiGoDev_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TaxiGoDev_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0C6282B908081C898D12DC4C2B508EEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0C128F1EB920265E401DD7BE7A676E2 /* TaxiGoDev.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TaxiGoDev/TaxiGoDev-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TaxiGoDev/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TaxiGoDev/TaxiGoDev.modulemap";
+				PRODUCT_MODULE_NAME = TaxiGoDev;
+				PRODUCT_NAME = TaxiGoDev;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		3151EDA942D13512C9474B3347BE04CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 410B6881A33B1B842012D46718B44197 /* Pods-TaxiGoDev_Tests.debug.xcconfig */;
@@ -362,39 +531,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		39EF339B8D36F76B9C2EBB4889F34B9B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49C2A258DC8EE66CB6102DB9862D10E5 /* Pods-TaxiGoDev_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-TaxiGoDev_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -517,7 +653,40 @@
 			};
 			name = Release;
 		};
-		B66F79B80CF0F8085E58A986D0D9AAE9 /* Release */ = {
+		BF8EB2FE0AF182DC26AF1399A1A0BB7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0C128F1EB920265E401DD7BE7A676E2 /* TaxiGoDev.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TaxiGoDev/TaxiGoDev-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TaxiGoDev/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TaxiGoDev/TaxiGoDev.modulemap";
+				PRODUCT_MODULE_NAME = TaxiGoDev;
+				PRODUCT_NAME = TaxiGoDev;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E0BE20D74BE68ABFE7F52DE7EE7EE5B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4551CACC6DE0C337DB7757FBAD15E77D /* Pods-TaxiGoDev_Example.release.xcconfig */;
 			buildSettings = {
@@ -544,6 +713,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -554,6 +724,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0ECE0905E95BF7AA153E70503583B5B5 /* Build configuration list for PBXNativeTarget "TaxiGoDev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C6282B908081C898D12DC4C2B508EEB /* Debug */,
+				BF8EB2FE0AF182DC26AF1399A1A0BB7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21550BEEC02B99F9B9D3B99E88DB9383 /* Build configuration list for PBXNativeTarget "Pods-TaxiGoDev_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				087AE20AB03FBA05AA7413955A36A2E0 /* Debug */,
+				E0BE20D74BE68ABFE7F52DE7EE7EE5B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -568,15 +756,6 @@
 			buildConfigurations = (
 				3151EDA942D13512C9474B3347BE04CA /* Debug */,
 				350C9B760493E9A094031913EFE66EEB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DAF915B75FE0F7942F230A0A60591B14 /* Build configuration list for PBXNativeTarget "Pods-TaxiGoDev_Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				39EF339B8D36F76B9C2EBB4889F34B9B /* Debug */,
-				B66F79B80CF0F8085E58A986D0D9AAE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
