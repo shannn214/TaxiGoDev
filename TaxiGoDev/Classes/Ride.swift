@@ -10,7 +10,7 @@ import HandyJSON
 
 extension TaxiGo.API {
     
-    struct Ride: Codable {
+    class Ride: HandyJSON {
         
         var id: String?
         
@@ -32,9 +32,11 @@ extension TaxiGo.API {
         
         var driver: Driver?
         
+        required init() {}
+        
     }
     
-    struct Driver {
+    class Driver: HandyJSON {
         
         var driverId: Double?
         
@@ -50,9 +52,11 @@ extension TaxiGo.API {
         
         var vehicle: String?
         
+        required init() {}
+        
     }
     
-    struct Rider {
+    class Rider: HandyJSON {
         
         var name: String?
         
@@ -60,9 +64,11 @@ extension TaxiGo.API {
         
         var favorite: [Favorite]?
         
+        required init() {}
+        
     }
     
-    struct Favorite {
+    class Favorite: HandyJSON {
         
         var address: String?
         
@@ -70,17 +76,21 @@ extension TaxiGo.API {
         
         var lng: Double?
         
+        required init() {}
+
     }
     
-    struct NearbyDrivers {
+    class NearbyDrivers: HandyJSON {
         
         var lat: Double?
         
         var lng: Double?
         
+        required init() {}
+
     }
     
-    struct RequestRideLocation {
+    class RequestRideLocation: HandyJSON {
         
         var startLatitude: Double?
         
@@ -94,6 +104,8 @@ extension TaxiGo.API {
         
         var endAddress: String?
         
+        required init() {}
+
     }
 
     

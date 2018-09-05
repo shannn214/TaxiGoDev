@@ -7,20 +7,7 @@
 
 import Foundation
 
-class TaxiGo {
-    
-//    static let shared: TaxiGo = {
-//        let instance = TaxiGo()
-//        return instance
-//    }()
-    
-//    var api: API
-//    var auth: Auth
-//
-//    init(api: API, auth: Auth) {
-//        self.api = api
-//        self.auth = auth
-//    }
+public class TaxiGo {
     
     class API {
         
@@ -70,6 +57,7 @@ class TaxiGo {
                         complete?(error, nil, nil)
                         
                     }
+                    
                 }
                 
             }

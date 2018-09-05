@@ -9,7 +9,7 @@ import Foundation
 
 extension TaxiGo.API {
     
-    func requestARide(param: [String: Any], success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+    func requestARide(param: [String: Any], success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
         
         call(.post, path: "/ride", parameter: param) { (err, dic, array) in
            
@@ -17,6 +17,7 @@ extension TaxiGo.API {
 
                 // TODO: transfer dic and pass out
 //                success(rideData(data: data))
+                
 
                 
             } else if let err = err {

@@ -10,10 +10,12 @@ import UIKit
 import TaxiGoDev
 
 class LoginViewController: UISearchController {
-
+    
+//    let taxi = 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
