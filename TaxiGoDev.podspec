@@ -27,8 +27,8 @@ TODO: Add long description of the pod here.
   s.author           = { 'shannn214' => 'gracejin214@gmail.com' }
   s.source           = { :git => 'https://github.com/shannn214/TaxiGoDev.git', :tag => s.version }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.ios.deployment_target = '8.0'
+  s.platform     = :ios, '11.0'
+  s.ios.deployment_target = '11.0'
 
 s.source_files = 'TaxiGoDev/Classes/'
   

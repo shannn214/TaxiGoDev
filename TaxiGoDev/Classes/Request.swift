@@ -33,12 +33,13 @@ extension TaxiGo.API {
                 // TODO: transfer dic and pass out
 //                success(rideData(data: data))
                 if let ride = JSONDeserializer<Ride>.deserializeFrom(dict: dic) {
-                    success(ride)
+//                    success(ride)
                     print(ride.toJSONString(prettyPrint: true))
                     print("-------uuuuu------")
                     guard let model = Ride.deserialize(from: dic) else { return }
-                    print(model.start_address)
-                    print(model.id)
+//                    print(model.start_address)
+//                    print(model.id)
+                    success(model)
                     print("-------uuuuu------")
 
                 }
@@ -53,14 +54,16 @@ extension TaxiGo.API {
         
     }
     
-    public func cancelARide(withAccessToken: String, id: String, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+    public func cancelARide(withAccessToken: String, id: String, success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .delete, path: "/ride/\(id)", parameter: [:]) { (err, dic, array) in
             
             if err == nil {
                 
                 print("Delete")
-                print(dic)
+                guard let model = Ride.deserialize(from: dic) else { return }
+                success(model)
+                print(model)
                 
             } else if let err = err {
                 
@@ -73,17 +76,14 @@ extension TaxiGo.API {
         
     }
  
-    public func getRidesHistory(withAccessToken: String, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+    public func getRidesHistory(withAccessToken: String, success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/ride", parameter: [:]) { (err, dic, array) in
             
             if err == nil {
                 
                 guard let model = Ride.deserialize(from: dic) else { return }
-                print("---------aaaa--------")
-                print(model.driver?.driver_id)
-                print(model.start_address)
-                print("---------aaaa--------")
+                success(model)
 
             } else if let err = err {
                 failure(err)
@@ -94,17 +94,14 @@ extension TaxiGo.API {
         
     }
     
-    public func getSpecificRideHistory(withAccessToken: String, id: String, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+    public func getSpecificRideHistory(withAccessToken: String, id: String, success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/ride/\(id)", parameter: [:]) { (err, dic, array) in
             
             if err == nil {
                 
                 guard let model = Ride.deserialize(from: dic) else { return }
-                print("---------aaaa--------")
-                print(model.driver?.driver_id)
-                print(model.start_address)
-                print("---------aaaa--------")
+                success(model)
                 
             } else if let err = err {
                 failure(err)
@@ -115,16 +112,15 @@ extension TaxiGo.API {
         
     }
     
-    public func getRiderInfo(withAccessToken: String, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+    public func getRiderInfo(withAccessToken: String, success: @escaping (Rider) -> Void, failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/me", parameter: [:]) { (err, dic, array) in
             
             if err == nil {
                 
                 guard let model = Rider.deserialize(from: dic) else { return }
-                print("---------bbbb--------")
-                print(model.name)
-                print(model.profile_img)
+                print("---------rider info--------")
+                success(model)
                 
                 if let favorite = dic?["favorite"] as? [[String: Any]] ?? nil {
                     
@@ -139,7 +135,7 @@ extension TaxiGo.API {
 
                 }
                 
-                print("---------bbbb--------")
+                print("---------rider info--------")
                 
             } else if let err = err {
                 failure(err)

@@ -7,6 +7,7 @@
 
 import Foundation
 import HandyJSON
+import SafariServices
 
 public class TaxiGo {
     
@@ -88,9 +89,13 @@ public class TaxiGo {
         
         public var accessToken: String?
         
+        public var authSession: SFAuthenticationSession?
+        
+//        private var redirectUri = "https://dev-user.taxigo.com.tw/oauth/test"
+        
         public init() {}
         
-        func getUserToken(success: @escaping () -> Void, failure: @escaping () -> Void) {
+        public func getUserToken(success: @escaping () -> Void, failure: @escaping () -> Void) {
             
             guard let url = URL(string: Constants.oauthURL) else { return }
             let session = URLSession.shared
@@ -127,6 +132,26 @@ public class TaxiGo {
                     
                 }
                 }.resume()
+            
+        }
+        
+        public func startLoginFlow(callBackUrlScheme: String, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+            
+            guard let authURL = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=" + "\(appID)" + "&redirect_uri=" + "\(redirectURL)") else { return }
+            
+            self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: callBackUrlScheme, completionHandler: { (callBack: URL?, error: Error?) in
+                
+                guard error == nil, let successURL = callBack else {
+                    print(error!)
+                    print("=======")
+                    return }
+                
+                let callBackRedirect = NSURLComponents(string: successURL.absoluteString)?.queryItems?.filter({ $0.name == "code" }).first
+                
+                print(callBackRedirect)
+                
+            })
+            self.authSession?.start()
             
         }
         

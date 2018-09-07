@@ -12,25 +12,25 @@ extension TaxiGo.API {
     
     public class Ride: HandyJSON {
         
-        var id: String?
+        public var id: String?
         
-        var start_latitude: Double?
+        public var start_latitude: Double?
         
-        var start_longitude: Double?
+        public var start_longitude: Double?
         
-        var start_address: String?
+        public var start_address: String?
         
-        var end_latitude: Double?
+        public var end_latitude: Double?
         
-        var end_longitude: Double?
+        public var end_longitude: Double?
         
-        var end_address: String?
+        public var end_address: String?
         
-        var request_time: Double?
+        public var request_time: Double?
         
-        var status: String?
+        public var status: String?
         
-        var driver: Driver?
+        public var driver: Driver?
         
         public required init() {}
         
@@ -38,19 +38,19 @@ extension TaxiGo.API {
     
     public class Driver: HandyJSON {
         
-        var driver_id: Double?
+        public var driver_id: Double?
         
-        var driver_latitude: Double?
+        public var driver_latitude: Double?
         
-        var driver_longitude: Double?
+        public var driver_longitude: Double?
         
-        var eta: Double?
+        public var eta: Double?
         
-        var name: String?
+        public var name: String?
         
-        var plate_number: String?
+        public var plate_number: String?
         
-        var vehicle: String?
+        public var vehicle: String?
         
         public required init() {}
         
