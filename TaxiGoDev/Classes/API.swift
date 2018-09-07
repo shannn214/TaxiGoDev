@@ -10,19 +10,21 @@ import HandyJSON
 
 public class TaxiGo {
     
+    public var api = API()
+    
+    public var auth = Auth()
+    
     public init() {}
     
     public class API {
         
-        let auth = Auth()
-        
         public init() {}
         
-        func call(_ method: SHHTTPMethod, path: String?, parameter: [String: Any], complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
+        func call(withAccessToken: String, _ method: SHHTTPMethod, path: String, parameter: [String: Any], complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
         
             let url = URL(string: "\(Constants.taxiGoUrl)" + "\(path ?? "")")
             let body = parameter
-            let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjYzODE0OTMsImtleSI6IlUyRnNkR1ZrWDE5Ty9zdUZsTHR5WitENVIza1FTWjBoaGZ0ZmVVYW44blo1aWVaRmpLKytHbjdoUFMrZTl6M3crTk44dURJQ0RrWlkrRGFuT0xOOHd3PT0iLCJhcHBfaWQiOiItTEtQWXlzS0RjSWROczdDTFlhMyIsImlhdCI6MTUzNDg0NTQ5M30.zA7PfY4Q23_iBQ89M5n8VIpnA5ORqC8QXpuoVzDSBy8"
+            let token = "Bearer \(withAccessToken)"
             
             var request = URLRequest(url: url!)
             request.httpMethod = method.rawValue

@@ -15,43 +15,52 @@ class LoginViewController: UIViewController {
     
     var taxiAuth = TaxiGo.Auth()
     
+    var taxi = TaxiGo()
+    
     let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjYzODE0OTMsImtleSI6IlUyRnNkR1ZrWDE5Ty9zdUZsTHR5WitENVIza1FTWjBoaGZ0ZmVVYW44blo1aWVaRmpLKytHbjdoUFMrZTl6M3crTk44dURJQ0RrWlkrRGFuT0xOOHd3PT0iLCJhcHBfaWQiOiItTEtQWXlzS0RjSWROczdDTFlhMyIsImlhdCI6MTUzNDg0NTQ5M30.zA7PfY4Q23_iBQ89M5n8VIpnA5ORqC8QXpuoVzDSBy8"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.taxiAuth.accessToken = accessToken
-        fakeSendLocationBtn(startLatitude: 25.019946, startLongitude: 121.528717, startAddress: "台北市羅斯福路三段162號")
         
-        // Do any additional setup after loading the view.
+//        taxiAPI.getRidesHistory(withAccessToken: accessToken, success: {
+//            print("success response of get rides history")
+//        }) { (err) in
+//            print(err.localizedDescription)
+//        }
+//
+//        taxiAPI.getSpecificRideHistory(withAccessToken: accessToken, id: "POyQHX", success: {
+//            print("success response of get specific ride")
+//        }) { (err) in
+//            print(err.localizedDescription)
+//        }
+        
+//        taxiAPI.getRiderInfo(withAccessToken: accessToken, success: {
+//            print("success access rider info")
+//        }) { (err) in
+//            print(err.localizedDescription)
+//        }
+
+        taxiAPI.getNearbyDriver(withAccessToken: accessToken, lat: 25.0423, lng: 121.565, success: {
+            print("success access nearby driver")
+        }) { (err) in
+            print(err.localizedDescription)
+        }
+
+//        taxiAPI.requestARide(startLatitude: 25.019946,
+//                             startLongitude: 121.528717,
+//                             startAddress: "台北市羅斯福路三段162號",
+//                             success: { (ride) in
+//            print("success")
+//        }) { (err) in
+//            print(err.localizedDescription)
+//        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func fakeSendLocationBtn(startLatitude: Double,
-                             startLongitude: Double,
-                             startAddress: String,
-                             endLatitude: Double? = nil,
-                             endLongitude: Double? = nil,
-                             endAddress: String? = nil) {
-        
-        let param: [String: Any] = ["start_latitude": startLatitude,
-                                    "start_longitude": startLongitude,
-                                    "start_address": startAddress,
-                                    "end_latitude": endLatitude,
-                                    "end_longitude": endLongitude,
-                                    "end_address": endAddress]
-        
-        taxiAPI.requestARide(param: param, success: { (ride) in
-            print(ride)
-            print("success")
-        }) { (err) in
-            print(err.localizedDescription)
-        }
-        
     }
 
 }
