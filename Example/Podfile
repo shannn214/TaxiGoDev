@@ -6,6 +6,9 @@ target 'TaxiGoDev_Example' do
   pod 'TaxiGoDev', :path => '../'
   pod 'Kingfisher', '~> 4.0'
   pod 'NVActivityIndicatorView'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
 
   target 'TaxiGoDev_Tests' do
     inherit! :search_paths

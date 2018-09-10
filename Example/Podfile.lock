@@ -20,6 +20,16 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - GoogleMaps (2.7.0):
+    - GoogleMaps/Maps (= 2.7.0)
+  - GoogleMaps/Base (2.7.0)
+  - GoogleMaps/Maps (2.7.0):
+    - GoogleMaps/Base
+  - GooglePlacePicker (2.7.0):
+    - GoogleMaps (= 2.7.0)
+    - GooglePlaces (= 2.7.0)
+  - GooglePlaces (2.7.0):
+    - GoogleMaps/Base (= 2.7.0)
   - HandyJSON (4.1.3)
   - Kingfisher (4.9.0)
   - NVActivityIndicatorView (4.3.0):
@@ -30,6 +40,9 @@ PODS:
     - HandyJSON (~> 4.1.1)
 
 DEPENDENCIES:
+  - GoogleMaps
+  - GooglePlacePicker
+  - GooglePlaces
   - Kingfisher (~> 4.0)
   - NVActivityIndicatorView
   - TaxiGoDev (from `../`)
@@ -37,6 +50,9 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - GoogleMaps
+    - GooglePlacePicker
+    - GooglePlaces
     - HandyJSON
     - Kingfisher
     - NVActivityIndicatorView
@@ -47,11 +63,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
+  GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   HandyJSON: bc81fbeb62d65ae5d5942ed29bc4a8265d18c1e8
   Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
   NVActivityIndicatorView: 963f62bf9f993fcf23218e55958e5b1761b9504c
   TaxiGoDev: 275e94e290e06e11ff60376aa00a17284f394b41
 
-PODFILE CHECKSUM: 50131daa3deeb87a996a0a865706d9eac627b3e1
+PODFILE CHECKSUM: d6bea53f1e8cd4963a762fe61f080fb3aacf57da
 
 COCOAPODS: 1.5.0
