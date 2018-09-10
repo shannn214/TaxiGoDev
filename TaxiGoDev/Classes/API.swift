@@ -23,7 +23,7 @@ public class TaxiGo {
         
         func call(withAccessToken: String, _ method: SHHTTPMethod, path: String, parameter: [String: Any], complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
         
-            let url = URL(string: "\(Constants.taxiGoUrl)" + "\(path ?? "")")
+            let url = URL(string: "\(Constants.taxiGoUrl)" + "\(path)")
             let body = parameter
             let token = "Bearer \(withAccessToken)"
             
@@ -95,43 +95,48 @@ public class TaxiGo {
         
         public init() {}
         
-        public func getUserToken(success: @escaping () -> Void, failure: @escaping () -> Void) {
+        func call(path: String, parameter: [String: Any], complete: ((Error? ,[String: Any]?) -> Void)? = nil) -> URLSessionDataTask {
             
-            guard let url = URL(string: Constants.oauthURL) else { return }
-            let session = URLSession.shared
-            let parasDictionary = ["app_id": appID,
-                                   "app_secret": appSecret,
-                                   "code": authCode]
-            var request = URLRequest(url: url)
+            let url = URL(string: "\(Constants.oauthURL)" + "\(path)")
+            let body = parameter
+            
+            var request = URLRequest(url: url!)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: parasDictionary, options: []) else { return }
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+            } catch {
+                print("request error")
+            }
             
-            request.httpBody = httpBody
-            
-            session.dataTask(with: request) { (data, response, error) in
+            let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 
                 guard let response = response else { return }
+                let statusCode = (response as! HTTPURLResponse).statusCode
+                print("Status Code: \(statusCode)")
+                print("=====")
                 
-                print(response)
-                print("========")
-                
-                guard let data = data else { return }
-                
-                do {
+                DispatchQueue.main.async {
                     
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                    // TODO: success() pass data
-                    
-                } catch {
-                    
-                    print(error)
-                    // TODO: handle error
+                    do {
+                        
+                        if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                            complete?(nil, json)
+                        }
+                        
+                    } catch {
+                        
+                        complete?(error, nil)
+                        
+                    }
                     
                 }
-                }.resume()
+                
+            }
+            task.resume()
+            
+            return task
             
         }
         

@@ -4,6 +4,8 @@ use_frameworks!
 
 target 'TaxiGoDev_Example' do
   pod 'TaxiGoDev', :path => '../'
+  pod 'Kingfisher', '~> 4.0'
+  pod 'NVActivityIndicatorView'
 
   target 'TaxiGoDev_Tests' do
     inherit! :search_paths

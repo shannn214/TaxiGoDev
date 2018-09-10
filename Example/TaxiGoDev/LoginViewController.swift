@@ -8,6 +8,8 @@
 
 import UIKit
 import TaxiGoDev
+import Kingfisher
+import NVActivityIndicatorView
 
 class LoginViewController: UIViewController {
     
@@ -54,12 +56,12 @@ class LoginViewController: UIViewController {
 //            print(err.localizedDescription)
 //        }
         
-        taxi.api.cancelARide(withAccessToken: accessToken, id: "jaKpva", success: { (ride) in
-            print(ride.status)
-            print(ride.id)
-        }) { (err) in
-            print(err.localizedDescription)
-        }
+//        taxi.api.cancelARide(withAccessToken: accessToken, id: "jaKpva", success: { (ride) in
+//            print(ride.status)
+//            print(ride.id)
+//        }) { (err) in
+//            print(err.localizedDescription)
+//        }
 
 //        taxiAPI.requestARide(withAccessToken: accessToken,
 //                             startLatitude: 25.019946,

@@ -108,5 +108,16 @@ extension TaxiGo.API {
 
     }
 
+    public class Oauth: HandyJSON {
+    
+        var accessToken: String?
+        
+        var expireIn: String?
+        
+        var refreshToken: String?
+        
+        public required init() {}
+    
+    }
     
 }

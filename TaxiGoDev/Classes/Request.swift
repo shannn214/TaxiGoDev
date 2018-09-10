@@ -22,18 +22,15 @@ extension TaxiGo.API {
         let param: [String: Any] = ["start_latitude": startLatitude,
                                     "start_longitude": startLongitude,
                                     "start_address": startAddress,
-                                    "end_latitude": endLatitude,
-                                    "end_longitude": endLongitude,
-                                    "end_address": endAddress]
+                                    "end_latitude": endLatitude ?? "",
+                                    "end_longitude": endLongitude ?? "",
+                                    "end_address": endAddress ?? ""]
         
         call(withAccessToken: withAccessToken, .post, path: "/ride", parameter: param) { (err, dic, array) in
            
             if err == nil {
 
-                // TODO: transfer dic and pass out
-//                success(rideData(data: data))
                 if let ride = JSONDeserializer<Ride>.deserializeFrom(dict: dic) {
-//                    success(ride)
                     print(ride.toJSONString(prettyPrint: true))
                     print("-------uuuuu------")
                     guard let model = Ride.deserialize(from: dic) else { return }
@@ -161,6 +158,46 @@ extension TaxiGo.API {
                     })
                     
                 }
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
+extension TaxiGo.Auth {
+    
+    public func ddgetUserToken(appID: String, appSecret: String, authCode: String, success: @escaping () -> Void, failure: @escaping () -> Void) {
+        
+        let params = ["app_id": appID,
+                      "app_secret": appSecret,
+                      "code": authCode]
+        
+        call(path: "", parameter: params) { (err, dic) in
+            
+            if err == nil {
+                
+                // TODO: it will return access token, expire time, refesh token
+                
+            }
+            
+        }
+        
+    }
+    
+    public func ddrefreshToken(appID: String, appSecret: String, refreshToken: String, success: @escaping () -> Void, failure: @escaping () -> Void) {
+        
+        let params = ["app_id": appID,
+                      "app_secret": appSecret,
+                      "refresh_token": refreshToken]
+        
+        call(path: "/refresh_token", parameter: params) { (err, dic) in
+            
+            if err == nil {
+                
+                // TODO: it will return access token, expire time
                 
             }
             
