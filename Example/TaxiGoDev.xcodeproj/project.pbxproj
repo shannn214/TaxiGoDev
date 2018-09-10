@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6ADF214651E0002AE9A9 /* MapViewController.swift */; };
+		091E6AE221465312002AE9A9 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 091E6AE121465312002AE9A9 /* Map.storyboard */; };
+		091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE621465E1A002AE9A9 /* CustomTextField.swift */; };
+		091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE821467F9C002AE9A9 /* CustomButton.swift */; };
+		091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AEA214682B4002AE9A9 /* Constants.swift */; };
 		09425D38213E825A00280343 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425D37213E825A00280343 /* LoginViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -29,6 +34,11 @@
 
 /* Begin PBXFileReference section */
 		075E6DBA76D71CF22655F227 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		091E6ADF214651E0002AE9A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		091E6AE121465312002AE9A9 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		091E6AE621465E1A002AE9A9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		091E6AE821467F9C002AE9A9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		091E6AEA214682B4002AE9A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09425D37213E825A00280343 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3883F0C9649C92A9EA9EAE7F /* Pods-TaxiGoDev_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5ACD16D8491CA58E920B4B3E /* Pods-TaxiGoDev_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,9 +79,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		091E6AE321465DD7002AE9A9 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				091E6AE621465E1A002AE9A9 /* CustomTextField.swift */,
+				091E6AE821467F9C002AE9A9 /* CustomButton.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		091E6AE421465DDE002AE9A9 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				091E6ADF214651E0002AE9A9 /* MapViewController.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		091E6AE521465DE5002AE9A9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				09425D37213E825A00280343 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		095D67992146492000F45EDD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				091E6AEA214682B4002AE9A9 /* Constants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -79,6 +115,7 @@
 		095D679A2146492B00F45EDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				091E6AE321465DD7002AE9A9 /* Map */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -86,7 +123,8 @@
 		095D679B2146493100F45EDD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				09425D37213E825A00280343 /* LoginViewController.swift */,
+				091E6AE521465DE5002AE9A9 /* Login */,
+				091E6AE421465DDE002AE9A9 /* Map */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -95,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				091E6AE121465312002AE9A9 /* Map.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -283,6 +322,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				091E6AE221465312002AE9A9 /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,8 +427,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */,
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,
+				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */,
+				091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -144,7 +144,7 @@ extension TaxiGo.API {
         
     }
     
-    public func getNearbyDriver(withAccessToken: String, lat: Double, lng: Double, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+    public func getNearbyDriver(withAccessToken: String, lat: Double, lng: Double, success: @escaping ([NearbyDrivers]) -> Void, failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/driver?lat=\(lat)&lng=\(lng)", parameter: [:]) { (err, dic, array) in
             
