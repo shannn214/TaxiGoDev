@@ -15,6 +15,8 @@
 		09425D38213E825A00280343 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425D37213E825A00280343 /* LoginViewController.swift */; };
 		095DAADE21476466003443E8 /* TaxiGoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAADD21476466003443E8 /* TaxiGoManager.swift */; };
 		095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAADF214767E4003443E8 /* TaxiGo.swift */; };
+		095DAAE521479DE4003443E8 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095DAAE421479DE4003443E8 /* SearchView.xib */; };
+		095DAAE721479DFE003443E8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAAE621479DFE003443E8 /* SearchView.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -44,6 +46,8 @@
 		09425D37213E825A00280343 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		095DAADD21476466003443E8 /* TaxiGoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiGoManager.swift; sourceTree = "<group>"; };
 		095DAADF214767E4003443E8 /* TaxiGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiGo.swift; sourceTree = "<group>"; };
+		095DAAE421479DE4003443E8 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
+		095DAAE621479DFE003443E8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		3883F0C9649C92A9EA9EAE7F /* Pods-TaxiGoDev_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5ACD16D8491CA58E920B4B3E /* Pods-TaxiGoDev_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TaxiGoDev_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiGoDev_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +92,8 @@
 			children = (
 				091E6AE621465E1A002AE9A9 /* CustomTextField.swift */,
 				091E6AE821467F9C002AE9A9 /* CustomButton.swift */,
+				095DAAE421479DE4003443E8 /* SearchView.xib */,
+				095DAAE621479DFE003443E8 /* SearchView.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				095DAAE521479DE4003443E8 /* SearchView.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				091E6AE221465312002AE9A9 /* Map.storyboard in Resources */,
@@ -450,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				095DAADE21476466003443E8 /* TaxiGoManager.swift in Sources */,
+				095DAAE721479DFE003443E8 /* SearchView.swift in Sources */,
 				091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */,
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,
 				095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */,

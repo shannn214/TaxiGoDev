@@ -14,6 +14,8 @@ import GooglePlacePicker
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
+    @IBOutlet weak var searchView: SearchView!
+    
     @IBOutlet weak var mapView: GMSMapView!
     
     @IBOutlet weak var confirmButton: CustomButton!
@@ -28,11 +30,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     var toPlace: GMSPlace? = nil
     
+    var textFieldTag: Int?
+    
     var placesClient: GMSPlacesClient!
-    
-    var fromTextField: CustomTextField!
-    
-    var toTextField: CustomTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         setupMapView()
         getCurrentPlace()
         
-        setupTextField()
+        searchView.searchViewDelegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,21 +62,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
     }
     
-    fileprivate func setupTextField() {
-        
-        fromTextField = CustomTextField(frame: CGRect(x: 50, y: 50, width: UIScreen.main.bounds.width - 100, height: 50))
-        fromTextField.placeholder = "Current place"
-        fromTextField.tag = 1
-        toTextField = CustomTextField(frame: CGRect(x: 50, y: 110, width: UIScreen.main.bounds.width - 100, height: 50))
-        toTextField.placeholder = "Destination"
-        toTextField.tag = 2
-//        fromTextField.tapDelegate = self
-        toTextField.tapDelegate = self
-        view.addSubview(fromTextField)
-        view.addSubview(toTextField)
-        
-    }
-    
     func getCurrentPlace() {
         
         placesClient.currentPlace { (placeList, err) in
@@ -87,7 +73,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             if let placeList = placeList {
                 let place = placeList.likelihoods.first?.place
                 if let place = place {
-                    self.fromTextField.text = "\(place.name)"
+                    self.searchView.fromTextField.text = "\(place.name)"
                     self.fromPlace = place
 //                    self.taxiGo.api.getNearbyDriver(withAccessToken: Constants.token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
 //                        print("Success get nearby griver.")
@@ -127,13 +113,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
 }
 
-extension MapViewController: CustomTextFieldDelegate {
+extension MapViewController: SearchViewDelegate {
     
-    func textFieldDidTap(_ controller: CustomTextField) {
+    func textFieldDidTap(sender: UITextField) {
+        
         let autoconpleteController = GMSAutocompleteViewController()
         autoconpleteController.delegate = self
         autoconpleteController.modalPresentationStyle = .overCurrentContext
         present(autoconpleteController, animated: true, completion: nil)
+        textFieldTag = sender.tag
+        
     }
 
 }
@@ -141,13 +130,20 @@ extension MapViewController: CustomTextFieldDelegate {
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+
+        switch textFieldTag {
+        case 11:
+            searchView.fromTextField.text = place.name
+            fromPlace = place
+        case 22:
+            searchView.toTextField.text = place.name
+            toPlace = place
+            destinationMarker.position = place.coordinate
+            destinationMarker.map = mapView
+        default:
+            break
+        }
         
-        // NOTE: two text fields to handle
-        
-        toTextField.text = "\(place.name)"
-        toPlace = place
-        destinationMarker.position = place.coordinate
-        destinationMarker.map = mapView
         dismiss(animated: true, completion: nil)
 
     }
