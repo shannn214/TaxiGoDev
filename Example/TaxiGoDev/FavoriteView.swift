@@ -54,16 +54,16 @@ class FavoriteView: UIView {
 extension FavoriteView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return favorite.count
-        return 3
+        return favorite.count
+//        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = favTableView.dequeueReusableCell(withIdentifier: String(describing: FavoriteTableViewCell.self)) as? FavoriteTableViewCell else { return UITableViewCell() }
                 
-//        cell.favName.text = favorite[indexPath.row].address
-        cell.favName.text = "Ahahahahhaha uuuu"
+        cell.favName.text = favorite[indexPath.row].address
+//        cell.favName.text = "Ahahahahhaha uuuu"
         
         return cell
         

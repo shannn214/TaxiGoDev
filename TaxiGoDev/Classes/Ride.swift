@@ -58,11 +58,11 @@ extension TaxiGo.API {
     
     public class Rider: HandyJSON {
         
-        var name: String?
+        public var name: String?
         
-        var profile_img: String?
+        public var profile_img: String?
         
-        var favorite: [Favorite]?
+        public var favorite: [Favorite]?
         
         public required init() {}
         
@@ -70,11 +70,11 @@ extension TaxiGo.API {
     
     public class Favorite: HandyJSON {
         
-        var address: String?
+        public var address: String?
         
-        var lat: Double?
+        public var lat: Double?
         
-        var lng: Double?
+        public var lng: Double?
         
         public required init() {}
 
@@ -82,9 +82,9 @@ extension TaxiGo.API {
     
     public class NearbyDrivers: HandyJSON {
         
-        var lat: Double?
+        public var lat: Double?
         
-        var lng: Double?
+        public var lng: Double?
         
         public required init() {}
 

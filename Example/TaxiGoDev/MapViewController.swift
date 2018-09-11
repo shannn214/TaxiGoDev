@@ -47,6 +47,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         searchView.searchViewDelegate = self
         
+        loadFavList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,12 +108,35 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         favHeightConstaint.constant = favoriteView.favTableView.contentSize.height
     }
     
+    func loadFavList() {
+        
+        taxiGo.api.getRiderInfo(withAccessToken: Constants.token, success: { (rider, fav) in
+            
+            fav.forEach({ (info) in
+                guard let address = info?.address,
+                    let lat = info?.lat,
+                    let lng = info?.lng else { return }
+                let favorite = Favorite(address: address, lat: lat, lng: lng)
+                self.favoriteView.favorite.append(favorite)
+            })
+
+            DispatchQueue.main.async {
+                self.favoriteView.favTableView.reloadData()
+            }
+            
+        }) { (err) in
+            print(err.localizedDescription)
+        }
+        
+    }
+    
     @IBAction func confirmBtn(_ sender: Any) {
         
         guard fromPlace != nil else { return }
         
         taxiGo.api.requestARide(withAccessToken: Constants.token, startLatitude: (fromPlace?.coordinate.latitude)!, startLongitude: (fromPlace?.coordinate.longitude)!, startAddress: (fromPlace?.name)!, endLatitude: toPlace?.coordinate.latitude, endLongitude: toPlace?.coordinate.longitude, endAddress: toPlace?.name, success: { (ride) in
             // ok
+//            ride.driver
         }) { (err) in
             print(err.localizedDescription)
         }
@@ -124,7 +148,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 extension MapViewController: SearchViewDelegate {
     
     func favBtnDidTap() {
-        
+        favoriteView.isHidden = !favoriteView.isHidden
     }
     
     func textFieldDidTap(sender: UITextField) {
