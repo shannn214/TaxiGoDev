@@ -16,11 +16,17 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
     
+    @IBOutlet weak var confirmButton: CustomButton!
+    
     var taxiGo = TaxiGo()
     
     var destinationMarker = GMSMarker()
     
     var driverMarker = GMSMarker()
+    
+    var fromPlace: GMSPlace?
+    
+    var toPlace: GMSPlace? = nil
     
     var placesClient: GMSPlacesClient!
     
@@ -47,7 +53,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         mapView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-//        mapView.mapType = .normal
         
         let position = CLLocationCoordinate2D(latitude: 25.019946, longitude: 121.528717)
         mapView.settings.compassButton = true
@@ -58,10 +63,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     fileprivate func setupTextField() {
         
-        fromTextField = CustomTextField(frame: CGRect(x: 50, y: 50, width: 250, height: 50))
+        fromTextField = CustomTextField(frame: CGRect(x: 50, y: 50, width: UIScreen.main.bounds.width - 100, height: 50))
         fromTextField.placeholder = "Current place"
         fromTextField.tag = 1
-        toTextField = CustomTextField(frame: CGRect(x: 50, y: 120, width: 250, height: 50))
+        toTextField = CustomTextField(frame: CGRect(x: 50, y: 110, width: UIScreen.main.bounds.width - 100, height: 50))
         toTextField.placeholder = "Destination"
         toTextField.tag = 2
 //        fromTextField.tapDelegate = self
@@ -83,13 +88,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 let place = placeList.likelihoods.first?.place
                 if let place = place {
                     self.fromTextField.text = "\(place.name)"
-                    
-                    self.taxiGo.api.getNearbyDriver(withAccessToken: Constants.token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: {
-                        print("Success get nearby griver.")
-                        
-                    }, failure: { (err) in
-                        
-                    })
+                    self.fromPlace = place
+//                    self.taxiGo.api.getNearbyDriver(withAccessToken: Constants.token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
+//                        print("Success get nearby griver.")
+//
+//                    }, failure: { (err) in
+//
+//                    })
                     
                 }
             }
@@ -98,19 +103,26 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
     }
     
-    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
-        
-//        destinationMarker.position = location
+//    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+//        toTextField.text = name
+//    }
+//
+//    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+//        destinationMarker.position = coordinate
 //        destinationMarker.map = mapView
 //        mapView.selectedMarker = destinationMarker
-        
-    }
+//    }
     
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        destinationMarker.position = coordinate
-        destinationMarker.map = mapView
-        mapView.selectedMarker = destinationMarker
-        toTextField.text = "\(coordinate)"
+    @IBAction func confirmBtn(_ sender: Any) {
+        
+        guard fromPlace != nil else { return }
+        
+        taxiGo.api.requestARide(withAccessToken: Constants.token, startLatitude: (fromPlace?.coordinate.latitude)!, startLongitude: (fromPlace?.coordinate.longitude)!, startAddress: (fromPlace?.name)!, endLatitude: toPlace?.coordinate.latitude, endLongitude: toPlace?.coordinate.longitude, endAddress: toPlace?.name, success: { (ride) in
+            // ok
+        }) { (err) in
+            print(err.localizedDescription)
+        }
+        
     }
     
 }
@@ -133,6 +145,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
         // NOTE: two text fields to handle
         
         toTextField.text = "\(place.name)"
+        toPlace = place
         destinationMarker.position = place.coordinate
         destinationMarker.map = mapView
         dismiss(animated: true, completion: nil)

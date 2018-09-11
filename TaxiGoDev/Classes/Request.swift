@@ -31,13 +31,10 @@ extension TaxiGo.API {
             if err == nil {
 
                 if let ride = JSONDeserializer<Ride>.deserializeFrom(dict: dic) {
-                    print(ride.toJSONString(prettyPrint: true))
-                    print("-------uuuuu------")
+                    
+//                    print(ride.toJSONString(prettyPrint: true))
                     guard let model = Ride.deserialize(from: dic) else { return }
-//                    print(model.start_address)
-//                    print(model.id)
                     success(model)
-                    print("-------uuuuu------")
 
                 }
 

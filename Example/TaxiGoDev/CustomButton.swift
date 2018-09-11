@@ -22,7 +22,9 @@ class CustomButton: UIButton {
     }
     
     private func style() {
-        
+        backgroundColor = UIColor.black
+        layer.cornerRadius = 5
+        alpha = 0.95
     }
     
     

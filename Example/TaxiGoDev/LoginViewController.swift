@@ -12,20 +12,12 @@ import Kingfisher
 import NVActivityIndicatorView
 
 class LoginViewController: UIViewController {
-    
-    var taxiAPI = TaxiGo.API()
-    
-    var taxiAuth = TaxiGo.Auth()
-    
+
     var taxi = TaxiGo()
-    
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjYzODE0OTMsImtleSI6IlUyRnNkR1ZrWDE5Ty9zdUZsTHR5WitENVIza1FTWjBoaGZ0ZmVVYW44blo1aWVaRmpLKytHbjdoUFMrZTl6M3crTk44dURJQ0RrWlkrRGFuT0xOOHd3PT0iLCJhcHBfaWQiOiItTEtQWXlzS0RjSWROczdDTFlhMyIsImlhdCI6MTUzNDg0NTQ5M30.zA7PfY4Q23_iBQ89M5n8VIpnA5ORqC8QXpuoVzDSBy8"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.taxiAuth.accessToken = accessToken
-        
+                
 //        taxiAPI.getRidesHistory(withAccessToken: accessToken, success: {
 //            print("success response of get rides history")
 //        }) { (err) in
