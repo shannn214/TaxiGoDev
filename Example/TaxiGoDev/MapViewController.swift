@@ -16,9 +16,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var searchView: SearchView!
     
+    @IBOutlet weak var favoriteView: FavoriteView!
+    
     @IBOutlet weak var mapView: GMSMapView!
     
     @IBOutlet weak var confirmButton: CustomButton!
+    
+    @IBOutlet weak var favHeightConstaint: NSLayoutConstraint!
     
     var taxiGo = TaxiGo()
     
@@ -99,6 +103,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 //        mapView.selectedMarker = destinationMarker
 //    }
     
+    override func viewDidLayoutSubviews() {
+        favHeightConstaint.constant = favoriteView.favTableView.contentSize.height
+    }
+    
     @IBAction func confirmBtn(_ sender: Any) {
         
         guard fromPlace != nil else { return }
@@ -114,6 +122,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 }
 
 extension MapViewController: SearchViewDelegate {
+    
+    func favBtnDidTap() {
+        
+    }
     
     func textFieldDidTap(sender: UITextField) {
         

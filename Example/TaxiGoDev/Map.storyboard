@@ -28,6 +28,13 @@
                                     <constraint firstAttribute="height" constant="150" id="gCb-KJ-w9h"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKY-kO-KIn" customClass="FavoriteView" customModule="TaxiGoDev_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="150" width="375" height="300"/>
+                                <color key="backgroundColor" red="0.85882352939999995" green="0.64705882349999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="X6e-QK-5Sb"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGi-vb-YjF" customClass="CustomButton" customModule="TaxiGoDev_Example" customModuleProvider="target">
                                 <rect key="frame" x="50" y="597" width="275" height="50"/>
                                 <constraints>
@@ -48,18 +55,23 @@
                             <constraint firstItem="CGi-vb-YjF" firstAttribute="leading" secondItem="DkJ-eS-Qaa" secondAttribute="leading" constant="50" id="1VF-fm-5MQ"/>
                             <constraint firstItem="phc-U4-Bcy" firstAttribute="leading" secondItem="DkJ-eS-Qaa" secondAttribute="leading" id="8Ma-xJ-vyX"/>
                             <constraint firstItem="phc-U4-Bcy" firstAttribute="top" secondItem="Ekj-1J-htd" secondAttribute="top" id="D2C-mn-u4D"/>
+                            <constraint firstItem="GKY-kO-KIn" firstAttribute="leading" secondItem="DkJ-eS-Qaa" secondAttribute="leading" id="FbS-V8-bC5"/>
                             <constraint firstItem="Taa-1y-hEz" firstAttribute="leading" secondItem="DkJ-eS-Qaa" secondAttribute="leading" id="JU1-NH-Dsw"/>
                             <constraint firstItem="CGi-vb-YjF" firstAttribute="centerX" secondItem="Ekj-1J-htd" secondAttribute="centerX" id="KLX-xn-Odc"/>
                             <constraint firstItem="DkJ-eS-Qaa" firstAttribute="bottom" secondItem="CGi-vb-YjF" secondAttribute="bottom" constant="20" id="Lc2-74-yA3"/>
                             <constraint firstItem="DkJ-eS-Qaa" firstAttribute="trailing" secondItem="phc-U4-Bcy" secondAttribute="trailing" id="Nlr-Zl-Gx7"/>
                             <constraint firstItem="Taa-1y-hEz" firstAttribute="bottom" secondItem="DkJ-eS-Qaa" secondAttribute="bottom" id="SjN-aX-WCC"/>
+                            <constraint firstItem="GKY-kO-KIn" firstAttribute="top" secondItem="phc-U4-Bcy" secondAttribute="bottom" id="U4V-du-pAa"/>
                             <constraint firstItem="DkJ-eS-Qaa" firstAttribute="trailing" secondItem="CGi-vb-YjF" secondAttribute="trailing" constant="50" id="vg3-2I-6Jz"/>
+                            <constraint firstItem="DkJ-eS-Qaa" firstAttribute="trailing" secondItem="GKY-kO-KIn" secondAttribute="trailing" id="wIN-AO-iUG"/>
                             <constraint firstItem="Taa-1y-hEz" firstAttribute="trailing" secondItem="DkJ-eS-Qaa" secondAttribute="trailing" id="zU8-e3-RaJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DkJ-eS-Qaa"/>
                     </view>
                     <connections>
                         <outlet property="confirmButton" destination="CGi-vb-YjF" id="OGw-AF-haB"/>
+                        <outlet property="favHeightConstaint" destination="X6e-QK-5Sb" id="yLl-A6-c4O"/>
+                        <outlet property="favoriteView" destination="GKY-kO-KIn" id="UAE-gV-tW4"/>
                         <outlet property="mapView" destination="Taa-1y-hEz" id="Scy-zQ-hYk"/>
                         <outlet property="searchView" destination="phc-U4-Bcy" id="vcp-HJ-egP"/>
                     </connections>

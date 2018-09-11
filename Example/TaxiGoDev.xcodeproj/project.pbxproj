@@ -17,6 +17,10 @@
 		095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAADF214767E4003443E8 /* TaxiGo.swift */; };
 		095DAAE521479DE4003443E8 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095DAAE421479DE4003443E8 /* SearchView.xib */; };
 		095DAAE721479DFE003443E8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAAE621479DFE003443E8 /* SearchView.swift */; };
+		095DAAE92147BCCF003443E8 /* FavoriteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095DAAE82147BCCF003443E8 /* FavoriteView.xib */; };
+		095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAAEA2147BCF5003443E8 /* FavoriteView.swift */; };
+		095DAAEE2147C83A003443E8 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAAEC2147C839003443E8 /* FavoriteTableViewCell.swift */; };
+		095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095DAAED2147C839003443E8 /* FavoriteTableViewCell.xib */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -48,6 +52,10 @@
 		095DAADF214767E4003443E8 /* TaxiGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiGo.swift; sourceTree = "<group>"; };
 		095DAAE421479DE4003443E8 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		095DAAE621479DFE003443E8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		095DAAE82147BCCF003443E8 /* FavoriteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteView.xib; sourceTree = "<group>"; };
+		095DAAEA2147BCF5003443E8 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		095DAAEC2147C839003443E8 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		095DAAED2147C839003443E8 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		3883F0C9649C92A9EA9EAE7F /* Pods-TaxiGoDev_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5ACD16D8491CA58E920B4B3E /* Pods-TaxiGoDev_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TaxiGoDev_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiGoDev_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +133,7 @@
 		095D679A2146492B00F45EDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				095DAAF02147C864003443E8 /* Favorite */,
 				091E6AE321465DD7002AE9A9 /* Map */,
 			);
 			name = View;
@@ -163,6 +172,17 @@
 				091E6AEA214682B4002AE9A9 /* Constants.swift */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		095DAAF02147C864003443E8 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				095DAAE82147BCCF003443E8 /* FavoriteView.xib */,
+				095DAAEA2147BCF5003443E8 /* FavoriteView.swift */,
+				095DAAEC2147C839003443E8 /* FavoriteTableViewCell.swift */,
+				095DAAED2147C839003443E8 /* FavoriteTableViewCell.xib */,
+			);
+			name = Favorite;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -349,8 +369,10 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				095DAAE521479DE4003443E8 /* SearchView.xib in Resources */,
+				095DAAE92147BCCF003443E8 /* FavoriteView.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */,
 				091E6AE221465312002AE9A9 /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,7 +486,9 @@
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */,
+				095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */,
 				091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */,
+				095DAAEE2147C83A003443E8 /* FavoriteTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
