@@ -8,8 +8,12 @@
 import Foundation
 import HandyJSON
 
+public protocol TaxiGoAPIDelegate: class {
+    func tripDidUpdate(status: String)
+}
+
 extension TaxiGo.API {
-    
+        
     public func requestARide(withAccessToken: String,
                              startLatitude: Double,
                              startLongitude: Double,
@@ -34,12 +38,15 @@ extension TaxiGo.API {
                     
 //                    print(ride.toJSONString(prettyPrint: true))
                     guard let model = Ride.deserialize(from: dic) else { return }
+                    self.id = model.id
                     success(model)
+                    
+                    self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.tripUpdate), userInfo: nil, repeats: true)
+
 
                 }
 
             } else if let err = err {
-                
                 failure(err)
                 print("QQ failed.")
                 
@@ -104,6 +111,22 @@ extension TaxiGo.API {
             
         }
         
+    }
+    
+    // NOTE: for observe status
+    @objc func tripUpdate() {
+        
+        guard id != nil else { return }
+        
+        getSpecificRideHistory(withAccessToken: token, id: id!, success: { (ride) in
+            
+            // NOTE: can pass all the data outside
+            self.taxiGoDelegate?.tripDidUpdate(status: ride.status!)
+            
+        }) { (err) in
+            print("Can't get ride status")
+        }
+
     }
     
     public func getRiderInfo(withAccessToken: String, success: @escaping (Rider) -> Void, failure: @escaping (Error) -> Void) {

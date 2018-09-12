@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-1y-hEz" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="527"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phc-U4-Bcy" customClass="SearchView" customModule="TaxiGoDev_Example" customModuleProvider="target">
@@ -36,7 +37,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGi-vb-YjF" customClass="CustomButton" customModule="TaxiGoDev_Example" customModuleProvider="target">
-                                <rect key="frame" x="50" y="597" width="275" height="50"/>
+                                <rect key="frame" x="25" y="597" width="325" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="XhF-ne-fVJ"/>
                                 </constraints>
@@ -51,8 +52,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Taa-1y-hEz" firstAttribute="top" secondItem="Ekj-1J-htd" secondAttribute="top" id="0yP-og-Cil"/>
-                            <constraint firstItem="CGi-vb-YjF" firstAttribute="leading" secondItem="DkJ-eS-Qaa" secondAttribute="leading" constant="50" id="1VF-fm-5MQ"/>
+                            <constraint firstItem="Taa-1y-hEz" firstAttribute="top" secondItem="Ekj-1J-htd" secondAttribute="top" constant="140" id="0yP-og-Cil"/>
                             <constraint firstItem="phc-U4-Bcy" firstAttribute="leading" secondItem="DkJ-eS-Qaa" secondAttribute="leading" id="8Ma-xJ-vyX"/>
                             <constraint firstItem="phc-U4-Bcy" firstAttribute="top" secondItem="Ekj-1J-htd" secondAttribute="top" id="D2C-mn-u4D"/>
                             <constraint firstItem="GKY-kO-KIn" firstAttribute="leading" secondItem="DkJ-eS-Qaa" secondAttribute="leading" id="FbS-V8-bC5"/>
@@ -62,7 +62,7 @@
                             <constraint firstItem="DkJ-eS-Qaa" firstAttribute="trailing" secondItem="phc-U4-Bcy" secondAttribute="trailing" id="Nlr-Zl-Gx7"/>
                             <constraint firstItem="Taa-1y-hEz" firstAttribute="bottom" secondItem="DkJ-eS-Qaa" secondAttribute="bottom" id="SjN-aX-WCC"/>
                             <constraint firstItem="GKY-kO-KIn" firstAttribute="top" secondItem="phc-U4-Bcy" secondAttribute="bottom" id="U4V-du-pAa"/>
-                            <constraint firstItem="DkJ-eS-Qaa" firstAttribute="trailing" secondItem="CGi-vb-YjF" secondAttribute="trailing" constant="50" id="vg3-2I-6Jz"/>
+                            <constraint firstItem="CGi-vb-YjF" firstAttribute="width" secondItem="Taa-1y-hEz" secondAttribute="height" multiplier="325:527" id="dQS-aB-kCY"/>
                             <constraint firstItem="DkJ-eS-Qaa" firstAttribute="trailing" secondItem="GKY-kO-KIn" secondAttribute="trailing" id="wIN-AO-iUG"/>
                             <constraint firstItem="Taa-1y-hEz" firstAttribute="trailing" secondItem="DkJ-eS-Qaa" secondAttribute="trailing" id="zU8-e3-RaJ"/>
                         </constraints>
