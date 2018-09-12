@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol FavoriteViewDelegate: class {
+    func favoriteCellDidTap(index: IndexPath)
+}
+
 class FavoriteView: UIView {
 
     @IBOutlet var containView: UIView!
     @IBOutlet weak var favTableView: UITableView!
+    
+    weak var favoriteDelegate: FavoriteViewDelegate?
     
     var favorite = [Favorite]()
     
@@ -39,6 +45,7 @@ class FavoriteView: UIView {
     private func setupTableView() {
         
         favTableView.separatorStyle = .singleLine
+        favTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         favTableView.delegate = self
         favTableView.dataSource = self
         favTableView.rowHeight = UITableViewAutomaticDimension
@@ -61,16 +68,20 @@ extension FavoriteView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = favTableView.dequeueReusableCell(withIdentifier: String(describing: FavoriteTableViewCell.self)) as? FavoriteTableViewCell else { return UITableViewCell() }
-                
+        
         cell.favName.text = favorite[indexPath.row].address
-//        cell.favName.text = "Ahahahahhaha uuuu"
+        cell.selectionStyle = .none
         
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.favoriteDelegate?.favoriteCellDidTap(index: indexPath)
     }
     
 }

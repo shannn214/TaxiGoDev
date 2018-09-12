@@ -95,7 +95,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		091E6AE321465DD7002AE9A9 /* Map */ = {
+		091E6AE321465DD7002AE9A9 /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				091E6AE621465E1A002AE9A9 /* CustomTextField.swift */,
@@ -103,7 +103,7 @@
 				095DAAE421479DE4003443E8 /* SearchView.xib */,
 				095DAAE621479DFE003443E8 /* SearchView.swift */,
 			);
-			name = Map;
+			name = Search;
 			sourceTree = "<group>";
 		};
 		091E6AE421465DDE002AE9A9 /* Map */ = {
@@ -134,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				095DAAF02147C864003443E8 /* Favorite */,
-				091E6AE321465DD7002AE9A9 /* Map */,
+				091E6AE321465DD7002AE9A9 /* Search */,
 			);
 			name = View;
 			sourceTree = "<group>";

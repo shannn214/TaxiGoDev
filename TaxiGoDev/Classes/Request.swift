@@ -106,38 +106,14 @@ extension TaxiGo.API {
         
     }
     
-    public func getRiderInfo(withAccessToken: String, success: @escaping (Rider, [Favorite?]) -> Void, failure: @escaping (Error) -> Void) {
+    public func getRiderInfo(withAccessToken: String, success: @escaping (Rider) -> Void, failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/me", parameter: [:]) { (err, dic, array) in
             
             if err == nil {
                 
-//                guard let model = Rider.deserialize(from: dic) else { return }
-//                print("---------rider info--------")
-//                success(model)
-                
-                // try-----
-                
                 guard let model = Rider.deserialize(from: dic) else { return }
-//                success(model)
-                
-                // try----
-                
-                if let favorite = dic?["favorite"] as? [[String: Any]] ?? nil {
-                    
-                    if let fav = [Favorite].deserialize(from: favorite) {
-                        
-                        fav.forEach({ (info) in
-                            print(info?.address)
-                            print(info?.lat)
-                            
-                        })
-                        success(model, fav)
-                    }
-
-                }
-                
-                print("---------rider info--------")
+                success(model)
                 
             } else if let err = err {
                 failure(err)
@@ -149,7 +125,7 @@ extension TaxiGo.API {
         
     }
     
-    public func getNearbyDriver(withAccessToken: String, lat: Double, lng: Double, success: @escaping ([NearbyDrivers]) -> Void, failure: @escaping (Error) -> Void) {
+    public func getNearbyDriver(withAccessToken: String, lat: Double, lng: Double, success: @escaping ([NearbyDrivers?]) -> Void, failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/driver?lat=\(lat)&lng=\(lng)", parameter: [:]) { (err, dic, array) in
             
@@ -161,6 +137,8 @@ extension TaxiGo.API {
                         print(info?.lat)
                         print(info?.lng)
                     })
+                    
+                    success(driver)
                     
                 }
                 

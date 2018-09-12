@@ -30,10 +30,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     var driverMarker = GMSMarker()
     
-    var fromPlace: GMSPlace?
+    var startAdd: String?
     
-    var toPlace: GMSPlace? = nil
+    var startLocation: CLLocation?
     
+    var endAdd: String?
+    
+    var endLocation: CLLocation?
+
     var textFieldTag: Int?
     
     var placesClient: GMSPlacesClient!
@@ -46,6 +50,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         getCurrentPlace()
         
         searchView.searchViewDelegate = self
+        favoriteView.favoriteDelegate = self
         
         loadFavList()
     }
@@ -56,11 +61,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     fileprivate func setupMapView() {
         
+        let position = CLLocationCoordinate2D(latitude: 25.019946, longitude: 121.528717)
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         mapView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        
-        let position = CLLocationCoordinate2D(latitude: 25.019946, longitude: 121.528717)
         mapView.settings.compassButton = true
         mapView.settings.myLocationButton = true
         mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
@@ -79,13 +83,20 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 let place = placeList.likelihoods.first?.place
                 if let place = place {
                     self.searchView.fromTextField.text = "\(place.name)"
-                    self.fromPlace = place
-//                    self.taxiGo.api.getNearbyDriver(withAccessToken: Constants.token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
-//                        print("Success get nearby griver.")
-//
-//                    }, failure: { (err) in
-//
-//                    })
+                    self.startAdd = place.name
+                    self.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+                    
+                    self.taxiGo.api.getNearbyDriver(withAccessToken: Constants.token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
+                        
+                        print("Success get nearby griver.")
+                        nearbyDrivers.forEach({ (driver) in
+                            print(driver?.lat)
+                            print(driver?.lng)
+                        })
+
+                    }, failure: { (err) in
+                        print(err.localizedDescription)
+                    })
                     
                 }
             }
@@ -104,25 +115,24 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 //        mapView.selectedMarker = destinationMarker
 //    }
     
+    // ISSUE: It doesn't work property.
     override func viewDidLayoutSubviews() {
         favHeightConstaint.constant = favoriteView.favTableView.contentSize.height
     }
     
     func loadFavList() {
         
-        taxiGo.api.getRiderInfo(withAccessToken: Constants.token, success: { (rider, fav) in
+        taxiGo.api.getRiderInfo(withAccessToken: Constants.token, success: { (rider) in
             
-            fav.forEach({ (info) in
-                guard let address = info?.address,
-                    let lat = info?.lat,
-                    let lng = info?.lng else { return }
+            rider.favorite?.forEach({ (info) in
+                guard let address = info.address,
+                    let lat = info.lat,
+                    let lng = info.lng else { return }
                 let favorite = Favorite(address: address, lat: lat, lng: lng)
                 self.favoriteView.favorite.append(favorite)
             })
 
-            DispatchQueue.main.async {
-                self.favoriteView.favTableView.reloadData()
-            }
+            self.favoriteView.favTableView.reloadData()
             
         }) { (err) in
             print(err.localizedDescription)
@@ -132,14 +142,30 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBAction func confirmBtn(_ sender: Any) {
         
-        guard fromPlace != nil else { return }
-        
-        taxiGo.api.requestARide(withAccessToken: Constants.token, startLatitude: (fromPlace?.coordinate.latitude)!, startLongitude: (fromPlace?.coordinate.longitude)!, startAddress: (fromPlace?.name)!, endLatitude: toPlace?.coordinate.latitude, endLongitude: toPlace?.coordinate.longitude, endAddress: toPlace?.name, success: { (ride) in
+        taxiGo.api.requestARide(withAccessToken: Constants.token,
+                                startLatitude: (startLocation?.coordinate.latitude)!,
+                                startLongitude: (startLocation?.coordinate.longitude)!,
+                                startAddress: startAdd!,
+                                endLatitude: endLocation?.coordinate.latitude,
+                                endLongitude: endLocation?.coordinate.longitude,
+                                endAddress: endAdd,
+                                success: { (ride) in
             // ok
 //            ride.driver
         }) { (err) in
             print(err.localizedDescription)
         }
+        
+    }
+    
+}
+
+extension MapViewController: FavoriteViewDelegate {
+    
+    func favoriteCellDidTap(index: IndexPath) {
+        searchView.fromTextField.text = favoriteView.favorite[index.row].address
+        startAdd = favoriteView.favorite[index.row].address
+        startLocation = CLLocation(latitude: favoriteView.favorite[index.row].lat!, longitude: favoriteView.favorite[index.row].lng!)
         
     }
     
@@ -170,10 +196,13 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
         switch textFieldTag {
         case 11:
             searchView.fromTextField.text = place.name
-            fromPlace = place
+            startAdd = place.name
+            startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+
         case 22:
             searchView.toTextField.text = place.name
-            toPlace = place
+            endAdd = place.name
+            endLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             destinationMarker.position = place.coordinate
             destinationMarker.map = mapView
         default:

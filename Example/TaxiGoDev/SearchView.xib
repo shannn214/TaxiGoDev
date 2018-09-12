@@ -29,7 +29,7 @@
                         <constraint firstAttribute="height" constant="35" id="4bL-Bf-lRe"/>
                     </constraints>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Where to?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V7f-20-XxS">
@@ -39,7 +39,7 @@
                         <constraint firstAttribute="height" constant="35" id="OcD-Bg-kgb"/>
                     </constraints>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9il-Uq-wGz">
@@ -56,7 +56,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="V7f-20-XxS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="3tn-I5-vfz"/>
                 <constraint firstItem="V7f-20-XxS" firstAttribute="top" secondItem="t8d-Vb-cPi" secondAttribute="bottom" constant="10" id="4ZC-9u-IBZ"/>

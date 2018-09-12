@@ -19,23 +19,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZ6-Hs-7kp">
-                        <rect key="frame" x="60" y="11" width="45.5" height="19"/>
-                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="frame" x="68" y="36" width="38" height="20"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                        <color key="textColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWr-Qw-8XN">
-                        <rect key="frame" x="60" y="38" width="50" height="16"/>
-                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maps-and-flags" translatesAutoresizingMaskIntoConstraints="NO" id="Dy8-2z-Ajt">
+                        <rect key="frame" x="30" y="40" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="3b4-S0-ltO"/>
+                            <constraint firstAttribute="height" constant="10" id="Ynh-NC-ych"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="cZ6-Hs-7kp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Fxh-fY-xWr"/>
-                    <constraint firstItem="zWr-Qw-8XN" firstAttribute="top" secondItem="cZ6-Hs-7kp" secondAttribute="bottom" constant="8" id="dT6-y7-kmA"/>
-                    <constraint firstItem="zWr-Qw-8XN" firstAttribute="leading" secondItem="cZ6-Hs-7kp" secondAttribute="leading" id="mMW-sq-Y4i"/>
-                    <constraint firstItem="cZ6-Hs-7kp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="wPk-eE-few"/>
+                    <constraint firstItem="Dy8-2z-Ajt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="801-RQ-DMr"/>
+                    <constraint firstItem="cZ6-Hs-7kp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9Tq-B9-ey1"/>
+                    <constraint firstItem="Dy8-2z-Ajt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="BfL-mA-Amd"/>
+                    <constraint firstItem="cZ6-Hs-7kp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="68" id="wPk-eE-few"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -45,4 +46,7 @@
             <point key="canvasLocation" x="49" y="77.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="maps-and-flags" width="32" height="32"/>
+    </resources>
 </document>
