@@ -9,7 +9,7 @@ import Foundation
 import HandyJSON
 
 extension TaxiGo.API {
-    
+
     public class Ride: HandyJSON {
         
         public var id: String?
@@ -108,8 +108,12 @@ extension TaxiGo.API {
 
     }
 
+}
+
+extension TaxiGo.Auth {
+
     public class Oauth: HandyJSON {
-    
+        
         var accessToken: String?
         
         var expireIn: String?
@@ -117,7 +121,7 @@ extension TaxiGo.API {
         var refreshToken: String?
         
         public required init() {}
-    
+        
     }
     
 }

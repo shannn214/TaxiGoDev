@@ -33,6 +33,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     var driverMarker = GMSMarker()
 
     var placesClient: GMSPlacesClient!
+    
+    var statusView: StatusView!
         
     var startAdd: String?
     
@@ -44,9 +46,15 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
     var textFieldTag: Int?
     
+    var confirmFlag = true
+    
+    var status: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        taxiGo.auth.accessToken = Constants.token
+        
         placesClient = GMSPlacesClient.shared()
         setupMapView()
         getCurrentPlace()
@@ -56,10 +64,24 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         favoriteView.favoriteDelegate = self
         
         taxiGo.api.taxiGoDelegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func addStatusView() {
+        
+        statusView = StatusView(frame: CGRect(x: 150, y: 300, width: 150, height: 150))
+        view.addSubview(statusView)
+        statusView.StatusLabel.text = "nothing"
+
+    }
+    
+    func changeStatusText(rideStatus: Status) {
+        statusView.StatusLabel.text = rideStatus.status
+
     }
     
     fileprivate func setupMapView() {
@@ -91,12 +113,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                     self.startAdd = place.name
                     self.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     
-                    self.taxiGo.api.getNearbyDriver(withAccessToken: Constants.token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
+                    self.taxiGo.api.getNearbyDriver(withAccessToken: self.taxiGo.auth.accessToken!, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
                         
                         print("Success get nearby griver.")
                         nearbyDrivers.forEach({ (driver) in
-                            print(driver?.lat)
-                            print(driver?.lng)
                             self.driverMarker.icon = UIImage(named: "car")
                             self.driverMarker.position = CLLocationCoordinate2D(latitude: (driver?.lat)!, longitude: (driver?.lng)!)
                             self.driverMarker.map = self.mapView
@@ -122,7 +142,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     func loadFavList() {
         
-        taxiGo.api.getRiderInfo(withAccessToken: Constants.token, success: { (rider) in
+        taxiGo.api.getRiderInfo(withAccessToken: taxiGo.auth.accessToken!, success: { (rider) in
             
             rider.favorite?.forEach({ (info) in
                 guard let address = info.address,
@@ -142,20 +162,38 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBAction func confirmBtn(_ sender: Any) {
         
-        taxiGo.api.requestARide(withAccessToken: Constants.token,
-                                startLatitude: (startLocation?.coordinate.latitude)!,
-                                startLongitude: (startLocation?.coordinate.longitude)!,
-                                startAddress: startAdd!,
-                                endLatitude: endLocation?.coordinate.latitude,
-                                endLongitude: endLocation?.coordinate.longitude,
-                                endAddress: endAdd,
-                                success: { (ride) in
-            // ok
-//            ride.driver
-                                   
-        }) { (err) in
-            print(err.localizedDescription)
+        if confirmFlag {
+
+            taxiGo.api.requestARide(withAccessToken: taxiGo.auth.accessToken!,
+                                    startLatitude: (startLocation?.coordinate.latitude)!,
+                                    startLongitude: (startLocation?.coordinate.longitude)!,
+                                    startAddress: startAdd!,
+                                    endLatitude: endLocation?.coordinate.latitude,
+                                    endLongitude: endLocation?.coordinate.longitude,
+                                    endAddress: endAdd,
+                                    success: { (ride) in
+
+                                        self.confirmButton.titleLabel?.text = "Cancel"
+                                        self.confirmFlag = false
+                                        
+                                        self.addStatusView()
+                                        
+            }) { (err) in
+                print(err.localizedDescription)
+            }
+
+        } else {
+
+            taxiGo.api.cancelARide(withAccessToken: taxiGo.auth.accessToken!, id: taxiGo.api.id!, success: { (ride) in
+                print(ride.status)
+                self.confirmButton.titleLabel?.text = "Confirm"
+                self.confirmFlag = true
+            }) { (err) in
+                print("Failed to cancel.")
+            }
+
         }
+
         
     }
     
@@ -249,8 +287,14 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
 extension MapViewController: TaxiGoAPIDelegate {
     
-    func tripStatusDidUpdate(status: String) {
+    func rideDidUpdate(status: String) {
         print(status)
+        
+        if status == Status.tripCanceled.rawValue {
+            changeStatusText(rideStatus: .tripCanceled)
+        }
+
     }
     
 }
+

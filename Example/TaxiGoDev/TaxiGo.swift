@@ -78,4 +78,35 @@ struct NearbyDrivers {
     
 }
 
+enum Status: String {
+    
+    case waitingSpecify = "WAITING_SPECIFY"
+    case requestingDriver = "REQUESTING_DRIVER"
+    case pendingResponseDriver = "PENDING_RESPONSE_DRIVER"
+    case driverReserved = "DRIVER_RESERVED"
+    case driverEnroute = "DRIVER_ENROUTE"
+    case driverArrived = "DRIVER_ARRIVED"
+    case tripStarted = "TRIP_STARTED"
+    case tripFinished = "TRIP_FINISHED"
+    case tripPaymentProcessed = "TRIP_PAYMENT_PROCESSED"
+    case tripCanceled = "TRIP_CANCELED"
+    
+    var status: String {
+        switch self {
+        case .driverArrived:
+            return "司機已抵達"
+        case .driverEnroute:
+            return "司機前往中"
+        case .tripCanceled:
+            return "行程已取消"
+        case .tripStarted:
+            return "行程已開始"
+        case .tripFinished:
+            return "行程已完成"
+        default:
+            return "測試"
+        }
+    }
+    
+}
 

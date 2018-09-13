@@ -9,7 +9,8 @@ import Foundation
 import HandyJSON
 
 public protocol TaxiGoAPIDelegate: class {
-    func tripDidUpdate(status: String)
+    
+    func rideDidUpdate(status: String)
 }
 
 extension TaxiGo.API {
@@ -36,7 +37,6 @@ extension TaxiGo.API {
 
                 if let ride = JSONDeserializer<Ride>.deserializeFrom(dict: dic) {
                     
-//                    print(ride.toJSONString(prettyPrint: true))
                     guard let model = Ride.deserialize(from: dic) else { return }
                     self.id = model.id
                     success(model)
@@ -118,10 +118,10 @@ extension TaxiGo.API {
         
         guard id != nil else { return }
         
-        getSpecificRideHistory(withAccessToken: token, id: id!, success: { (ride) in
+        getSpecificRideHistory(withAccessToken: parent.auth.accessToken!, id: id!, success: { (ride) in
             
             // NOTE: can pass all the data outside
-            self.taxiGoDelegate?.tripDidUpdate(status: ride.status!)
+            self.taxiGoDelegate?.rideDidUpdate(status: ride.status!)
             
         }) { (err) in
             print("Can't get ride status")
@@ -175,7 +175,7 @@ extension TaxiGo.API {
 
 extension TaxiGo.Auth {
     
-    public func ddgetUserToken(appID: String, appSecret: String, authCode: String, success: @escaping () -> Void, failure: @escaping () -> Void) {
+    public func getUserToken(appID: String, appSecret: String, authCode: String, success: @escaping (Oauth) -> Void, failure: @escaping () -> Void) {
         
         let params = ["app_id": appID,
                       "app_secret": appSecret,
@@ -185,6 +185,14 @@ extension TaxiGo.Auth {
             
             if err == nil {
                 
+                guard let auth = Oauth.deserialize(from: dic) else { return }
+//                self.parent.api.token = auth.accessToken
+                self.accessToken = auth.accessToken
+                
+                TaxiGo.shared.api.token = auth.accessToken
+
+                success(auth)
+                
                 // TODO: it will return access token, expire time, refesh token
                 
             }
@@ -193,7 +201,7 @@ extension TaxiGo.Auth {
         
     }
     
-    public func ddrefreshToken(appID: String, appSecret: String, refreshToken: String, success: @escaping () -> Void, failure: @escaping () -> Void) {
+    public func refreshToken(appID: String, appSecret: String, refreshToken: String, success: @escaping (Oauth) -> Void, failure: @escaping () -> Void) {
         
         let params = ["app_id": appID,
                       "app_secret": appSecret,
@@ -202,6 +210,14 @@ extension TaxiGo.Auth {
         call(path: "/refresh_token", parameter: params) { (err, dic) in
             
             if err == nil {
+                
+                guard let refreshToken = Oauth.deserialize(from: dic) else { return }
+//                self.parent.api.token = refreshToken.accessToken
+                self.accessToken = refreshToken.accessToken
+                
+                TaxiGo.shared.api.token = refreshToken.accessToken
+                
+                success(refreshToken)
                 
                 // TODO: it will return access token, expire time
                 
