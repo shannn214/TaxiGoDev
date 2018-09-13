@@ -61,6 +61,8 @@ extension TaxiGo.API {
             
             if err == nil {
                 
+                // NOTE: timer stop too early, need to update status in another way (in order to update the text status on UI)
+                self.timer.invalidate()
                 print("Delete")
                 guard let model = Ride.deserialize(from: dic) else { return }
                 success(model)

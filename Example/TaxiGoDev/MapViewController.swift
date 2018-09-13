@@ -73,15 +73,15 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     func addStatusView() {
         
-        statusView = StatusView(frame: CGRect(x: 150, y: 300, width: 150, height: 150))
+        statusView = StatusView(frame: CGRect(x: 100, y: 300, width: 200, height: 150))
+        statusView.layer.cornerRadius = 10
         view.addSubview(statusView)
-        statusView.StatusLabel.text = "nothing"
+        statusView.StatusLabel.text = "Nuhhhh"
 
     }
     
     func changeStatusText(rideStatus: Status) {
         statusView.StatusLabel.text = rideStatus.status
-
     }
     
     fileprivate func setupMapView() {
