@@ -24,6 +24,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var favHeightConstaint: NSLayoutConstraint!
     
+    @IBOutlet weak var statusView: StatusView!
+    
     var taxiGo = TaxiGo()
     
     var startMarker = GMSMarker()
@@ -34,8 +36,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
     var placesClient: GMSPlacesClient!
     
-    var statusView: StatusView!
-        
+//    var statusView: StatusView!
+    
     var startAdd: String?
     
     var startLocation: CLLocation?
@@ -59,6 +61,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         setupMapView()
         getCurrentPlace()
         loadFavList()
+        setupStatusView()
 
         searchView.searchViewDelegate = self
         favoriteView.favoriteDelegate = self
@@ -71,11 +74,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    func addStatusView() {
+    func setupStatusView() {
         
-        statusView = StatusView(frame: CGRect(x: 100, y: 300, width: 200, height: 150))
-        statusView.layer.cornerRadius = 10
-        view.addSubview(statusView)
+        statusView.alpha = 0
+        statusView.layer.cornerRadius = 5
+        statusView.clipsToBounds = true
         statusView.StatusLabel.text = "Nuhhhh"
 
     }
@@ -176,8 +179,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                         self.confirmButton.titleLabel?.text = "Cancel"
                                         self.confirmFlag = false
                                         
-                                        self.addStatusView()
-                                        
+                                        fadeInAnimation(view: self.statusView)
             }) { (err) in
                 print(err.localizedDescription)
             }
@@ -188,6 +190,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 print(ride.status)
                 self.confirmButton.titleLabel?.text = "Confirm"
                 self.confirmFlag = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 6, execute: {
+                    fadeOutAnimation(view: self.statusView)
+                })
+                
             }) { (err) in
                 print("Failed to cancel.")
             }
@@ -239,7 +246,7 @@ extension MapViewController: SearchViewDelegate {
 }
 
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
-    
+     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
 
         switch textFieldTag {
@@ -292,6 +299,8 @@ extension MapViewController: TaxiGoAPIDelegate {
         
         if status == Status.tripCanceled.rawValue {
             changeStatusText(rideStatus: .tripCanceled)
+        } else if status == Status.pendingResponseDriver.rawValue {
+            changeStatusText(rideStatus: .pendingResponseDriver)
         }
 
     }

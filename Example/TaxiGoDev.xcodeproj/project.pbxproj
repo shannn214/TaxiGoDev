@@ -13,6 +13,9 @@
 		091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE821467F9C002AE9A9 /* CustomButton.swift */; };
 		091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AEA214682B4002AE9A9 /* Constants.swift */; };
 		09425D38213E825A00280343 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425D37213E825A00280343 /* LoginViewController.swift */; };
+		0952FCC0214B94C10026D98B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCBF214B94C10026D98B /* Animation.swift */; };
+		0952FCC3214BA24D0026D98B /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCC2214BA24D0026D98B /* RiderViewController.swift */; };
+		0952FCC5214BA2740026D98B /* Rider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC4214BA2740026D98B /* Rider.storyboard */; };
 		095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAADF214767E4003443E8 /* TaxiGo.swift */; };
 		095DAAE521479DE4003443E8 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095DAAE421479DE4003443E8 /* SearchView.xib */; };
 		095DAAE721479DFE003443E8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAAE621479DFE003443E8 /* SearchView.swift */; };
@@ -49,6 +52,9 @@
 		091E6AE821467F9C002AE9A9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		091E6AEA214682B4002AE9A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09425D37213E825A00280343 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0952FCBF214B94C10026D98B /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		0952FCC2214BA24D0026D98B /* RiderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
+		0952FCC4214BA2740026D98B /* Rider.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rider.storyboard; sourceTree = "<group>"; };
 		095DAADF214767E4003443E8 /* TaxiGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiGo.swift; sourceTree = "<group>"; };
 		095DAAE421479DE4003443E8 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		095DAAE621479DFE003443E8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -124,6 +130,21 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		0952FCBE214B93870026D98B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		0952FCC1214BA18C0026D98B /* Rider */ = {
+			isa = PBXGroup;
+			children = (
+				0952FCC2214BA24D0026D98B /* RiderViewController.swift */,
+			);
+			name = Rider;
+			sourceTree = "<group>";
+		};
 		095D67992146492000F45EDD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +166,7 @@
 		095D679B2146493100F45EDD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0952FCC1214BA18C0026D98B /* Rider */,
 				091E6AE521465DE5002AE9A9 /* Login */,
 				091E6AE421465DDE002AE9A9 /* Map */,
 			);
@@ -156,6 +178,7 @@
 			children = (
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				091E6AE121465312002AE9A9 /* Map.storyboard */,
+				0952FCC4214BA2740026D98B /* Rider.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -172,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				091E6AEA214682B4002AE9A9 /* Constants.swift */,
+				0952FCBF214B94C10026D98B /* Animation.swift */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -220,6 +244,7 @@
 		607FACD21AFB9204008FA782 /* Example for TaxiGoDev */ = {
 			isa = PBXGroup;
 			children = (
+				0952FCBE214B93870026D98B /* Extension */,
 				095DAAE32147681F003443E8 /* Resource */,
 				095D679C2146497400F45EDD /* Storyboard */,
 				095D679B2146493100F45EDD /* Controller */,
@@ -384,6 +409,7 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */,
+				0952FCC5214BA2740026D98B /* Rider.storyboard in Resources */,
 				0960A1F1214A3F8600880200 /* StatusView.xib in Resources */,
 				091E6AE221465312002AE9A9 /* Map.storyboard in Resources */,
 			);
@@ -493,6 +519,7 @@
 				095DAAE721479DFE003443E8 /* SearchView.swift in Sources */,
 				0960A1EE214A3F4600880200 /* StatusView.swift in Sources */,
 				091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */,
+				0952FCC3214BA24D0026D98B /* RiderViewController.swift in Sources */,
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,
 				095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */,
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
@@ -500,6 +527,7 @@
 				091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */,
 				095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */,
 				091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */,
+				0952FCC0214B94C10026D98B /* Animation.swift in Sources */,
 				095DAAEE2147C83A003443E8 /* FavoriteTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
