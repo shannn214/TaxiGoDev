@@ -16,6 +16,10 @@
 		0952FCC0214B94C10026D98B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCBF214B94C10026D98B /* Animation.swift */; };
 		0952FCC3214BA24D0026D98B /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCC2214BA24D0026D98B /* RiderViewController.swift */; };
 		0952FCC5214BA2740026D98B /* Rider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC4214BA2740026D98B /* Rider.storyboard */; };
+		0952FCC8214BAE710026D98B /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC7214BAE710026D98B /* style.json */; };
+		0952FCCB214BBBF30026D98B /* GoogleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCCA214BBBF30026D98B /* GoogleMap.swift */; };
+		0952FCCF214BC2E20026D98B /* DriverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCCE214BC2E20026D98B /* DriverView.xib */; };
+		0952FCD1214BC3000026D98B /* DriverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCD0214BC3000026D98B /* DriverView.swift */; };
 		095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAADF214767E4003443E8 /* TaxiGo.swift */; };
 		095DAAE521479DE4003443E8 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095DAAE421479DE4003443E8 /* SearchView.xib */; };
 		095DAAE721479DFE003443E8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DAAE621479DFE003443E8 /* SearchView.swift */; };
@@ -55,6 +59,10 @@
 		0952FCBF214B94C10026D98B /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		0952FCC2214BA24D0026D98B /* RiderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
 		0952FCC4214BA2740026D98B /* Rider.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rider.storyboard; sourceTree = "<group>"; };
+		0952FCC7214BAE710026D98B /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
+		0952FCCA214BBBF30026D98B /* GoogleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMap.swift; sourceTree = "<group>"; };
+		0952FCCE214BC2E20026D98B /* DriverView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverView.xib; sourceTree = "<group>"; };
+		0952FCD0214BC3000026D98B /* DriverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverView.swift; sourceTree = "<group>"; };
 		095DAADF214767E4003443E8 /* TaxiGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiGo.swift; sourceTree = "<group>"; };
 		095DAAE421479DE4003443E8 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		095DAAE621479DFE003443E8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -133,6 +141,7 @@
 		0952FCBE214B93870026D98B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0952FCCA214BBBF30026D98B /* GoogleMap.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -145,9 +154,34 @@
 			name = Rider;
 			sourceTree = "<group>";
 		};
+		0952FCC6214BAE490026D98B /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				0952FCC7214BAE710026D98B /* style.json */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		0952FCCC214BC1D70026D98B /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Driver;
+			sourceTree = "<group>";
+		};
+		0952FCCD214BC2C30026D98B /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				0952FCCE214BC2E20026D98B /* DriverView.xib */,
+				0952FCD0214BC3000026D98B /* DriverView.swift */,
+			);
+			name = Driver;
+			sourceTree = "<group>";
+		};
 		095D67992146492000F45EDD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0952FCC6214BAE490026D98B /* Map */,
 				095DAAE1214767EB003443E8 /* TaxiGo */,
 			);
 			name = Model;
@@ -156,6 +190,7 @@
 		095D679A2146492B00F45EDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0952FCCD214BC2C30026D98B /* Driver */,
 				0960A1EF214A3F4E00880200 /* Status */,
 				095DAAF02147C864003443E8 /* Favorite */,
 				091E6AE321465DD7002AE9A9 /* Search */,
@@ -166,6 +201,7 @@
 		095D679B2146493100F45EDD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0952FCCC214BC1D70026D98B /* Driver */,
 				0952FCC1214BA18C0026D98B /* Rider */,
 				091E6AE521465DE5002AE9A9 /* Login */,
 				091E6AE421465DDE002AE9A9 /* Map */,
@@ -404,8 +440,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				0952FCCF214BC2E20026D98B /* DriverView.xib in Resources */,
 				095DAAE521479DE4003443E8 /* SearchView.xib in Resources */,
 				095DAAE92147BCCF003443E8 /* FavoriteView.xib in Resources */,
+				0952FCC8214BAE710026D98B /* style.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */,
@@ -523,8 +561,10 @@
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,
 				095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */,
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
+				0952FCD1214BC3000026D98B /* DriverView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */,
+				0952FCCB214BBBF30026D98B /* GoogleMap.swift in Sources */,
 				095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */,
 				091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */,
 				0952FCC0214B94C10026D98B /* Animation.swift in Sources */,

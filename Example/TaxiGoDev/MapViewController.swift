@@ -26,6 +26,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var statusView: StatusView!
     
+    @IBOutlet weak var driverView: DriverView!
+    
     var taxiGo = TaxiGo()
     
     var startMarker = GMSMarker()
@@ -68,10 +70,21 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         taxiGo.api.taxiGoDelegate = self
         
+        rrr()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func rrr() {
+        taxiGo.api.getSpecificRideHistory(withAccessToken: taxiGo.auth.accessToken!, id: "POyQHX", success: { (ride) in
+            self.driverView.plateNumber.text = ride.driver?.plate_number
+            self.driverView.eta.text = "\(ride.driver?.eta)"
+            self.driverView.vehicle.text = ride.driver?.vehicle
+        }) { (err) in
+            print(err)
+        }
     }
     
     func setupStatusView() {
@@ -98,6 +111,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 65, right: 25)
         mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
         startLocation = mapView.myLocation
+        
+        mapView.mapStyle(withFileName: "style", andType: "json")
         
     }
     
@@ -306,4 +321,3 @@ extension MapViewController: TaxiGoAPIDelegate {
     }
     
 }
-
