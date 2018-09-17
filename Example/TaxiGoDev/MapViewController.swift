@@ -24,8 +24,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var favHeightConstaint: NSLayoutConstraint!
     
-    @IBOutlet weak var statusView: StatusView!
-    
     @IBOutlet weak var driverView: DriverView!
     
     var taxiGo = TaxiGo()
@@ -38,8 +36,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
     var placesClient: GMSPlacesClient!
     
-//    var statusView: StatusView!
-    
     var startAdd: String?
     
     var startLocation: CLLocation?
@@ -50,54 +46,37 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
     var textFieldTag: Int?
     
-    var confirmFlag = true
-    
     var status: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         taxiGo.auth.accessToken = Constants.token
+        taxiGo.auth.appID = Constants.appID
+        taxiGo.auth.appSecret = Constants.appSecret
         
         placesClient = GMSPlacesClient.shared()
         setupMapView()
         getCurrentPlace()
         loadFavList()
-        setupStatusView()
 
         searchView.searchViewDelegate = self
         favoriteView.favoriteDelegate = self
         
         taxiGo.api.taxiGoDelegate = self
         
-        rrr()
+        driverView.alpha = 0
+        driverView.driverInfoView.alpha = 0
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func rrr() {
-        taxiGo.api.getSpecificRideHistory(withAccessToken: taxiGo.auth.accessToken!, id: "POyQHX", success: { (ride) in
-            self.driverView.plateNumber.text = ride.driver?.plate_number
-            self.driverView.eta.text = "\(ride.driver?.eta)"
-            self.driverView.vehicle.text = ride.driver?.vehicle
-        }) { (err) in
-            print(err)
-        }
-    }
-    
-    func setupStatusView() {
-        
-        statusView.alpha = 0
-        statusView.layer.cornerRadius = 5
-        statusView.clipsToBounds = true
-        statusView.StatusLabel.text = "Nuhhhh"
-
-    }
-    
     func changeStatusText(rideStatus: Status) {
-        statusView.StatusLabel.text = rideStatus.status
+        driverView.status.text = rideStatus.status
     }
     
     fileprivate func setupMapView() {
@@ -111,7 +90,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 65, right: 25)
         mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
         startLocation = mapView.myLocation
-        
         mapView.mapStyle(withFileName: "style", andType: "json")
         
     }
@@ -130,6 +108,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                     self.searchView.fromTextField.text = "\(place.name)"
                     self.startAdd = place.name
                     self.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+                    let position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+                    self.mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
                     
                     self.taxiGo.api.getNearbyDriver(withAccessToken: self.taxiGo.auth.accessToken!, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
                         
@@ -180,8 +160,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBAction func confirmBtn(_ sender: Any) {
         
-        if confirmFlag {
-
             taxiGo.api.requestARide(withAccessToken: taxiGo.auth.accessToken!,
                                     startLatitude: (startLocation?.coordinate.latitude)!,
                                     startLongitude: (startLocation?.coordinate.longitude)!,
@@ -190,32 +168,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                     endLongitude: endLocation?.coordinate.longitude,
                                     endAddress: endAdd,
                                     success: { (ride) in
-
-                                        self.confirmButton.titleLabel?.text = "Cancel"
-                                        self.confirmFlag = false
                                         
-                                        fadeInAnimation(view: self.statusView)
+                                        fadeInAnimation(view: self.driverView)
+
             }) { (err) in
-                print(err.localizedDescription)
+                print("Failed to request a ride. \(err.localizedDescription)")
             }
-
-        } else {
-
-            taxiGo.api.cancelARide(withAccessToken: taxiGo.auth.accessToken!, id: taxiGo.api.id!, success: { (ride) in
-                print(ride.status)
-                self.confirmButton.titleLabel?.text = "Confirm"
-                self.confirmFlag = true
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 6, execute: {
-                    fadeOutAnimation(view: self.statusView)
-                })
-                
-            }) { (err) in
-                print("Failed to cancel.")
-            }
-
-        }
-
         
     }
     
@@ -314,8 +272,26 @@ extension MapViewController: TaxiGoAPIDelegate {
         
         if status == Status.tripCanceled.rawValue {
             changeStatusText(rideStatus: .tripCanceled)
-        } else if status == Status.pendingResponseDriver.rawValue {
+        } else if status == Status.pendingResponseDriver.rawValue || status == Status.waitingSpecify.rawValue {
             changeStatusText(rideStatus: .pendingResponseDriver)
+        } else if status == Status.driverEnroute.rawValue {
+            changeStatusText(rideStatus: .driverEnroute)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                fadeOutAnimation(view: self.driverView.statusView)
+                fadeInAnimation(view: self.driverView.driverInfoView)
+            }
+            
+            taxiGo.api.getSpecificRideHistory(withAccessToken: taxiGo.auth.accessToken!, id: taxiGo.api.id!, success: { (ride) in
+                
+                self.driverView.name.text = ride.driver?.name
+                guard let eta = ride.driver?.eta else { return }
+                self.driverView.plateNumber.text = "\(eta)"
+                self.driverView.vehicle.text = ride.driver?.vehicle
+                
+            }) { (err) in
+                print("Failed to get specific ride history")
+            }
         }
 
     }

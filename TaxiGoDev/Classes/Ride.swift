@@ -114,11 +114,23 @@ extension TaxiGo.Auth {
 
     public class Oauth: HandyJSON {
         
-        var accessToken: String?
+        public var access_token: String?
         
-        var expireIn: String?
+        public var token_expiry_date: String?
         
-        var refreshToken: String?
+        public var refresh_token: String?
+        
+        public var refresh_token_expiry_date: String?
+        
+        public required init() {}
+        
+    }
+    
+    public class RefreshToken: HandyJSON {
+        
+        public var access_token: String?
+        
+        public var expires_in: String?
         
         public required init() {}
         

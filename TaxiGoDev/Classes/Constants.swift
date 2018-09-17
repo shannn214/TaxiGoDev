@@ -9,8 +9,8 @@ import Foundation
 
 struct Constants {
     
-    static let oauthURL = "https://dev-user.taxigo.com.tw/oauth"
+    static let oauthURL = "https://user.taxigo.com.tw/oauth"
     
     static let taxiGoUrl = "https://api-sandbox.taxigo.io/v1"
-    
+
 }

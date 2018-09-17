@@ -48,7 +48,7 @@
                         <constraint firstAttribute="height" constant="25" id="E8i-kd-zmO"/>
                         <constraint firstAttribute="width" constant="25" id="OWT-a4-Zsh"/>
                     </constraints>
-                    <state key="normal" image="plus-button">
+                    <state key="normal" image="heart-2">
                         <color key="titleColor" red="0.10486665890000001" green="0.1044492925" blue="0.51231013449999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
@@ -56,7 +56,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.25919576666571875" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="V7f-20-XxS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="3tn-I5-vfz"/>
                 <constraint firstItem="V7f-20-XxS" firstAttribute="top" secondItem="t8d-Vb-cPi" secondAttribute="bottom" constant="10" id="4ZC-9u-IBZ"/>
@@ -75,6 +75,6 @@
         </view>
     </objects>
     <resources>
-        <image name="plus-button" width="32" height="32"/>
+        <image name="heart-2" width="32" height="32"/>
     </resources>
 </document>

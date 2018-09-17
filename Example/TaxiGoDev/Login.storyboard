@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sBd-Pd-5va">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="x9U-eh-sKQ">
+            <objects>
+                <viewController id="sBd-Pd-5va" customClass="LoginViewController" customModule="TaxiGoDev_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="itr-Ke-IoQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOx-rp-H4X" customClass="CustomButton" customModule="TaxiGoDev_Example" customModuleProvider="target">
+                                <rect key="frame" x="25" y="597" width="325" height="50"/>
+                                <color key="backgroundColor" red="0.8980392157" green="0.73333333329999995" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="pEf-Lg-o9U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="LoginBtn:" destination="sBd-Pd-5va" eventType="touchUpInside" id="ITB-6r-3LD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DOx-rp-H4X" firstAttribute="leading" secondItem="teh-IF-ctE" secondAttribute="leading" constant="25" id="93B-Y0-wts"/>
+                            <constraint firstItem="teh-IF-ctE" firstAttribute="bottom" secondItem="DOx-rp-H4X" secondAttribute="bottom" constant="20" id="PoZ-9g-pll"/>
+                            <constraint firstItem="teh-IF-ctE" firstAttribute="trailing" secondItem="DOx-rp-H4X" secondAttribute="trailing" constant="25" id="Vd1-Br-sMO"/>
+                            <constraint firstItem="DOx-rp-H4X" firstAttribute="centerX" secondItem="itr-Ke-IoQ" secondAttribute="centerX" id="mtz-H8-yVW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="teh-IF-ctE"/>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="DOx-rp-H4X" id="0yd-GT-E8g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5A0-xc-Dz2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="99"/>
+        </scene>
+    </scenes>
+</document>

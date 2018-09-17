@@ -8,66 +8,43 @@
 
 import UIKit
 import TaxiGoDev
-import Kingfisher
-import NVActivityIndicatorView
+import SafariServices
 
 class LoginViewController: UIViewController {
 
-    var taxi = TaxiGo()
+    var taxiGo = TaxiGo()
+
+    @IBOutlet weak var loginButton: CustomButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-//        taxiAPI.getRidesHistory(withAccessToken: accessToken, success: {
-//            print("success response of get rides history")
+        
+        taxiGo.auth.appID = Constants.appID
+        taxiGo.auth.appSecret = Constants.appSecret
+        taxiGo.auth.redirectURL = Constants.redirectURL
+        taxiGo.auth.authCode = Constants.authCode
+    }
+    
+    @IBAction func LoginBtn(_ sender: Any) {
+        
+//        taxiGo.auth.startLoginFlow(success: { (url) in
+//            print(url)
 //        }) { (err) in
-//            print(err.localizedDescription)
-//        }
-//
-
-//        taxi.api.getSpecificRideHistory(withAccessToken: accessToken, id: "POyQHX", success: { (ride) in
-//
-//            guard let id = ride.id else { return }
-//            print(id)
-//            print(ride.driver?.driver_id)
-//
-//        }) { (err) in
-//            print(err.localizedDescription)
+//            print("ffff")
 //        }
         
+//        taxiGo.auth.getUserToken(success: { (auth) in
 //
-//        taxiAPI.getRiderInfo(withAccessToken: accessToken, success: {
-//            print("success access rider info")
+//            print("The last layer response: ")
+//            print(auth.access_token)
+//            print(auth.token_expiry_date)
+//            print(auth.refresh_token)
 //        }) { (err) in
-//            print(err.localizedDescription)
-//        }
-
-//        taxiAPI.getNearbyDriver(withAccessToken: accessToken, lat: 25.0423, lng: 121.565, success: {
-//            print("success access nearby driver")
-//        }) { (err) in
-//            print(err.localizedDescription)
-//        }
-        
-//        taxi.api.cancelARide(withAccessToken: accessToken, id: "jaKpva", success: { (ride) in
-//            print(ride.status)
-//            print(ride.id)
-//        }) { (err) in
-//            print(err.localizedDescription)
-//        }
-
-//        taxiAPI.requestARide(withAccessToken: accessToken,
-//                             startLatitude: 25.019946,
-//                             startLongitude: 121.528717,
-//                             startAddress: "台北市羅斯福路三段162號",
-//                             success: { (ride) in
-//            print("success")
-//            print(ride.id)
-//        }) { (err) in
-//            print(err.localizedDescription)
+//            print("get token failed. \(err.localizedDescription)")
 //        }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

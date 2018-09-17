@@ -7,6 +7,7 @@
 
 import Foundation
 import HandyJSON
+import SafariServices
 
 public protocol TaxiGoAPIDelegate: class {
     
@@ -181,11 +182,29 @@ extension TaxiGo.API {
 
 extension TaxiGo.Auth {
     
-    public func getUserToken(appID: String, appSecret: String, authCode: String, success: @escaping (Oauth) -> Void, failure: @escaping () -> Void) {
+    public func startLoginFlow(success: @escaping (String) -> Void, failure: @escaping (Error) -> Void) {
+        
+        guard let url = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=-LKPYysKDcIdNs7CLYa3&redirect_uri=https://dev-user.taxigo.com.tw/oauth/test") else { return }
+        
+        self.authSession = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: { (url, err) in
+            
+//            guard err == nil else { return }
+            
+            print(url)
+            print("-------")
+            
+            success("\(url)")
+            
+        })
+        self.authSession?.start()
+        
+    }
+    
+    public func getUserToken(success: @escaping (Oauth) -> Void, failure: @escaping (Error) -> Void) {
         
         let params = ["app_id": appID,
                       "app_secret": appSecret,
-                      "code": authCode]
+                      "code": "gDEukUHBkcd8t1PW0L7bwCl3qd"]
         
         call(path: "", parameter: params) { (err, dic) in
             
@@ -193,9 +212,9 @@ extension TaxiGo.Auth {
                 
                 guard let auth = Oauth.deserialize(from: dic) else { return }
 //                self.parent.api.token = auth.accessToken
-                self.accessToken = auth.accessToken
+                self.accessToken = auth.access_token
                 
-                TaxiGo.shared.api.token = auth.accessToken
+                TaxiGo.shared.api.token = auth.access_token
 
                 success(auth)
                 
@@ -207,7 +226,7 @@ extension TaxiGo.Auth {
         
     }
     
-    public func refreshToken(appID: String, appSecret: String, refreshToken: String, success: @escaping (Oauth) -> Void, failure: @escaping () -> Void) {
+    public func refreshToken(appID: String, appSecret: String, refreshToken: String, success: @escaping (Oauth) -> Void, failure: @escaping (Error) -> Void) {
         
         let params = ["app_id": appID,
                       "app_secret": appSecret,
@@ -219,9 +238,9 @@ extension TaxiGo.Auth {
                 
                 guard let refreshToken = Oauth.deserialize(from: dic) else { return }
 //                self.parent.api.token = refreshToken.accessToken
-                self.accessToken = refreshToken.accessToken
+                self.accessToken = refreshToken.access_token
                 
-                TaxiGo.shared.api.token = refreshToken.accessToken
+                TaxiGo.shared.api.token = refreshToken.access_token
                 
                 success(refreshToken)
                 

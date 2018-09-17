@@ -14,8 +14,7 @@
 		091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AEA214682B4002AE9A9 /* Constants.swift */; };
 		09425D38213E825A00280343 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425D37213E825A00280343 /* LoginViewController.swift */; };
 		0952FCC0214B94C10026D98B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCBF214B94C10026D98B /* Animation.swift */; };
-		0952FCC3214BA24D0026D98B /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCC2214BA24D0026D98B /* RiderViewController.swift */; };
-		0952FCC5214BA2740026D98B /* Rider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC4214BA2740026D98B /* Rider.storyboard */; };
+		0952FCC5214BA2740026D98B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC4214BA2740026D98B /* Login.storyboard */; };
 		0952FCC8214BAE710026D98B /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC7214BAE710026D98B /* style.json */; };
 		0952FCCB214BBBF30026D98B /* GoogleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCCA214BBBF30026D98B /* GoogleMap.swift */; };
 		0952FCCF214BC2E20026D98B /* DriverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCCE214BC2E20026D98B /* DriverView.xib */; };
@@ -30,7 +29,6 @@
 		0960A1EE214A3F4600880200 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0960A1ED214A3F4600880200 /* StatusView.swift */; };
 		0960A1F1214A3F8600880200 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0960A1F0214A3F8600880200 /* StatusView.xib */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
@@ -57,8 +55,7 @@
 		091E6AEA214682B4002AE9A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09425D37213E825A00280343 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0952FCBF214B94C10026D98B /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
-		0952FCC2214BA24D0026D98B /* RiderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
-		0952FCC4214BA2740026D98B /* Rider.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rider.storyboard; sourceTree = "<group>"; };
+		0952FCC4214BA2740026D98B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0952FCC7214BAE710026D98B /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		0952FCCA214BBBF30026D98B /* GoogleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMap.swift; sourceTree = "<group>"; };
 		0952FCCE214BC2E20026D98B /* DriverView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverView.xib; sourceTree = "<group>"; };
@@ -77,7 +74,6 @@
 		607FACD01AFB9204008FA782 /* TaxiGoDev_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiGoDev_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* TaxiGoDev_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaxiGoDev_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +145,6 @@
 		0952FCC1214BA18C0026D98B /* Rider */ = {
 			isa = PBXGroup;
 			children = (
-				0952FCC2214BA24D0026D98B /* RiderViewController.swift */,
 			);
 			name = Rider;
 			sourceTree = "<group>";
@@ -212,9 +207,8 @@
 		095D679C2146497400F45EDD /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				091E6AE121465312002AE9A9 /* Map.storyboard */,
-				0952FCC4214BA2740026D98B /* Rider.storyboard */,
+				0952FCC4214BA2740026D98B /* Login.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -439,7 +433,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				0952FCCF214BC2E20026D98B /* DriverView.xib in Resources */,
 				095DAAE521479DE4003443E8 /* SearchView.xib in Resources */,
 				095DAAE92147BCCF003443E8 /* FavoriteView.xib in Resources */,
@@ -447,7 +440,7 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */,
-				0952FCC5214BA2740026D98B /* Rider.storyboard in Resources */,
+				0952FCC5214BA2740026D98B /* Login.storyboard in Resources */,
 				0960A1F1214A3F8600880200 /* StatusView.xib in Resources */,
 				091E6AE221465312002AE9A9 /* Map.storyboard in Resources */,
 			);
@@ -557,7 +550,6 @@
 				095DAAE721479DFE003443E8 /* SearchView.swift in Sources */,
 				0960A1EE214A3F4600880200 /* StatusView.swift in Sources */,
 				091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */,
-				0952FCC3214BA24D0026D98B /* RiderViewController.swift in Sources */,
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,
 				095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */,
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
@@ -591,14 +583,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				607FACDA1AFB9204008FA782 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

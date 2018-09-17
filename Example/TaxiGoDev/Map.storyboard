@@ -36,33 +36,25 @@
                                     <constraint firstAttribute="height" constant="300" id="X6e-QK-5Sb"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHX-g2-qu8" customClass="StatusView" customModule="TaxiGoDev_Example" customModuleProvider="target">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="7vP-qY-gip"/>
-                                    <constraint firstAttribute="height" constant="128" id="fcQ-Eh-e3g"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGi-vb-YjF" customClass="CustomButton" customModule="TaxiGoDev_Example" customModuleProvider="target">
                                 <rect key="frame" x="25" y="597" width="325" height="50"/>
-                                <color key="backgroundColor" red="0.89997143776653377" green="0.73226240026266542" blue="0.22551805902013533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.89803921568627454" green="0.73333333333333328" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="XhF-ne-fVJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Confirm">
-                                    <color key="titleColor" white="0.26154119318181818" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="confirmBtn:" destination="QPJ-W7-Ox1" eventType="touchUpInside" id="lrK-A1-lTh"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvI-62-kMD" customClass="DriverView" customModule="TaxiGoDev_Example" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="539" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="417" width="375" height="250"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="bjj-hm-WX2"/>
+                                    <constraint firstAttribute="height" constant="250" id="bjj-hm-WX2"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -81,9 +73,7 @@
                             <constraint firstItem="Taa-1y-hEz" firstAttribute="bottom" secondItem="DkJ-eS-Qaa" secondAttribute="bottom" id="SjN-aX-WCC"/>
                             <constraint firstItem="GKY-kO-KIn" firstAttribute="top" secondItem="phc-U4-Bcy" secondAttribute="bottom" id="U4V-du-pAa"/>
                             <constraint firstItem="mvI-62-kMD" firstAttribute="leading" secondItem="DkJ-eS-Qaa" secondAttribute="leading" id="XSX-O5-ctn"/>
-                            <constraint firstItem="nHX-g2-qu8" firstAttribute="centerY" secondItem="Ekj-1J-htd" secondAttribute="centerY" id="cjr-Ov-Lhq"/>
                             <constraint firstItem="CGi-vb-YjF" firstAttribute="width" secondItem="Taa-1y-hEz" secondAttribute="height" multiplier="325:527" id="dQS-aB-kCY"/>
-                            <constraint firstItem="nHX-g2-qu8" firstAttribute="centerX" secondItem="Ekj-1J-htd" secondAttribute="centerX" id="tN9-X5-1xO"/>
                             <constraint firstItem="DkJ-eS-Qaa" firstAttribute="trailing" secondItem="GKY-kO-KIn" secondAttribute="trailing" id="wIN-AO-iUG"/>
                             <constraint firstItem="Taa-1y-hEz" firstAttribute="trailing" secondItem="DkJ-eS-Qaa" secondAttribute="trailing" id="zU8-e3-RaJ"/>
                         </constraints>
@@ -96,7 +86,6 @@
                         <outlet property="favoriteView" destination="GKY-kO-KIn" id="UAE-gV-tW4"/>
                         <outlet property="mapView" destination="Taa-1y-hEz" id="Scy-zQ-hYk"/>
                         <outlet property="searchView" destination="phc-U4-Bcy" id="vcp-HJ-egP"/>
-                        <outlet property="statusView" destination="nHX-g2-qu8" id="qfO-Vb-Fzv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NI8-Na-swd" userLabel="First Responder" sceneMemberID="firstResponder"/>

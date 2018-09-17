@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
     
-    static let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjYzODE0OTMsImtleSI6IlUyRnNkR1ZrWDE5Ty9zdUZsTHR5WitENVIza1FTWjBoaGZ0ZmVVYW44blo1aWVaRmpLKytHbjdoUFMrZTl6M3crTk44dURJQ0RrWlkrRGFuT0xOOHd3PT0iLCJhcHBfaWQiOiItTEtQWXlzS0RjSWROczdDTFlhMyIsImlhdCI6MTUzNDg0NTQ5M30.zA7PfY4Q23_iBQ89M5n8VIpnA5ORqC8QXpuoVzDSBy8"
+    static let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Mzc3ODE3MTEsImtleSI6IlUyRnNkR1ZrWDE4OVp3SHNYeWRBQVF4enREOUk1NUUxSzNocjdvbk1nbWM5NTZFOStUVTcwU29LWkpBQ211UElkQ1pWNE5JQmx1MG1vR0JxMWNUeEhRPT0iLCJhcHBfaWQiOiItTEtQWXlzS0RjSWROczdDTFlhMyIsImlhdCI6MTUzNzE3NjkxMX0.W-rCuuEBom1AiNJoJU6DrBj0YS6Q1dJcNaB215PLcwQ"
     
     static let appID = "-LKPYysKDcIdNs7CLYa3"
     
@@ -18,7 +18,7 @@ struct Constants {
     
     static let redirectURL = "https://dev-user.taxigo.com.tw/oauth/test"
     
-    static let authCode = "jNhArR3v6SrWEbGegOjNxfzEjc"
+    static let authCode = "c4iGNM7evH3hV3DCtDKbXEldz8"
     
     static let callBackUrlScheme = "SFAuthenticationExample://"
     

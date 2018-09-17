@@ -31,17 +31,17 @@ public class TaxiGo {
         
         public weak var taxiGoDelegate: TaxiGoAPIDelegate?
         
-        weak var parent: TaxiGo! = nil
-        
-        var timer = Timer()
-        
         public var id: String?
         
+        weak var parent: TaxiGo! = nil
+
+        var timer = Timer()
+        
         var token: String?
+        
+        var authSession: SFAuthenticationSession?
                 
         public init() {}
-        
-//        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjYzODE0OTMsImtleSI6IlUyRnNkR1ZrWDE5Ty9zdUZsTHR5WitENVIza1FTWjBoaGZ0ZmVVYW44blo1aWVaRmpLKytHbjdoUFMrZTl6M3crTk44dURJQ0RrWlkrRGFuT0xOOHd3PT0iLCJhcHBfaWQiOiItTEtQWXlzS0RjSWROczdDTFlhMyIsImlhdCI6MTUzNDg0NTQ5M30.zA7PfY4Q23_iBQ89M5n8VIpnA5ORqC8QXpuoVzDSBy8"
         
         func call(withAccessToken: String, _ method: SHHTTPMethod, path: String, parameter: [String: Any], complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
         
@@ -126,7 +126,7 @@ public class TaxiGo {
             
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
@@ -164,25 +164,25 @@ public class TaxiGo {
             
         }
         
-        public func startLoginFlow(callBackUrlScheme: String, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
-            
-            guard let authURL = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=" + "\(appID)" + "&redirect_uri=" + "\(redirectURL)") else { return }
-            
-            self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: callBackUrlScheme, completionHandler: { (callBack: URL?, error: Error?) in
-                
-                guard error == nil, let successURL = callBack else {
-                    print(error!)
-                    print("=======")
-                    return }
-                
-                let callBackRedirect = NSURLComponents(string: successURL.absoluteString)?.queryItems?.filter({ $0.name == "code" }).first
-                
-                print(callBackRedirect)
-                
-            })
-            self.authSession?.start()
-            
-        }
+//        public func startLoginFlow(callBackUrlScheme: String, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+//
+//            guard let authURL = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=" + "\(appID)" + "&redirect_uri=" + "\(redirectURL)") else { return }
+//
+//            self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: callBackUrlScheme, completionHandler: { (callBack: URL?, error: Error?) in
+//
+//                guard error == nil, let successURL = callBack else {
+//                    print(error!)
+//                    print("=======")
+//                    return }
+//
+//                let callBackRedirect = NSURLComponents(string: successURL.absoluteString)?.queryItems?.filter({ $0.name == "code" }).first
+//
+//                print(callBackRedirect)
+//
+//            })
+//            self.authSession?.start()
+//
+//        }
         
     }
     

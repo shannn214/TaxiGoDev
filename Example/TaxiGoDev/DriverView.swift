@@ -12,6 +12,11 @@ class DriverView: UIView {
 
     @IBOutlet var containView: UIView!
     
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var driverInfoView: UIView!
+    @IBOutlet weak var cancelButton: CustomButton!
+    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var plateNumber: UILabel!
     @IBOutlet weak var eta: UILabel!
     @IBOutlet weak var vehicle: UILabel!
