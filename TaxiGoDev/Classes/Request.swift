@@ -67,10 +67,10 @@ extension TaxiGo.API {
                 success(model)
                 print(model)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                    self.timer.invalidate()
-                    self.id = nil
-                })
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+////                    self.timer.invalidate()
+////                    self.id = nil
+//                })
                 
             } else if let err = err {
                 
@@ -127,7 +127,13 @@ extension TaxiGo.API {
         getSpecificRideHistory(withAccessToken: parent.auth.accessToken!, id: id!, success: { (ride) in
             
             // NOTE: can pass all the data outside
-            self.taxiGoDelegate?.rideDidUpdate(status: ride.status!)
+            if ride.status == "TRIP_CANCELED" {
+                self.taxiGoDelegate?.rideDidUpdate(status: ride.status!)
+                self.timer.invalidate()
+                self.id = nil
+            } else {
+                self.taxiGoDelegate?.rideDidUpdate(status: ride.status!)
+            }
             
         }) { (err) in
             print("Can't get ride status")

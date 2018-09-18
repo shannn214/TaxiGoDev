@@ -116,11 +116,11 @@ extension TaxiGo.Auth {
         
         public var access_token: String?
         
-        public var token_expiry_date: Int?
+        public var token_expiry_date: Double?
         
         public var refresh_token: String?
         
-        public var refresh_token_expiry_date: Int?
+        public var refresh_token_expiry_date: Double?
         
         public required init() {}
         
@@ -130,7 +130,7 @@ extension TaxiGo.Auth {
         
         public var access_token: String?
         
-        public var expires_in: Int?
+        public var expires_in: Double?
         
         public required init() {}
         

@@ -13,6 +13,7 @@
 		091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE821467F9C002AE9A9 /* CustomButton.swift */; };
 		091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AEA214682B4002AE9A9 /* Constants.swift */; };
 		09425D38213E825A00280343 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425D37213E825A00280343 /* LoginViewController.swift */; };
+		094F631B2150A1AF00FE68C9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F631A2150A1AF00FE68C9 /* Date.swift */; };
 		0952FCC0214B94C10026D98B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCBF214B94C10026D98B /* Animation.swift */; };
 		0952FCC5214BA2740026D98B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC4214BA2740026D98B /* Login.storyboard */; };
 		0952FCC8214BAE710026D98B /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC7214BAE710026D98B /* style.json */; };
@@ -54,6 +55,7 @@
 		091E6AE821467F9C002AE9A9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		091E6AEA214682B4002AE9A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09425D37213E825A00280343 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		094F631A2150A1AF00FE68C9 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0952FCBF214B94C10026D98B /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		0952FCC4214BA2740026D98B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0952FCC7214BAE710026D98B /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				0952FCCA214BBBF30026D98B /* GoogleMap.swift */,
+				094F631A2150A1AF00FE68C9 /* Date.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				095DAAE721479DFE003443E8 /* SearchView.swift in Sources */,
+				094F631B2150A1AF00FE68C9 /* Date.swift in Sources */,
 				0960A1EE214A3F4600880200 /* StatusView.swift in Sources */,
 				091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */,
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,

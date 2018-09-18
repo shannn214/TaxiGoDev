@@ -20,7 +20,7 @@ class DriverView: UIView {
     @IBOutlet weak var plateNumber: UILabel!
     @IBOutlet weak var eta: UILabel!
     @IBOutlet weak var vehicle: UILabel!
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialSetup()
@@ -37,6 +37,18 @@ class DriverView: UIView {
         addSubview(containView)
         containView.frame = self.bounds
         containView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+    }
+    
+    func initDriverView() {
+        
+        statusView.alpha = 1
+        driverInfoView.alpha = 0
+        status.text = "---"
+        name.text = "---"
+        plateNumber.text = "---"
+        vehicle.text = "---"
+        eta.text = "約 -- 分鐘後抵達"
         
     }
 

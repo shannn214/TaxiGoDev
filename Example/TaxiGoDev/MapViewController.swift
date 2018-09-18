@@ -68,6 +68,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         driverView.alpha = 0
         driverView.driverInfoView.alpha = 0
         
+        driverView.cancelButton.addTarget(self, action: #selector(cancelRide), for: .touchUpInside)
         
     }
 
@@ -177,6 +178,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
     }
     
+    @objc func cancelRide() {
+        
+        taxiGo.api.cancelARide(withAccessToken: taxiGo.auth.accessToken!, id: taxiGo.api.id!, success: { (ride) in
+            print(ride.status)
+        }) { (err) in
+            print("Failed to cancel ride.")
+        }
+        
+    }
+    
 }
 
 // NOTE: use another file to collect the extension below
@@ -273,6 +284,10 @@ extension MapViewController: TaxiGoAPIDelegate {
         
         if status == Status.tripCanceled.rawValue {
             changeStatusText(rideStatus: .tripCanceled)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                fadeOutAnimation(view: self.driverView)
+                self.driverView.initDriverView()
+            }
         } else if status == Status.pendingResponseDriver.rawValue || status == Status.waitingSpecify.rawValue {
             changeStatusText(rideStatus: .pendingResponseDriver)
         } else if status == Status.driverEnroute.rawValue {
@@ -287,7 +302,7 @@ extension MapViewController: TaxiGoAPIDelegate {
                 
                 self.driverView.name.text = ride.driver?.name
                 guard let eta = ride.driver?.eta else { return }
-                self.driverView.plateNumber.text = "\(eta)"
+                self.driverView.plateNumber.text = "約\(updateTime(timeStamp: eta))分鐘後抵達"
                 self.driverView.vehicle.text = ride.driver?.vehicle
                 
             }) { (err) in
