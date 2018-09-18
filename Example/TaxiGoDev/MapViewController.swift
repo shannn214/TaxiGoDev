@@ -179,6 +179,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
 }
 
+// NOTE: use another file to collect the extension below
 extension MapViewController: FavoriteViewDelegate {
     
     func favoriteCellDidTap(index: IndexPath) {

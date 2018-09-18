@@ -20,8 +20,6 @@ class DriverView: UIView {
     @IBOutlet weak var plateNumber: UILabel!
     @IBOutlet weak var eta: UILabel!
     @IBOutlet weak var vehicle: UILabel!
-    // 拉錯了啦
-    // storyboard 需要再調整
     
     override init(frame: CGRect) {
         super.init(frame: frame)

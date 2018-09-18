@@ -10,7 +10,6 @@ import HandyJSON
 import SafariServices
 
 public protocol TaxiGoAPIDelegate: class {
-    
     func rideDidUpdate(status: String)
 }
 
@@ -211,14 +210,8 @@ extension TaxiGo.Auth {
             if err == nil {
                 
                 guard let auth = Oauth.deserialize(from: dic) else { return }
-//                self.parent.api.token = auth.accessToken
                 self.accessToken = auth.access_token
-                
-                TaxiGo.shared.api.token = auth.access_token
-
                 success(auth)
-                
-                // TODO: it will return access token, expire time, refesh token
                 
             }
             
@@ -237,14 +230,8 @@ extension TaxiGo.Auth {
             if err == nil {
                 
                 guard let refreshToken = Oauth.deserialize(from: dic) else { return }
-//                self.parent.api.token = refreshToken.accessToken
                 self.accessToken = refreshToken.access_token
-                
-                TaxiGo.shared.api.token = refreshToken.access_token
-                
                 success(refreshToken)
-                
-                // TODO: it will return access token, expire time
                 
             }
             

@@ -39,6 +39,8 @@ class LoginViewController: UIViewController {
 //            print(auth.access_token)
 //            print(auth.token_expiry_date)
 //            print(auth.refresh_token)
+//            // use userdefault to save access_token and refresh_token
+//            // leads to the map view after getting the token
 //        }) { (err) in
 //            print("get token failed. \(err.localizedDescription)")
 //        }
