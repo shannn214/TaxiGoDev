@@ -67,11 +67,6 @@ extension TaxiGo.API {
                 success(model)
                 print(model)
                 
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-////                    self.timer.invalidate()
-////                    self.id = nil
-//                })
-                
             } else if let err = err {
                 
                 failure(err)

@@ -39,6 +39,6 @@ s.source_files = 'TaxiGoDev/Classes/'
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'HandyJSON', '~> 4.1.1'
+  s.dependency 'HandyJSON', '~> 4.2.0-beta1'
 
 end

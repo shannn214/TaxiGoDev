@@ -8,20 +8,30 @@
 
 import Foundation
 
-func updateTime(timeStamp: Double) -> String {
+//func updateTime(timeStamp: Double) -> String {
+//
+//    let time = timeStamp
+//
+//    let interval = TimeInterval(time)
+//
+//    let date = Date(timeIntervalSince1970: interval)
+//
+//    let dateFormatter = DateFormatter()
+//
+//    dateFormatter.dateFormat = "mm"
+//
+//    let nowDate = dateFormatter.string(from: date)
+//
+//    return nowDate
+//
+//}
+
+func updateTime(timeStemp: Double) -> String {
     
-    let time = timeStamp
+    let time = timeStemp / 60
     
-    let interval = TimeInterval(time)
+    let mins = Int(time)
     
-    let date = Date(timeIntervalSince1970: interval)
-    
-    let dateFormatter = DateFormatter()
-    
-    dateFormatter.dateFormat = "HH:mm"
-    
-    let nowDate = dateFormatter.string(from: date)
-    
-    return nowDate
+    return "\(mins)"
     
 }

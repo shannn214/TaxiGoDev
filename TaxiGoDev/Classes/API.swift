@@ -67,15 +67,17 @@ public class TaxiGo {
                 
                 guard let response = response else { return }
                 let statusCode = (response as! HTTPURLResponse).statusCode
-                print("Status Code: \(statusCode)")
                 print("=====")
+                print("Status Code: \(statusCode)")
                 
                 DispatchQueue.main.async {
                 
                     do {
 
                         if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                            print(json)
                             complete?(nil, json, nil)
+                            
                         } else if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                             print(json)
                             print("====")
@@ -83,9 +85,10 @@ public class TaxiGo {
                         }
 
                     } catch {
-
+                        
+                        print(error)
                         complete?(error, nil, nil)
-
+                        
                     }
                 
                 }

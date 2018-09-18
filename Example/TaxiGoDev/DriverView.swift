@@ -42,8 +42,8 @@ class DriverView: UIView {
     
     func initDriverView() {
         
-        statusView.alpha = 1
-        driverInfoView.alpha = 0
+//        statusView.alpha = 1
+//        driverInfoView.alpha = 0
         status.text = "---"
         name.text = "---"
         plateNumber.text = "---"
