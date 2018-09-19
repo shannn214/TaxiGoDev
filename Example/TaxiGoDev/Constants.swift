@@ -18,8 +18,8 @@ struct Constants {
     
     static let redirectURL = "https://dev-user.taxigo.com.tw/oauth/test"
     
-    static let authCode = "c4iGNM7evH3hV3DCtDKbXEldz8"
+//    static let authCode = "c4iGNM7evH3hV3DCtDKbXEldz8"
     
-    static let callBackUrlScheme = "SFAuthenticationExample://"
+//    static let callBackUrlScheme = "SFAuthenticationExample://"
     
 }

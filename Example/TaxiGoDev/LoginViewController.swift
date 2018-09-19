@@ -13,7 +13,7 @@ import SafariServices
 class LoginViewController: UIViewController {
 
     var taxiGo = TaxiGo()
-
+    
     @IBOutlet weak var loginButton: CustomButton!
     
     override func viewDidLoad() {
@@ -22,28 +22,13 @@ class LoginViewController: UIViewController {
         taxiGo.auth.appID = Constants.appID
         taxiGo.auth.appSecret = Constants.appSecret
         taxiGo.auth.redirectURL = Constants.redirectURL
-        taxiGo.auth.authCode = Constants.authCode
     }
     
     @IBAction func LoginBtn(_ sender: Any) {
         
-//        taxiGo.auth.startLoginFlow(success: { (url) in
-//            print(url)
-//        }) { (err) in
-//            print("ffff")
-//        }
+        guard let webNav = UIStoryboard.webStoryboard().instantiateInitialViewController() as? UINavigationController else { return }
         
-//        taxiGo.auth.getUserToken(success: { (auth) in
-//
-//            print("The last layer response: ")
-//            print(auth.access_token)
-//            print(auth.token_expiry_date)
-//            print(auth.refresh_token)
-//            // use userdefault to save access_token and refresh_token
-//            // leads to the map view after getting the token
-//        }) { (err) in
-//            print("get token failed. \(err.localizedDescription)")
-//        }
+        present(webNav, animated: true, completion: nil)
         
     }
     

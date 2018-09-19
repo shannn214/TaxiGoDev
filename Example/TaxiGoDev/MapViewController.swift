@@ -50,7 +50,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         taxiGo.auth.accessToken = Constants.token
         taxiGo.auth.appID = Constants.appID
         taxiGo.auth.appSecret = Constants.appSecret
@@ -66,8 +66,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         taxiGo.api.taxiGoDelegate = self
         
         driverView.alpha = 0
-//        driverView.driverInfoView.alpha = 0
-        
         driverView.cancelButton.addTarget(self, action: #selector(cancelRide), for: .touchUpInside)
         
     }
@@ -141,7 +139,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     func loadFavList() {
         
-        taxiGo.api.getRiderInfo(withAccessToken: taxiGo.auth.accessToken!, success: { (rider) in
+        guard let token = taxiGo.auth.accessToken else { return }
+        
+        taxiGo.api.getRiderInfo(withAccessToken: token, success: { (rider) in
             
             rider.favorite?.forEach({ (info) in
                 guard let address = info.address,
@@ -152,6 +152,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             })
 
             self.favoriteView.favTableView.reloadData()
+            self.favHeightConstaint.constant = self.favoriteView.favTableView.contentSize.height
 
         }) { (err) in
             print(err.localizedDescription)
@@ -161,26 +162,35 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBAction func confirmBtn(_ sender: Any) {
         
-            taxiGo.api.requestARide(withAccessToken: taxiGo.auth.accessToken!,
-                                    startLatitude: (startLocation?.coordinate.latitude)!,
-                                    startLongitude: (startLocation?.coordinate.longitude)!,
-                                    startAddress: startAdd!,
-                                    endLatitude: endLocation?.coordinate.latitude,
-                                    endLongitude: endLocation?.coordinate.longitude,
-                                    endAddress: endAdd,
-                                    success: { (ride) in
-                                        
-                                        fadeInAnimation(view: self.driverView)
+        if startLocation == nil {
+            // call alert to notice the user fill in the address
+            print("StartLocation: nil")
+        }
+        
+        guard let token = taxiGo.auth.accessToken, let start = startLocation, let startAddress = startAdd else { return }
+        
+        taxiGo.api.requestARide(withAccessToken: token,
+                                startLatitude: start.coordinate.latitude,
+                                startLongitude: start.coordinate.longitude,
+                                startAddress: startAddress,
+                                endLatitude: endLocation?.coordinate.latitude,
+                                endLongitude: endLocation?.coordinate.longitude,
+                                endAddress: endAdd,
+                                success: { (ride) in
+                                    
+                                    fadeInAnimation(view: self.driverView)
 
-            }) { (err) in
-                print("Failed to request a ride. \(err.localizedDescription)")
-            }
+        }) { (err) in
+            print("Failed to request a ride. \(err.localizedDescription)")
+        }
         
     }
     
     @objc func cancelRide() {
         
-        taxiGo.api.cancelARide(withAccessToken: taxiGo.auth.accessToken!, id: taxiGo.api.id!, success: { (ride) in
+        guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
+        
+        taxiGo.api.cancelARide(withAccessToken: token, id: id, success: { (ride) in
             print(ride.status)
         }) { (err) in
             print("Failed to cancel the ride.")
@@ -195,6 +205,8 @@ extension MapViewController: FavoriteViewDelegate {
     
     func favoriteCellDidTap(index: IndexPath) {
         
+        guard let start = startLocation else { return }
+        
         searchView.fromTextField.text = favoriteView.favorite[index.row].address
         startAdd = favoriteView.favorite[index.row].address
         startLocation = CLLocation(latitude: favoriteView.favorite[index.row].lat!, longitude: favoriteView.favorite[index.row].lng!)
@@ -202,9 +214,10 @@ extension MapViewController: FavoriteViewDelegate {
         startMarker.map = mapView
         
         if endLocation?.coordinate == nil {
-            mapView.camera = GMSCameraPosition(target: (startLocation?.coordinate)!, zoom: 15, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: start.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         } else {
-            let bounds = GMSCoordinateBounds(coordinate: (startLocation?.coordinate)!, coordinate: (endLocation?.coordinate)!)
+            guard let end = endLocation else { return }
+            let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
             mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 60, left: 50, bottom: 60, right: 50))!
         }
         
@@ -233,7 +246,7 @@ extension MapViewController: SearchViewDelegate {
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
      
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-
+        
         switch textFieldTag {
         case 11:
             searchView.fromTextField.text = place.name
@@ -245,7 +258,8 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
             if endLocation?.coordinate == nil {
                 mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             } else {
-                let bounds = GMSCoordinateBounds(coordinate: (startLocation?.coordinate)!, coordinate: (endLocation?.coordinate)!)
+                guard let start = startLocation, let end = endLocation else { return }
+                let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
                 mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 60, left: 50, bottom: 60, right: 50))!
             }
 
@@ -256,7 +270,10 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
             endMarker.position = place.coordinate
             endMarker.map = mapView
             
-            let bounds = GMSCoordinateBounds(coordinate: (startLocation?.coordinate)!, coordinate: (endLocation?.coordinate)!)
+            guard let start = startLocation, let end = endLocation else {
+                dismiss(animated: true, completion: nil)
+                return }
+            let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
             mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 60, left: 50, bottom: 60, right: 50))!
 
         default:
@@ -293,7 +310,8 @@ extension MapViewController: TaxiGoAPIDelegate {
         } else if status == Status.driverEnroute.rawValue { // 前往中
             changeStatusText(rideStatus: .driverEnroute)
 
-            taxiGo.api.getSpecificRideHistory(withAccessToken: taxiGo.auth.accessToken!, id: taxiGo.api.id!, success: { (ride) in
+            guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
+            taxiGo.api.getSpecificRideHistory(withAccessToken: token, id: id, success: { (ride) in
                 
                 self.driverView.name.text = ride.driver?.name
                 guard let eta = ride.driver?.eta else { return }

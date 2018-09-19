@@ -204,7 +204,7 @@ extension TaxiGo.Auth {
         
         let params = ["app_id": appID,
                       "app_secret": appSecret,
-                      "code": "gDEukUHBkcd8t1PW0L7bwCl3qd"]
+                      "code": authCode]
         
         call(path: "", parameter: params) { (err, dic) in
             

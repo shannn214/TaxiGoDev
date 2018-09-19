@@ -14,6 +14,9 @@
 		091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AEA214682B4002AE9A9 /* Constants.swift */; };
 		09425D38213E825A00280343 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425D37213E825A00280343 /* LoginViewController.swift */; };
 		094F631B2150A1AF00FE68C9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F631A2150A1AF00FE68C9 /* Date.swift */; };
+		0950520B2152048E004C9C52 /* Web.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0950520A2152048E004C9C52 /* Web.storyboard */; };
+		0950520D21522E31004C9C52 /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0950520C21522E31004C9C52 /* UIStoryboard.swift */; };
+		0950520F215255BD004C9C52 /* TaxiGoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0950520E215255BD004C9C52 /* TaxiGoManager.swift */; };
 		0952FCC0214B94C10026D98B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCBF214B94C10026D98B /* Animation.swift */; };
 		0952FCC5214BA2740026D98B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC4214BA2740026D98B /* Login.storyboard */; };
 		0952FCC8214BAE710026D98B /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC7214BAE710026D98B /* style.json */; };
@@ -29,6 +32,7 @@
 		095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095DAAED2147C839003443E8 /* FavoriteTableViewCell.xib */; };
 		0960A1EE214A3F4600880200 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0960A1ED214A3F4600880200 /* StatusView.swift */; };
 		0960A1F1214A3F8600880200 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0960A1F0214A3F8600880200 /* StatusView.xib */; };
+		09D4BC6A2151371A00B19037 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D4BC692151371A00B19037 /* WebViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -56,6 +60,9 @@
 		091E6AEA214682B4002AE9A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09425D37213E825A00280343 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		094F631A2150A1AF00FE68C9 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		0950520A2152048E004C9C52 /* Web.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Web.storyboard; sourceTree = "<group>"; };
+		0950520C21522E31004C9C52 /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
+		0950520E215255BD004C9C52 /* TaxiGoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiGoManager.swift; sourceTree = "<group>"; };
 		0952FCBF214B94C10026D98B /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		0952FCC4214BA2740026D98B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0952FCC7214BAE710026D98B /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
@@ -71,6 +78,7 @@
 		095DAAED2147C839003443E8 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		0960A1ED214A3F4600880200 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		0960A1F0214A3F8600880200 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		09D4BC692151371A00B19037 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3883F0C9649C92A9EA9EAE7F /* Pods-TaxiGoDev_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5ACD16D8491CA58E920B4B3E /* Pods-TaxiGoDev_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TaxiGoDev_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiGoDev_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				09425D37213E825A00280343 /* LoginViewController.swift */,
+				09D4BC692151371A00B19037 /* WebViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -141,6 +150,7 @@
 			children = (
 				0952FCCA214BBBF30026D98B /* GoogleMap.swift */,
 				094F631A2150A1AF00FE68C9 /* Date.swift */,
+				0950520C21522E31004C9C52 /* UIStoryboard.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -212,6 +222,7 @@
 			children = (
 				091E6AE121465312002AE9A9 /* Map.storyboard */,
 				0952FCC4214BA2740026D98B /* Login.storyboard */,
+				0950520A2152048E004C9C52 /* Web.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				095DAADF214767E4003443E8 /* TaxiGo.swift */,
+				0950520E215255BD004C9C52 /* TaxiGoManager.swift */,
 			);
 			name = TaxiGo;
 			sourceTree = "<group>";
@@ -441,6 +453,7 @@
 				095DAAE92147BCCF003443E8 /* FavoriteView.xib in Resources */,
 				0952FCC8214BAE710026D98B /* style.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				0950520B2152048E004C9C52 /* Web.storyboard in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */,
 				0952FCC5214BA2740026D98B /* Login.storyboard in Resources */,
@@ -552,15 +565,18 @@
 			files = (
 				095DAAE721479DFE003443E8 /* SearchView.swift in Sources */,
 				094F631B2150A1AF00FE68C9 /* Date.swift in Sources */,
+				09D4BC6A2151371A00B19037 /* WebViewController.swift in Sources */,
 				0960A1EE214A3F4600880200 /* StatusView.swift in Sources */,
 				091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */,
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,
 				095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */,
+				0950520F215255BD004C9C52 /* TaxiGoManager.swift in Sources */,
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
 				0952FCD1214BC3000026D98B /* DriverView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */,
 				0952FCCB214BBBF30026D98B /* GoogleMap.swift in Sources */,
+				0950520D21522E31004C9C52 /* UIStoryboard.swift in Sources */,
 				095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */,
 				091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */,
 				0952FCC0214B94C10026D98B /* Animation.swift in Sources */,
