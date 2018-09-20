@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sBd-Pd-5va">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sBd-Pd-5va">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,25 +19,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOx-rp-H4X" customClass="CustomButton" customModule="TaxiGoDev_Example" customModuleProvider="target">
-                                <rect key="frame" x="25" y="597" width="325" height="50"/>
-                                <color key="backgroundColor" red="0.8980392157" green="0.73333333329999995" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="25" y="417" width="325" height="50"/>
+                                <color key="backgroundColor" red="0.99215686274509807" green="0.72156862745098038" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="pEf-Lg-o9U"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="LoginBtn:" destination="sBd-Pd-5va" eventType="touchUpInside" id="ITB-6r-3LD"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaxiGo_Logo-square-white" translatesAutoresizingMaskIntoConstraints="NO" id="HfQ-Vc-oel">
+                                <rect key="frame" x="87.5" y="177" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Giu-cE-PTQ"/>
+                                    <constraint firstAttribute="height" constant="200" id="OIG-zB-pbN"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.044226352313552243" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="teh-IF-ctE" firstAttribute="bottom" secondItem="DOx-rp-H4X" secondAttribute="bottom" constant="200" id="678-H6-WMv"/>
                             <constraint firstItem="DOx-rp-H4X" firstAttribute="leading" secondItem="teh-IF-ctE" secondAttribute="leading" constant="25" id="93B-Y0-wts"/>
-                            <constraint firstItem="teh-IF-ctE" firstAttribute="bottom" secondItem="DOx-rp-H4X" secondAttribute="bottom" constant="20" id="PoZ-9g-pll"/>
+                            <constraint firstItem="HfQ-Vc-oel" firstAttribute="centerX" secondItem="itr-Ke-IoQ" secondAttribute="centerX" id="Guy-uc-C8C"/>
                             <constraint firstItem="teh-IF-ctE" firstAttribute="trailing" secondItem="DOx-rp-H4X" secondAttribute="trailing" constant="25" id="Vd1-Br-sMO"/>
+                            <constraint firstItem="DOx-rp-H4X" firstAttribute="top" secondItem="HfQ-Vc-oel" secondAttribute="bottom" constant="40" id="Yx5-y4-60M"/>
                             <constraint firstItem="DOx-rp-H4X" firstAttribute="centerX" secondItem="itr-Ke-IoQ" secondAttribute="centerX" id="mtz-H8-yVW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="teh-IF-ctE"/>
@@ -50,4 +60,7 @@
             <point key="canvasLocation" x="25" y="99"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TaxiGo_Logo-square-white" width="1000" height="1000"/>
+    </resources>
 </document>

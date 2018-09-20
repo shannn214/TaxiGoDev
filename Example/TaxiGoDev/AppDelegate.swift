@@ -19,20 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         TaxiGoManager.shared.setup()
         
-//        let token = UserDefaults.value(forKey: "access_token") as? String
-//        if token != nil {
-//            TaxiGoManager.shared.taxiGo.auth.accessToken = token
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appDelegate.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
-//        } else {
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appDelegate.window?.rootViewController = UIStoryboard.loginStoryboard().instantiateInitialViewController()
-//        }
-        
-        // NOTE: Remove the key before publish
-        GMSServices.provideAPIKey("AIzaSyAsTGKqYqUFXmAyAGFkj3Xr8AHyQI75U1E")
-        GMSPlacesClient.provideAPIKey("AIzaSyAe8rnl49gZp8i1Zt37Ze5UhbOFscFVhxg")
+        GMSServices.provideAPIKey("AIzaSyAsTGKqYqUFXmAyAGFkj3Xr8AHyQI75U1E") // <YOUR_GMS_API_KEY>
+        GMSPlacesClient.provideAPIKey("AIzaSyAe8rnl49gZp8i1Zt37Ze5UhbOFscFVhxg") // <YOUR_GMS_API_KEY>
 
+        // MARK: Check if the user has login before or not.
+        guard TaxiGoManager.shared.checkUserToken() == nil else {
+            // MARK: Setup the token in TaxiGoDev and switch the VC to map
+            TaxiGoManager.shared.taxiGo.auth.accessToken = TaxiGoManager.shared.checkUserToken()
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
+
+            return true
+        }
+        
         return true
     }
 

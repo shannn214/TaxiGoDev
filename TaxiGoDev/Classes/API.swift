@@ -28,8 +28,6 @@ public class TaxiGo {
     
     public class API {
         
-//        typealias T = Ride
-        
         public weak var taxiGoDelegate: TaxiGoAPIDelegate?
         
         public var id: String?
@@ -58,7 +56,7 @@ public class TaxiGo {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
             } catch {
-                print("request error")
+                print("API request error")
             }
             
             //callback
@@ -79,7 +77,6 @@ public class TaxiGo {
                             
                         } else if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                             print(json)
-                            print("====")
                             complete?(nil, nil, json)
                         }
 
@@ -114,8 +111,6 @@ public class TaxiGo {
         public var redirectURL: String?
         
         public var accessToken: String?
-                
-//        private var redirectUri = "https://dev-user.taxigo.com.tw/oauth/test"
         
         public init() {}
         
@@ -131,7 +126,7 @@ public class TaxiGo {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
             } catch {
-                print("request error")
+                print("Auth request error")
             }
             
             let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -164,28 +159,6 @@ public class TaxiGo {
             
         }
         
-//        public func startLoginFlow(callBackUrlScheme: String, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
-//
-//            guard let authURL = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=" + "\(appID)" + "&redirect_uri=" + "\(redirectURL)") else { return }
-//
-//            self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: callBackUrlScheme, completionHandler: { (callBack: URL?, error: Error?) in
-//
-//                guard error == nil, let successURL = callBack else {
-//                    print(error!)
-//                    print("=======")
-//                    return }
-//
-//                let callBackRedirect = NSURLComponents(string: successURL.absoluteString)?.queryItems?.filter({ $0.name == "code" }).first
-//
-//                print(callBackRedirect)
-//
-//            })
-//            self.authSession?.start()
-//
-//        }
-        
     }
-    
-    
     
 }

@@ -9,6 +9,7 @@
 import Foundation
 import TaxiGoDev
 
+// MARK: This class manages the requirement data.
 class TaxiGoManager {
     
     static let shared = TaxiGoManager()
@@ -17,6 +18,7 @@ class TaxiGoManager {
         
     func setup() {
 
+        // MARK: 
         taxiGo.auth.appID = Constants.appID
         taxiGo.auth.appSecret = Constants.appSecret
         taxiGo.auth.redirectURL = Constants.redirectURL
@@ -25,6 +27,7 @@ class TaxiGoManager {
     
     func getAccessToken() {
         
+        // MARK:
         taxiGo.auth.getUserToken(success: { (auth) in
             
             let userDefaults = UserDefaults.standard
@@ -33,14 +36,20 @@ class TaxiGoManager {
             userDefaults.setValue(auth.refresh_token, forKey: "refresh_token")
             userDefaults.synchronize()
             
-//            print(UserDefaults.standard.value(forKey: "access_token"))
-            
         }) { (err) in
             print("Failed to get token: \(err.localizedDescription)")
         }
         
     }
     
-    
+    func checkUserToken() -> String? {
+        
+        let token = UserDefaults.standard.value(forKey: "access_token")
+        
+        guard let tokenString = token as? String else { return nil }
+        
+        return tokenString
+        
+    }
     
 }

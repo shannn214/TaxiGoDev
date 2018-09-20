@@ -34,8 +34,6 @@ extension TaxiGo.API {
         call(withAccessToken: withAccessToken, .post, path: "/ride", parameter: param) { [weak self] (err, dic, array) in
            
             if err == nil {
-
-//                if let ride = JSONDeserializer<Ride>.deserializeFrom(dict: dic) {
                 
                 guard let model = Ride.deserialize(from: dic) else { return }
                 self?.id = model.id
@@ -43,12 +41,9 @@ extension TaxiGo.API {
                 
                 self?.timer = Timer.scheduledTimer(timeInterval: 5, target: self!, selector: #selector(self?.tripUpdate), userInfo: nil, repeats: true)
 
-
-//                }
-
             } else if let err = err {
                 failure(err)
-                print("QQ failed.")
+                print("Failed to request a ride.")
                 
             }
         }
@@ -61,8 +56,6 @@ extension TaxiGo.API {
             
             if err == nil {
                 
-                // NOTE: timer stop too early, need to update status in another way (in order to update the text status on UI)
-                print("Delete")
                 guard let model = Ride.deserialize(from: dic) else { return }
                 success(model)
                 print(model)
@@ -88,8 +81,10 @@ extension TaxiGo.API {
                 success(model)
 
             } else if let err = err {
+                
                 failure(err)
-                print("get history failed")
+                print("Failed to get the history.")
+                
             }
             
         }
@@ -106,8 +101,10 @@ extension TaxiGo.API {
                 success(model)
                 
             } else if let err = err {
+                
                 failure(err)
-                print("get specific ride history failed")
+                print("Failed to get the specific ride history.")
+            
             }
             
         }
@@ -117,9 +114,9 @@ extension TaxiGo.API {
     // NOTE: for observe status
     @objc func tripUpdate() {
         
-        guard id != nil else { return }
+        guard let rideID = id, let token = TaxiGo.shared.auth.accessToken else { return }
         
-        getSpecificRideHistory(withAccessToken: parent.auth.accessToken!, id: id!, success: { [weak self] (ride) in
+        getSpecificRideHistory(withAccessToken: token, id: rideID, success: { [weak self] (ride) in
             
             // NOTE: can pass all the data outside
             if ride.status == "TRIP_CANCELED" {
@@ -131,7 +128,7 @@ extension TaxiGo.API {
             }
             
         }) { (err) in
-            print("Can't get ride status")
+            print("Failed to get the ride status.")
         }
 
     }
@@ -146,8 +143,10 @@ extension TaxiGo.API {
                 success(model)
                 
             } else if let err = err {
+                
                 failure(err)
-                print("get history failed")
+                print("Failed to get the history.")
+                
             }
 
             
@@ -163,11 +162,6 @@ extension TaxiGo.API {
                 
                 if let driver = [NearbyDrivers].deserialize(from: array) {
                     
-//                    driver.forEach({ (info) in
-//                        print(info?.lat)
-//                        print(info?.lng)
-//                    })
-                    
                     success(driver)
                     
                 }
@@ -181,24 +175,6 @@ extension TaxiGo.API {
 }
 
 extension TaxiGo.Auth {
-    
-    func startLoginFlow(success: @escaping (String) -> Void, failure: @escaping (Error) -> Void) {
-        
-//        guard let url = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=-LKPYysKDcIdNs7CLYa3&redirect_uri=https://dev-user.taxigo.com.tw/oauth/test") else { return }
-//
-//        self.authSession = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: { (url, err) in
-//
-////            guard err == nil else { return }
-//
-//            print(url)
-//            print("-------")
-//
-//            success("\(url)")
-//
-//        })
-//        self.authSession?.start()
-        
-    }
     
     public func getUserToken(success: @escaping (Oauth) -> Void, failure: @escaping (Error) -> Void) {
         
