@@ -155,26 +155,12 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
-		0952FCC1214BA18C0026D98B /* Rider */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Rider;
-			sourceTree = "<group>";
-		};
 		0952FCC6214BAE490026D98B /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				0952FCC7214BAE710026D98B /* style.json */,
 			);
 			name = Map;
-			sourceTree = "<group>";
-		};
-		0952FCCC214BC1D70026D98B /* Driver */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Driver;
 			sourceTree = "<group>";
 		};
 		0952FCCD214BC2C30026D98B /* Driver */ = {
@@ -209,8 +195,6 @@
 		095D679B2146493100F45EDD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0952FCCC214BC1D70026D98B /* Driver */,
-				0952FCC1214BA18C0026D98B /* Rider */,
 				091E6AE521465DE5002AE9A9 /* Login */,
 				091E6AE421465DDE002AE9A9 /* Map */,
 			);
@@ -414,12 +398,12 @@
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = ARXY2PA7PZ;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = ARXY2PA7PZ;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -725,8 +709,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -742,8 +725,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -764,8 +746,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaxiGoDev_Example.app/TaxiGoDev_Example";
 			};
 			name = Debug;
@@ -783,8 +764,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaxiGoDev_Example.app/TaxiGoDev_Example";
 			};
 			name = Release;

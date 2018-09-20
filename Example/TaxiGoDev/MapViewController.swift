@@ -26,7 +26,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var driverView: DriverView!
     
-    var taxiGo = TaxiGo()
+    var taxiGo = TaxiGoManager.shared.taxiGo
     
     var startMarker = GMSMarker()
     
@@ -48,12 +48,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     var status: String?
     
+    var dic = [String: String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        taxiGo.auth.accessToken = Constants.token
-        taxiGo.auth.appID = Constants.appID
-        taxiGo.auth.appSecret = Constants.appSecret
         
         placesClient = GMSPlacesClient.shared()
         setupMapView()
@@ -68,14 +66,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         driverView.alpha = 0
         driverView.cancelButton.addTarget(self, action: #selector(cancelRide), for: .touchUpInside)
         
+        for element in Status.allCases {
+            dic.updateValue(element.status, forKey: element.rawValue)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func changeStatusText(rideStatus: Status) {
-        driverView.status.text = rideStatus.status
     }
     
     fileprivate func setupMapView() {
@@ -93,6 +91,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
     }
     
+    // ISSUE: 太早拿了，要等使用者同意後再跑
     func getCurrentPlace() {
         
         placesClient.currentPlace { (placeList, err) in
@@ -113,10 +112,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                     self.taxiGo.api.getNearbyDriver(withAccessToken: self.taxiGo.auth.accessToken!, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
                         
                         print("Success get nearby driver.")
-                        nearbyDrivers.forEach({ (driver) in
-                            self.driverMarker.icon = UIImage(named: "car")
-                            self.driverMarker.position = CLLocationCoordinate2D(latitude: (driver?.lat)!, longitude: (driver?.lng)!)
-                            self.driverMarker.map = self.mapView
+                        nearbyDrivers.forEach({ [weak self] (driver) in
+                            self?.driverMarker.icon = UIImage(named: "car")
+                            self?.driverMarker.position = CLLocationCoordinate2D(latitude: (driver?.lat)!, longitude: (driver?.lng)!)
+                            self?.driverMarker.map = self?.mapView
                         })
 
                     }, failure: { (err) in
@@ -130,8 +129,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         }
         
     }
-    
-    // ISSUE: It's so weird... but it works...
+
     override func viewDidLayoutSubviews() {
         favHeightConstaint.constant = favoriteView.favTableView.contentSize.height
         favoriteView.favTableView.estimatedRowHeight = favoriteView.favTableView.contentSize.height
@@ -141,18 +139,18 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         guard let token = taxiGo.auth.accessToken else { return }
         
-        taxiGo.api.getRiderInfo(withAccessToken: token, success: { (rider) in
+        taxiGo.api.getRiderInfo(withAccessToken: token, success: { [weak self] (rider) in
             
-            rider.favorite?.forEach({ (info) in
+            rider.favorite?.forEach({ [weak self] (info) in
                 guard let address = info.address,
                     let lat = info.lat,
                     let lng = info.lng else { return }
                 let favorite = Favorite(address: address, lat: lat, lng: lng)
-                self.favoriteView.favorite.append(favorite)
+                self?.favoriteView.favorite.append(favorite)
             })
 
-            self.favoriteView.favTableView.reloadData()
-            self.favHeightConstaint.constant = self.favoriteView.favTableView.contentSize.height
+            self?.favoriteView.favTableView.reloadData()
+            self?.favHeightConstaint.constant = self?.favoriteView.favTableView.contentSize.height ?? 0
 
         }) { (err) in
             print(err.localizedDescription)
@@ -176,9 +174,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                 endLatitude: endLocation?.coordinate.latitude,
                                 endLongitude: endLocation?.coordinate.longitude,
                                 endAddress: endAdd,
-                                success: { (ride) in
+                                success: { [weak self] (ride) in
                                     
-                                    fadeInAnimation(view: self.driverView)
+                                    fadeInAnimation(view: self!.driverView)
 
         }) { (err) in
             print("Failed to request a ride. \(err.localizedDescription)")
@@ -191,7 +189,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
         
         taxiGo.api.cancelARide(withAccessToken: token, id: id, success: { (ride) in
-            print(ride.status)
+//            print(ride.status)
         }) { (err) in
             print("Failed to cancel the ride.")
         }
@@ -295,38 +293,48 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 }
 
 extension MapViewController: TaxiGoAPIDelegate {
+
+    func changeStatusText(rideStatus: Status) {
+        driverView.status.text = rideStatus.status
+    }
     
-    func rideDidUpdate(status: String) {
+    func rideDidUpdate(status: String, ride: TaxiGo.API.Ride) {
         print(status)
         
-        if status == Status.tripCanceled.rawValue { // 行程取消
-            changeStatusText(rideStatus: .tripCanceled)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                fadeOutAnimation(view: self.driverView)
-                self.driverView.initDriverView()
-            }
-        } else if status == Status.pendingResponseDriver.rawValue || status == Status.waitingSpecify.rawValue { // 等待司機回應
-            changeStatusText(rideStatus: .pendingResponseDriver)
-        } else if status == Status.driverEnroute.rawValue { // 前往中
-            changeStatusText(rideStatus: .driverEnroute)
+        guard let updateStatus = dic[status] else { return }
+        
+        driverView.status.text = updateStatus
+//        Status.statusAction()
 
-            guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
-            taxiGo.api.getSpecificRideHistory(withAccessToken: token, id: id, success: { (ride) in
-                
-                self.driverView.name.text = ride.driver?.name
-                guard let eta = ride.driver?.eta else { return }
-                self.driverView.eta.text = "預計 \(updateTime(timeStemp: eta)) 分鐘後抵達"
-                self.driverView.plateNumber.text = ride.driver?.plate_number
-                self.driverView.vehicle.text = ride.driver?.vehicle
-                
-            }) { (err) in
-                print("Failed to get specific ride history")
-            }
-        } else if status == Status.driverArrived.rawValue { // 已抵達
-            changeStatusText(rideStatus: .driverArrived)
-        } else if status == Status.tripFinished.rawValue { // 行程完成
-            changeStatusText(rideStatus: .tripFinished)
-        }
+
+//        if status == Status.tripCanceled.rawValue { // 行程取消
+//            changeStatusText(rideStatus: .tripCanceled)
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                fadeOutAnimation(view: self.driverView)
+//                self.driverView.initDriverView()
+//            }
+//        } else if status == Status.pendingResponseDriver.rawValue || status == Status.waitingSpecify.rawValue { // 等待司機回應
+//            changeStatusText(rideStatus: .pendingResponseDriver)
+//        } else if status == Status.driverEnroute.rawValue { // 前往中
+//            changeStatusText(rideStatus: .driverEnroute)
+//
+//            guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
+//            taxiGo.api.getSpecificRideHistory(withAccessToken: token, id: id, success: { (ride) in
+//
+//                self.driverView.name.text = ride.driver?.name
+//                guard let eta = ride.driver?.eta else { return }
+//                self.driverView.eta.text = "預計 \(updateTime(timeStemp: eta)) 分鐘後抵達"
+//                self.driverView.plateNumber.text = ride.driver?.plate_number
+//                self.driverView.vehicle.text = ride.driver?.vehicle
+//
+//            }) { (err) in
+//                print("Failed to get specific ride history")
+//            }
+//        } else if status == Status.driverArrived.rawValue { // 已抵達
+//            changeStatusText(rideStatus: .driverArrived)
+//        } else if status == Status.tripFinished.rawValue { // 行程完成
+//            changeStatusText(rideStatus: .tripFinished)
+//        }
 
     }
     

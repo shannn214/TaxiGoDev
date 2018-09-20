@@ -78,7 +78,7 @@ struct NearbyDrivers {
     
 }
 
-enum Status: String {
+enum Status: String, CaseIterable {
     
     case waitingSpecify = "WAITING_SPECIFY"
     case requestingDriver = "REQUESTING_DRIVER"
@@ -107,6 +107,16 @@ enum Status: String {
             return "等候司機接單"
         default:
             return "測試"
+        }
+    }
+    
+    func statusAction() {
+        
+        switch self {
+        case .pendingResponseDriver:
+            print("hahahahahahah")
+        default:
+            break
         }
     }
     

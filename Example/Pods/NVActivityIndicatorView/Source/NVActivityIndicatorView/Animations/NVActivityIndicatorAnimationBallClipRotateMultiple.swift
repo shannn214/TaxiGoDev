@@ -33,7 +33,11 @@ class NVActivityIndicatorAnimationBallClipRotateMultiple: NVActivityIndicatorAni
         let bigCircleSize: CGFloat = size.width
         let smallCircleSize: CGFloat = size.width / 2
         let longDuration: CFTimeInterval = 1
-        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        #if swift(>=4.2)
+        let timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        #else
+        let timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        #endif
 
         circleOf(shape: .ringTwoHalfHorizontal,
                  duration: longDuration,

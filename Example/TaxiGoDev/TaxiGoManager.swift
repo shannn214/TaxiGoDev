@@ -12,13 +12,11 @@ import TaxiGoDev
 class TaxiGoManager {
     
     static let shared = TaxiGoManager()
-    
-    var taxiGo = TaxiGo()
-    
-    var authCode: String?
-    
-    func setup() {
         
+    var taxiGo = TaxiGo.shared
+        
+    func setup() {
+
         taxiGo.auth.appID = Constants.appID
         taxiGo.auth.appSecret = Constants.appSecret
         taxiGo.auth.redirectURL = Constants.redirectURL
@@ -34,6 +32,8 @@ class TaxiGoManager {
             userDefaults.setValue(auth.access_token, forKey: "access_token")
             userDefaults.setValue(auth.refresh_token, forKey: "refresh_token")
             userDefaults.synchronize()
+            
+//            print(UserDefaults.standard.value(forKey: "access_token"))
             
         }) { (err) in
             print("Failed to get token: \(err.localizedDescription)")

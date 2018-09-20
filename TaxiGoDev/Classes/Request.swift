@@ -10,7 +10,7 @@ import HandyJSON
 import SafariServices
 
 public protocol TaxiGoAPIDelegate: class {
-    func rideDidUpdate(status: String)
+    func rideDidUpdate(status: String, ride: TaxiGo.API.Ride)
 }
 
 extension TaxiGo.API {
@@ -31,20 +31,20 @@ extension TaxiGo.API {
                                     "end_longitude": endLongitude ?? "",
                                     "end_address": endAddress ?? ""]
         
-        call(withAccessToken: withAccessToken, .post, path: "/ride", parameter: param) { (err, dic, array) in
+        call(withAccessToken: withAccessToken, .post, path: "/ride", parameter: param) { [weak self] (err, dic, array) in
            
             if err == nil {
 
-                if let ride = JSONDeserializer<Ride>.deserializeFrom(dict: dic) {
-                    
-                    guard let model = Ride.deserialize(from: dic) else { return }
-                    self.id = model.id
-                    success(model)
-                    
-                    self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.tripUpdate), userInfo: nil, repeats: true)
+//                if let ride = JSONDeserializer<Ride>.deserializeFrom(dict: dic) {
+                
+                guard let model = Ride.deserialize(from: dic) else { return }
+                self?.id = model.id
+                success(model)
+                
+                self?.timer = Timer.scheduledTimer(timeInterval: 5, target: self!, selector: #selector(self?.tripUpdate), userInfo: nil, repeats: true)
 
 
-                }
+//                }
 
             } else if let err = err {
                 failure(err)
@@ -119,15 +119,15 @@ extension TaxiGo.API {
         
         guard id != nil else { return }
         
-        getSpecificRideHistory(withAccessToken: parent.auth.accessToken!, id: id!, success: { (ride) in
+        getSpecificRideHistory(withAccessToken: parent.auth.accessToken!, id: id!, success: { [weak self] (ride) in
             
             // NOTE: can pass all the data outside
             if ride.status == "TRIP_CANCELED" {
-                self.taxiGoDelegate?.rideDidUpdate(status: ride.status!)
-                self.timer.invalidate()
-                self.id = nil
+                self?.taxiGoDelegate?.rideDidUpdate(status: ride.status!, ride: ride)
+                self?.timer.invalidate()
+                self?.id = nil
             } else {
-                self.taxiGoDelegate?.rideDidUpdate(status: ride.status!)
+                self?.taxiGoDelegate?.rideDidUpdate(status: ride.status!, ride: ride)
             }
             
         }) { (err) in
@@ -163,10 +163,10 @@ extension TaxiGo.API {
                 
                 if let driver = [NearbyDrivers].deserialize(from: array) {
                     
-                    driver.forEach({ (info) in
-                        print(info?.lat)
-                        print(info?.lng)
-                    })
+//                    driver.forEach({ (info) in
+//                        print(info?.lat)
+//                        print(info?.lng)
+//                    })
                     
                     success(driver)
                     
@@ -182,21 +182,21 @@ extension TaxiGo.API {
 
 extension TaxiGo.Auth {
     
-    public func startLoginFlow(success: @escaping (String) -> Void, failure: @escaping (Error) -> Void) {
+    func startLoginFlow(success: @escaping (String) -> Void, failure: @escaping (Error) -> Void) {
         
-        guard let url = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=-LKPYysKDcIdNs7CLYa3&redirect_uri=https://dev-user.taxigo.com.tw/oauth/test") else { return }
-        
-        self.authSession = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: { (url, err) in
-            
-//            guard err == nil else { return }
-            
-            print(url)
-            print("-------")
-            
-            success("\(url)")
-            
-        })
-        self.authSession?.start()
+//        guard let url = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=-LKPYysKDcIdNs7CLYa3&redirect_uri=https://dev-user.taxigo.com.tw/oauth/test") else { return }
+//
+//        self.authSession = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: { (url, err) in
+//
+////            guard err == nil else { return }
+//
+//            print(url)
+//            print("-------")
+//
+//            success("\(url)")
+//
+//        })
+//        self.authSession?.start()
         
     }
     
@@ -206,12 +206,12 @@ extension TaxiGo.Auth {
                       "app_secret": appSecret,
                       "code": authCode]
         
-        call(path: "", parameter: params) { (err, dic) in
+        call(path: "", parameter: params) { [weak self] (err, dic) in
             
             if err == nil {
                 
                 guard let auth = Oauth.deserialize(from: dic) else { return }
-                self.accessToken = auth.access_token
+                self?.accessToken = auth.access_token
                 success(auth)
                 
             }
@@ -226,12 +226,12 @@ extension TaxiGo.Auth {
                       "app_secret": appSecret,
                       "refresh_token": refreshToken]
         
-        call(path: "/refresh_token", parameter: params) { (err, dic) in
+        call(path: "/refresh_token", parameter: params) { [weak self] (err, dic) in
             
             if err == nil {
                 
                 guard let refreshToken = Oauth.deserialize(from: dic) else { return }
-                self.accessToken = refreshToken.access_token
+                self?.accessToken = refreshToken.access_token
                 success(refreshToken)
                 
             }

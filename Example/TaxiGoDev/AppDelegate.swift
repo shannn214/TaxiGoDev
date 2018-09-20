@@ -15,10 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         TaxiGoManager.shared.setup()
+        
+//        let token = UserDefaults.value(forKey: "access_token") as? String
+//        if token != nil {
+//            TaxiGoManager.shared.taxiGo.auth.accessToken = token
+//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//            appDelegate.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
+//        } else {
+//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//            appDelegate.window?.rootViewController = UIStoryboard.loginStoryboard().instantiateInitialViewController()
+//        }
         
         // NOTE: Remove the key before publish
         GMSServices.provideAPIKey("AIzaSyAsTGKqYqUFXmAyAGFkj3Xr8AHyQI75U1E")

@@ -48,7 +48,7 @@ class FavoriteView: UIView {
         favTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         favTableView.delegate = self
         favTableView.dataSource = self
-        favTableView.rowHeight = UITableViewAutomaticDimension
+        favTableView.rowHeight = UITableView.automaticDimension
         favTableView.estimatedRowHeight = 100
         
         let nib = UINib(nibName: String(describing: FavoriteTableViewCell.self), bundle: nil)

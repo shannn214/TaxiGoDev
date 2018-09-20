@@ -7,7 +7,6 @@
 
 import Foundation
 import HandyJSON
-import SafariServices
 
 public class TaxiGo {
     
@@ -22,12 +21,14 @@ public class TaxiGo {
         
     }
     
-    static let shared: TaxiGo = {
+    public static let shared: TaxiGo = {
         let instance = TaxiGo()
         return instance
     }()
     
     public class API {
+        
+//        typealias T = Ride
         
         public weak var taxiGoDelegate: TaxiGoAPIDelegate?
         
@@ -38,9 +39,7 @@ public class TaxiGo {
         var timer = Timer()
         
         var token: String?
-        
-        var authSession: SFAuthenticationSession?
-                
+                        
         public init() {}
         
         func call(withAccessToken: String, _ method: SHHTTPMethod, path: String, parameter: [String: Any], complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
@@ -115,9 +114,7 @@ public class TaxiGo {
         public var redirectURL: String?
         
         public var accessToken: String?
-        
-        public var authSession: SFAuthenticationSession?
-        
+                
 //        private var redirectUri = "https://dev-user.taxigo.com.tw/oauth/test"
         
         public init() {}

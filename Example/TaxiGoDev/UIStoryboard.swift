@@ -19,4 +19,8 @@ extension UIStoryboard {
         return UIStoryboard(name: "Web", bundle: nil)
     }
     
+    static func loginStoryboard() -> UIStoryboard {
+        return UIStoryboard(name: "Login", bundle: nil)
+    }
+    
 }

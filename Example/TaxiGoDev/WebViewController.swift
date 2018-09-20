@@ -77,10 +77,10 @@ class WebViewController: UIViewController {
             progBar.alpha = 1
             progBar.setProgress(Float(webView.estimatedProgress), animated: true)
             if webView.estimatedProgress >= 1 {
-                UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut, animations: {
-                    self.progBar.alpha = 0
-                }) { (finished) in
-                    self.progBar.progress = 0
+                UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut, animations: { [weak self] in
+                    self?.progBar.alpha = 0
+                }) { [weak self] (finished) in
+                    self?.progBar.progress = 0
                 }
             }
         }
@@ -104,8 +104,6 @@ extension WebViewController: WKNavigationDelegate {
         
         TaxiGoManager.shared.taxiGo.auth.authCode = authCode
         TaxiGoManager.shared.getAccessToken()
-        
-//        self.webDelegate?.didGetCallBackUrl(code: authCode)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.dismiss(animated: true, completion: {

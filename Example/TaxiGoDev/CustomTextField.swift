@@ -37,8 +37,8 @@ class CustomTextField: UITextField, UITextFieldDelegate {
         self.keyboardType = UIKeyboardType.default
         self.returnKeyType = UIReturnKeyType.done
         self.delegate = self
-        self.clearButtonMode = UITextFieldViewMode.whileEditing
-        self.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        self.clearButtonMode = UITextField.ViewMode.whileEditing
+        self.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         self.layer.cornerRadius = 5
         
         self.addTarget(self, action: #selector(triggerSearchAction), for: .touchDown)

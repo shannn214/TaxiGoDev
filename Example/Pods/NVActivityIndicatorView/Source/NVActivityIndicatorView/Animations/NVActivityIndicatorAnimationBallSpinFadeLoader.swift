@@ -56,7 +56,11 @@ class NVActivityIndicatorAnimationBallSpinFadeLoader: NVActivityIndicatorAnimati
         let animation = CAAnimationGroup()
 
         animation.animations = [scaleAnimation, opacityAnimaton]
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        #if swift(>=4.2)
+        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+        #else
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        #endif
         animation.duration = duration
         animation.repeatCount = HUGE
         animation.isRemovedOnCompletion = false

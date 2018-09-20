@@ -18,10 +18,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        taxiGo.auth.appID = Constants.appID
-        taxiGo.auth.appSecret = Constants.appSecret
-        taxiGo.auth.redirectURL = Constants.redirectURL
+
     }
     
     @IBAction func LoginBtn(_ sender: Any) {
