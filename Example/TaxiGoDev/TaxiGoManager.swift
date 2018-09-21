@@ -18,7 +18,7 @@ class TaxiGoManager {
         
     func setup() {
 
-        // MARK: 
+        // MARK: TaxiGoDev provides some properties to store the requirement data. 
         taxiGo.auth.appID = Constants.appID
         taxiGo.auth.appSecret = Constants.appSecret
         taxiGo.auth.redirectURL = Constants.redirectURL
@@ -27,18 +27,19 @@ class TaxiGoManager {
     
     func getAccessToken() {
         
-        // MARK:
+        // MARK: If you has stored the data in TaxiGoDev's properties, you can request the token without parameters.
         taxiGo.auth.getUserToken(success: { (auth) in
-            
+
             let userDefaults = UserDefaults.standard
-            
+
             userDefaults.setValue(auth.access_token, forKey: "access_token")
             userDefaults.setValue(auth.refresh_token, forKey: "refresh_token")
             userDefaults.synchronize()
-            
+
         }) { (err) in
             print("Failed to get token: \(err.localizedDescription)")
         }
+        
         
     }
     

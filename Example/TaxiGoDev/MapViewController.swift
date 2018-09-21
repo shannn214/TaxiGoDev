@@ -12,6 +12,8 @@ import GoogleMaps
 import GooglePlaces
 import GooglePlacePicker
 
+var taxiGo = TaxiGoManager.shared.taxiGo
+
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var searchView: SearchView!
@@ -25,8 +27,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var favHeightConstaint: NSLayoutConstraint!
     
     @IBOutlet weak var driverView: DriverView!
-    
-    var taxiGo = TaxiGoManager.shared.taxiGo
     
     var startMarker = GMSMarker()
     
@@ -48,7 +48,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     var status: String?
     
-    var dic = [String: String]()
+    var dic = [Status: String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +88,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
     }
     
-    // ISSUE: 太早拿了，要等使用者同意後再跑
     func getCurrentPlace() {
 
         guard let token = taxiGo.auth.accessToken else { return }
@@ -108,8 +107,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                     self.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     let position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     self.mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
-                    // MARK:
-                    self.taxiGo.api.getNearbyDriver(withAccessToken: token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
+                    // MARK: Requesting the nearby driver. Note that the rate limit: 5 calls per minutes.
+                    taxiGo.api.getNearbyDriver(withAccessToken: token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers) in
                         
                         print("Success get nearby driver.")
                         nearbyDrivers.forEach({ [weak self] (driver) in
@@ -138,7 +137,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     func loadFavList() {
         
         guard let token = taxiGo.auth.accessToken else { return }
-        // MARK: 
+        // MARK:
         taxiGo.api.getRiderInfo(withAccessToken: token, success: { [weak self] (rider) in
             
             rider.favorite?.forEach({ [weak self] (info) in
@@ -203,7 +202,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     func setupStatusDic() {
         for element in Status.allCases {
-            dic.updateValue(element.status, forKey: element.rawValue)
+            dic.updateValue(element.status, forKey: element)
         }
     }
     
@@ -216,39 +215,38 @@ extension MapViewController: TaxiGoAPIDelegate {
     func rideDidUpdate(status: String, ride: TaxiGo.API.Ride) {
         print(status)
         
-        guard let updateStatus = dic[status] else { return }
+        guard let sta = Status(rawValue: status), let updateStatus = dic[sta] else { return }
+        
+        statusAction(status: sta)
         
         driverView.status.text = updateStatus
         
-        //        if status == Status.tripCanceled.rawValue { // 行程取消
-        //            changeStatusText(rideStatus: .tripCanceled)
-        //            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-        //                fadeOutAnimation(view: self.driverView)
-        //                self.driverView.initDriverView()
-        //            }
-        //        } else if status == Status.pendingResponseDriver.rawValue || status == Status.waitingSpecify.rawValue { // 等待司機回應
-        //            changeStatusText(rideStatus: .pendingResponseDriver)
-        //        } else if status == Status.driverEnroute.rawValue { // 前往中
-        //            changeStatusText(rideStatus: .driverEnroute)
-        //
-        //            guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
-        //            taxiGo.api.getSpecificRideHistory(withAccessToken: token, id: id, success: { (ride) in
-        //
-        //                self.driverView.name.text = ride.driver?.name
-        //                guard let eta = ride.driver?.eta else { return }
-        //                self.driverView.eta.text = "預計 \(updateTime(timeStemp: eta)) 分鐘後抵達"
-        //                self.driverView.plateNumber.text = ride.driver?.plate_number
-        //                self.driverView.vehicle.text = ride.driver?.vehicle
-        //
-        //            }) { (err) in
-        //                print("Failed to get specific ride history")
-        //            }
-        //        } else if status == Status.driverArrived.rawValue { // 已抵達
-        //            changeStatusText(rideStatus: .driverArrived)
-        //        } else if status == Status.tripFinished.rawValue { // 行程完成
-        //            changeStatusText(rideStatus: .tripFinished)
-        //        }
+    }
+    
+    func statusAction(status: Status) {
         
+        switch status {
+        case .driverEnroute:
+            guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
+            taxiGo.api.getSpecificRideHistory(withAccessToken: token, id: id, success: { (ride) in
+                
+                self.driverView.name.text = ride.driver?.name
+                guard let eta = ride.driver?.eta else { return }
+                self.driverView.eta.text = "預計 \(updateTime(timeStemp: eta)) 分鐘後抵達"
+                self.driverView.plateNumber.text = ride.driver?.plate_number
+                self.driverView.vehicle.text = ride.driver?.vehicle
+                
+            }) { (err) in
+                print("Failed to get specific ride history")
+            }
+        case .tripCanceled:
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                fadeOutAnimation(view: self.driverView)
+                self.driverView.initDriverView()
+            }
+        default:
+            break
+        }
     }
     
 }

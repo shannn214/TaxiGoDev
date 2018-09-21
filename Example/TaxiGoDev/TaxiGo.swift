@@ -103,22 +103,13 @@ enum Status: String, CaseIterable {
             return "行程已開始"
         case .tripFinished:
             return "行程已完成"
-        case .pendingResponseDriver:
+        case .pendingResponseDriver, .waitingSpecify:
             return "等候司機接單"
         default:
             return "測試"
         }
     }
     
-    func statusAction() {
-        
-        switch self {
-        case .pendingResponseDriver:
-            print("hahahahahahah")
-        default:
-            break
-        }
-    }
-    
 }
+
 

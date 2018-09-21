@@ -9,21 +9,15 @@
 import UIKit
 import WebKit
 
-protocol WebViewDelegate: class {
-    func didGetCallBackUrl(code: String)
-}
-
 class WebViewController: UIViewController {
     
-//    weak var webDelegate: WebViewDelegate?
-
     var webView = WKWebView()
     
     var cancelBtn = UIBarButtonItem()
 
     var progBar = UIProgressView()
     
-//    var authCode: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +88,7 @@ class WebViewController: UIViewController {
 
 extension WebViewController: WKNavigationDelegate {
     
+    // MARK: We use WebKit delegate to access the success callback url which includes the auth code.
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
         self.navigationItem.title = self.webView.title
@@ -102,7 +97,8 @@ extension WebViewController: WKNavigationDelegate {
               let code = NSURLComponents(string: "\(url)")?.queryItems?.filter({ $0.name == "code" }).first,
               let authCode = code.value else { return }
         
-        TaxiGoManager.shared.taxiGo.auth.authCode = authCode
+        // MARK: Using auth code to request access token. Note that the authorization code will be expired after 60 minutes.
+        taxiGo.auth.authCode = authCode
         TaxiGoManager.shared.getAccessToken()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

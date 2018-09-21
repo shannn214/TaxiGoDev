@@ -50,7 +50,10 @@ extension TaxiGo.API {
         
     }
     
-    public func cancelARide(withAccessToken: String, id: String, success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
+    public func cancelARide(withAccessToken: String,
+                            id: String,
+                            success: @escaping (Ride) -> Void,
+                            failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .delete, path: "/ride/\(id)", parameter: [:]) { (err, dic, array) in
             
@@ -71,7 +74,9 @@ extension TaxiGo.API {
         
     }
  
-    public func getRidesHistory(withAccessToken: String, success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
+    public func getRidesHistory(withAccessToken: String,
+                                success: @escaping (Ride) -> Void,
+                                failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/ride", parameter: [:]) { (err, dic, array) in
             
@@ -91,7 +96,10 @@ extension TaxiGo.API {
         
     }
     
-    public func getSpecificRideHistory(withAccessToken: String, id: String, success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
+    public func getSpecificRideHistory(withAccessToken: String,
+                                       id: String,
+                                       success: @escaping (Ride) -> Void,
+                                       failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/ride/\(id)", parameter: [:]) { (err, dic, array) in
             
@@ -133,7 +141,9 @@ extension TaxiGo.API {
 
     }
     
-    public func getRiderInfo(withAccessToken: String, success: @escaping (Rider) -> Void, failure: @escaping (Error) -> Void) {
+    public func getRiderInfo(withAccessToken: String,
+                             success: @escaping (Rider) -> Void,
+                             failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/me", parameter: [:]) { (err, dic, array) in
             
@@ -154,7 +164,11 @@ extension TaxiGo.API {
         
     }
     
-    public func getNearbyDriver(withAccessToken: String, lat: Double, lng: Double, success: @escaping ([NearbyDrivers?]) -> Void, failure: @escaping (Error) -> Void) {
+    public func getNearbyDriver(withAccessToken: String,
+                                lat: Double,
+                                lng: Double,
+                                success: @escaping ([NearbyDrivers?]) -> Void,
+                                failure: @escaping (Error) -> Void) {
         
         call(withAccessToken: withAccessToken, .get, path: "/driver?lat=\(lat)&lng=\(lng)", parameter: [:]) { (err, dic, array) in
             
@@ -176,7 +190,8 @@ extension TaxiGo.API {
 
 extension TaxiGo.Auth {
     
-    public func getUserToken(success: @escaping (Oauth) -> Void, failure: @escaping (Error) -> Void) {
+    public func getUserToken(success: @escaping (Oauth) -> Void,
+                             failure: @escaping (Error) -> Void) {
         
         let params = ["app_id": appID,
                       "app_secret": appSecret,
@@ -196,10 +211,14 @@ extension TaxiGo.Auth {
         
     }
     
-    public func refreshToken(appID: String, appSecret: String, refreshToken: String, success: @escaping (Oauth) -> Void, failure: @escaping (Error) -> Void) {
+    public func refreshToken(appID: String? = nil,
+                             appSecret: String? = nil,
+                             refreshToken: String,
+                             success: @escaping (Oauth) -> Void,
+                             failure: @escaping (Error) -> Void) {
         
-        let params = ["app_id": appID,
-                      "app_secret": appSecret,
+        let params = ["app_id": appID ?? self.appID,
+                      "app_secret": appSecret ?? self.appSecret,
                       "refresh_token": refreshToken]
         
         call(path: "/refresh_token", parameter: params) { [weak self] (err, dic) in

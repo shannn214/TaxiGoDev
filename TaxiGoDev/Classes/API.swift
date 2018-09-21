@@ -40,7 +40,11 @@ public class TaxiGo {
                         
         public init() {}
         
-        func call(withAccessToken: String, _ method: SHHTTPMethod, path: String, parameter: [String: Any], complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
+        func call(withAccessToken: String,
+                  _ method: SHHTTPMethod,
+                  path: String,
+                  parameter: [String: Any],
+                  complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
         
             let url = URL(string: "\(Constants.taxiGoUrl)" + "\(path)")
             let body = parameter
@@ -114,7 +118,9 @@ public class TaxiGo {
         
         public init() {}
         
-        func call(path: String, parameter: [String: Any], complete: ((Error? ,[String: Any]?) -> Void)? = nil) -> URLSessionDataTask {
+        func call(path: String,
+                  parameter: [String: Any],
+                  complete: ((Error? ,[String: Any]?) -> Void)? = nil) -> URLSessionDataTask {
             
             let url = URL(string: "\(Constants.oauthURL)" + "\(path)")
             let body = parameter
