@@ -32,6 +32,8 @@
 		095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095DAAED2147C839003443E8 /* FavoriteTableViewCell.xib */; };
 		0960A1EE214A3F4600880200 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0960A1ED214A3F4600880200 /* StatusView.swift */; };
 		0960A1F1214A3F8600880200 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0960A1F0214A3F8600880200 /* StatusView.xib */; };
+		097616F5215760E5009C5FC8 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097616F4215760E5009C5FC8 /* UITextField.swift */; };
+		097616F821576A2C009C5FC8 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097616F721576A2C009C5FC8 /* Map.swift */; };
 		09D4BC6A2151371A00B19037 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D4BC692151371A00B19037 /* WebViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -78,6 +80,8 @@
 		095DAAED2147C839003443E8 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		0960A1ED214A3F4600880200 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		0960A1F0214A3F8600880200 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		097616F4215760E5009C5FC8 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		097616F721576A2C009C5FC8 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		09D4BC692151371A00B19037 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3883F0C9649C92A9EA9EAE7F /* Pods-TaxiGoDev_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5ACD16D8491CA58E920B4B3E /* Pods-TaxiGoDev_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 				0952FCCA214BBBF30026D98B /* GoogleMap.swift */,
 				094F631A2150A1AF00FE68C9 /* Date.swift */,
 				0950520C21522E31004C9C52 /* UIStoryboard.swift */,
+				097616F4215760E5009C5FC8 /* UITextField.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 		095D679A2146492B00F45EDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				097616F621576A00009C5FC8 /* Map */,
 				094FADFC2154E7C500166DD8 /* Custom */,
 				0952FCCD214BC2C30026D98B /* Driver */,
 				0960A1EF214A3F4E00880200 /* Status */,
@@ -255,6 +261,14 @@
 				0960A1F0214A3F8600880200 /* StatusView.xib */,
 			);
 			name = Status;
+			sourceTree = "<group>";
+		};
+		097616F621576A00009C5FC8 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				097616F721576A2C009C5FC8 /* Map.swift */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -565,6 +579,8 @@
 				0950520F215255BD004C9C52 /* TaxiGoManager.swift in Sources */,
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
 				0952FCD1214BC3000026D98B /* DriverView.swift in Sources */,
+				097616F821576A2C009C5FC8 /* Map.swift in Sources */,
+				097616F5215760E5009C5FC8 /* UITextField.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */,
 				0952FCCB214BBBF30026D98B /* GoogleMap.swift in Sources */,

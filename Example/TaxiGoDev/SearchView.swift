@@ -41,14 +41,19 @@ class SearchView: UIView {
         addSubview(containView)
         containView.frame = self.bounds
         containView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        fromTextField.layer.cornerRadius = 3
-        toTextField.layer.cornerRadius = 3
         fromTextField.addTarget(self, action: #selector(triggerSearchAction), for: .touchDown)
         toTextField.addTarget(self, action: #selector(triggerSearchAction), for: .touchDown)
         fromTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: fromTextField.frame.height))
         fromTextField.leftViewMode = .always
         toTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: toTextField.frame.height))
         toTextField.leftViewMode = .always
+
+        fromTextField.attributedPlaceholder = NSAttributedString(string: "Current place", attributes: [NSAttributedString.Key.foregroundColor: UIColor(displayP3Red: 253/255, green: 184/255, blue: 44/255, alpha: 0.5)])
+        
+        toTextField.attributedPlaceholder = NSAttributedString(string: "Where to?", attributes: [NSAttributedString.Key.foregroundColor: UIColor(displayP3Red: 253/255, green: 184/255, blue: 44/255, alpha: 0.5)])
+            
+        fromTextField.setBottomBorder()
+        toTextField.setBottomBorder()
 
     }
     
