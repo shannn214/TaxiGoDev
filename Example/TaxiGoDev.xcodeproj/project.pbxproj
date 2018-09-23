@@ -120,8 +120,6 @@
 		091E6AE321465DD7002AE9A9 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				091E6AE621465E1A002AE9A9 /* CustomTextField.swift */,
-				091E6AE821467F9C002AE9A9 /* CustomButton.swift */,
 				095DAAE421479DE4003443E8 /* SearchView.xib */,
 				095DAAE621479DFE003443E8 /* SearchView.swift */,
 			);
@@ -143,6 +141,15 @@
 				09D4BC692151371A00B19037 /* WebViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		094FADFC2154E7C500166DD8 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				091E6AE621465E1A002AE9A9 /* CustomTextField.swift */,
+				091E6AE821467F9C002AE9A9 /* CustomButton.swift */,
+			);
+			name = Custom;
 			sourceTree = "<group>";
 		};
 		0952FCBE214B93870026D98B /* Extension */ = {
@@ -184,6 +191,7 @@
 		095D679A2146492B00F45EDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				094FADFC2154E7C500166DD8 /* Custom */,
 				0952FCCD214BC2C30026D98B /* Driver */,
 				0960A1EF214A3F4E00880200 /* Status */,
 				095DAAF02147C864003443E8 /* Favorite */,

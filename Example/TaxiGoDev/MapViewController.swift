@@ -166,6 +166,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         guard let token = taxiGo.auth.accessToken, let start = startLocation, let startAddress = startAdd else { return }
         
+        confirmButton.isUserInteractionEnabled = false
+        
         taxiGo.api.requestARide(withAccessToken: token,
                                 startLatitude: start.coordinate.latitude,
                                 startLongitude: start.coordinate.longitude,
@@ -177,8 +179,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                     
                                     fadeInAnimation(view: self!.driverView)
 
-        }) { (err) in
+        }) { [weak self] (err) in
             print("Failed to request a ride. Error: \(err.localizedDescription)")
+            self?.confirmButton.isUserInteractionEnabled = true
         }
         
     }
@@ -187,9 +190,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
         
+        confirmButton.isUserInteractionEnabled = true
+        
         // MARK: Basically, TaxiGoDev will save the ride's id when you successfully request a ride.
         taxiGo.api.cancelARide(withAccessToken: token, id: id, success: { (ride) in
-//            print(ride.status)
+            
         }) { (err) in
             print("Failed to cancel the ride. Error: \(err.localizedDescription)")
         }
@@ -237,13 +242,16 @@ extension MapViewController: TaxiGoAPIDelegate {
                 self.driverView.vehicle.text = ride.driver?.vehicle
                 
             }) { (err) in
-                print("Failed to get specific ride history")
+                print("Failed to get specific ride history. Error: \(err.localizedDescription)")
             }
-        case .tripCanceled:
+        case .tripCanceled, .tripFinished:
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 fadeOutAnimation(view: self.driverView)
                 self.driverView.initDriverView()
+                self.driverView.cancelButton.isUserInteractionEnabled = true
             }
+        case .tripStarted:
+            driverView.cancelButton.isUserInteractionEnabled = false
         default:
             break
         }

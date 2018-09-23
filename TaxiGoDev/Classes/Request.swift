@@ -193,6 +193,11 @@ extension TaxiGo.Auth {
     public func getUserToken(success: @escaping (Oauth) -> Void,
                              failure: @escaping (Error) -> Void) {
         
+        if appID == nil || appSecret == nil || authCode == nil {
+            let msg = "Request token API should be provided your app_id, app_secret and auth_code in TaxiGoDev properties."
+            fatalError(msg)
+        }
+        
         let params = ["app_id": appID,
                       "app_secret": appSecret,
                       "code": authCode]
@@ -205,20 +210,20 @@ extension TaxiGo.Auth {
                 self?.accessToken = auth.access_token
                 success(auth)
                 
+            } else if let err = err {
+                failure(err)
             }
             
         }
         
     }
     
-    public func refreshToken(appID: String? = nil,
-                             appSecret: String? = nil,
-                             refreshToken: String,
+    public func refreshToken(refreshToken: String,
                              success: @escaping (Oauth) -> Void,
                              failure: @escaping (Error) -> Void) {
         
-        let params = ["app_id": appID ?? self.appID,
-                      "app_secret": appSecret ?? self.appSecret,
+        let params = ["app_id": appID,
+                      "app_secret": appSecret,
                       "refresh_token": refreshToken]
         
         call(path: "/refresh_token", parameter: params) { [weak self] (err, dic) in
@@ -229,6 +234,8 @@ extension TaxiGo.Auth {
                 self?.accessToken = refreshToken.access_token
                 success(refreshToken)
                 
+            } else if let err = err {
+                failure(err)
             }
             
         }
