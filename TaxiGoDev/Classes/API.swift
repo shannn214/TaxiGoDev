@@ -21,10 +21,12 @@ public class TaxiGo {
         
     }
     
-    public static let shared: TaxiGo = {
-        let instance = TaxiGo()
-        return instance
-    }()
+//    public static let shared: TaxiGo = {
+//        let instance = TaxiGo()
+//        return instance
+//    }()
+    
+    public static let shared = TaxiGo()
     
     public class API {
         

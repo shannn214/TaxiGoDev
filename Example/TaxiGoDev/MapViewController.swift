@@ -20,29 +20,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var favoriteView: FavoriteView!
     
-    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var mapView: MapView!
     
     @IBOutlet weak var confirmButton: CustomButton!
     
     @IBOutlet weak var favHeightConstaint: NSLayoutConstraint!
     
     @IBOutlet weak var driverView: DriverView!
-    
-    var startMarker = GMSMarker()
-    
-    var endMarker = GMSMarker()
-    
-    var driverMarker = GMSMarker()
-
-    var placesClient: GMSPlacesClient!
-    
-    var startAdd: String?
-    
-    var startLocation: CLLocation?
-    
-    var endAdd: String?
-    
-    var endLocation: CLLocation?
 
     var textFieldTag: Int?
     
@@ -53,7 +37,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        placesClient = GMSPlacesClient.shared()
         setupMapView()
         getCurrentPlace()
         loadFavList()
@@ -75,17 +58,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     fileprivate func setupMapView() {
         
-        let position = CLLocationCoordinate2D(latitude: 25.019946, longitude: 121.528717)
         mapView.delegate = self
-        mapView.isMyLocationEnabled = true
         mapView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        mapView.settings.compassButton = true
-        mapView.settings.myLocationButton = true
-        mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 65, right: 25)
-        mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
-        startLocation = mapView.myLocation
-        mapView.mapStyle(withFileName: "style", andType: "json")
-        
+
     }
     
     func getCurrentPlace() {
@@ -93,7 +68,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         guard let token = taxiGo.auth.accessToken else { return }
 
         // MARK: Google Map
-        placesClient.currentPlace { (placeList, err) in
+        mapView.placesClient.currentPlace { (placeList, err) in
 
             if let err = err {
                 print("Current place error: \(err.localizedDescription)")
@@ -103,8 +78,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 let place = placeList.likelihoods.first?.place
                 if let place = place {
                     self.searchView.fromTextField.text = "\(place.name)"
-                    self.startAdd = place.name
-                    self.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+                    self.mapView.startAdd = place.name
+                    self.mapView.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     let position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     self.mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
                     // MARK: Requesting the nearby driver. Note that the rate limit: 5 calls per minutes.
@@ -112,9 +87,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                         
                         print("Success get nearby driver.")
                         nearbyDrivers.forEach({ [weak self] (driver) in
-                            self?.driverMarker.icon = UIImage(named: "car")
-                            self?.driverMarker.position = CLLocationCoordinate2D(latitude: (driver?.lat)!, longitude: (driver?.lng)!)
-                            self?.driverMarker.map = self?.mapView
+                            self?.mapView.driverMarker.icon = UIImage(named: "car")
+                            self?.mapView.driverMarker.position = CLLocationCoordinate2D(latitude: (driver?.lat)!, longitude: (driver?.lng)!)
+                            self?.mapView.driverMarker.map = self?.mapView
                         })
 
                     }, failure: { (err) in
@@ -159,12 +134,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBAction func confirmBtn(_ sender: Any) {
         
-        if startLocation == nil {
-            // NOTE: Call alert to notice the user fill in the address
+        if mapView.startLocation == nil {
+            let alert = UIAlertController(title: "Please enter your pick up place.", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok!", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             print("StartLocation: nil")
         }
         
-        guard let token = taxiGo.auth.accessToken, let start = startLocation, let startAddress = startAdd else { return }
+        guard let token = taxiGo.auth.accessToken, let start = mapView.startLocation, let startAddress = mapView.startAdd else { return }
         
         confirmButton.isUserInteractionEnabled = false
         
@@ -172,9 +149,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                 startLatitude: start.coordinate.latitude,
                                 startLongitude: start.coordinate.longitude,
                                 startAddress: startAddress,
-                                endLatitude: endLocation?.coordinate.latitude,
-                                endLongitude: endLocation?.coordinate.longitude,
-                                endAddress: endAdd,
+                                endLatitude: mapView.endLocation?.coordinate.latitude,
+                                endLongitude: mapView.endLocation?.coordinate.longitude,
+                                endAddress: mapView.endAdd,
                                 success: { [weak self] (ride) in
                                     
                                     fadeInAnimation(view: self!.driverView)
@@ -218,12 +195,11 @@ extension MapViewController: TaxiGoAPIDelegate {
     // MARK: By conforming TaxiGoAPIDelegate, rideDidUpdate() will keep providing the current status of your ride request.
     // It will stop abserving the ride when the ride are canceled or finished.
     func rideDidUpdate(status: String, ride: TaxiGo.API.Ride) {
+        
         print(status)
         
         guard let sta = Status(rawValue: status), let updateStatus = dic[sta] else { return }
-        
         statusAction(status: sta)
-        
         driverView.status.text = updateStatus
         
     }
@@ -264,18 +240,18 @@ extension MapViewController: FavoriteViewDelegate {
     
     func favoriteCellDidTap(index: IndexPath) {
         
-        guard let start = startLocation else { return }
+        guard let start = mapView.startLocation else { return }
         
         searchView.fromTextField.text = favoriteView.favorite[index.row].address
-        startAdd = favoriteView.favorite[index.row].address
-        startLocation = CLLocation(latitude: favoriteView.favorite[index.row].lat!, longitude: favoriteView.favorite[index.row].lng!)
-        startMarker.position = (startLocation?.coordinate)!
-        startMarker.map = mapView
+        mapView.startAdd = favoriteView.favorite[index.row].address
+        mapView.startLocation = CLLocation(latitude: favoriteView.favorite[index.row].lat!, longitude: favoriteView.favorite[index.row].lng!)
+        mapView.startMarker.position = (mapView.startLocation?.coordinate)!
+        mapView.startMarker.map = mapView
         
-        if endLocation?.coordinate == nil {
+        if mapView.endLocation?.coordinate == nil {
             mapView.camera = GMSCameraPosition(target: start.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         } else {
-            guard let end = endLocation else { return }
+            guard let end = mapView.endLocation else { return }
             let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
             mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 60, left: 50, bottom: 60, right: 50))!
         }
@@ -309,31 +285,31 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
         switch textFieldTag {
         case 11:
             searchView.fromTextField.text = place.name
-            startAdd = place.name
-            startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-            startMarker.position = place.coordinate
-            startMarker.map = mapView
+            mapView.startAdd = place.name
+            mapView.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            mapView.startMarker.position = place.coordinate
+            mapView.startMarker.map = mapView
             
-            if endLocation?.coordinate == nil {
+            if mapView.endLocation?.coordinate == nil {
                 mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             } else {
-                guard let start = startLocation, let end = endLocation else { return }
+                guard let start = mapView.startLocation, let end = mapView.endLocation else { return }
                 let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
-                mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 60, left: 50, bottom: 60, right: 50))!
+                mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 80, left: 50, bottom: 60, right: 50))!
             }
 
         case 22:
             searchView.toTextField.text = place.name
-            endAdd = place.name
-            endLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-            endMarker.position = place.coordinate
-            endMarker.map = mapView
+            mapView.endAdd = place.name
+            mapView.endLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            mapView.endMarker.position = place.coordinate
+            mapView.endMarker.map = mapView
             
-            guard let start = startLocation, let end = endLocation else {
+            guard let start = mapView.startLocation, let end = mapView.endLocation else {
                 dismiss(animated: true, completion: nil)
                 return }
             let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
-            mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 60, left: 50, bottom: 60, right: 50))!
+            mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 80, left: 50, bottom: 60, right: 50))!
 
         default:
             break
@@ -351,4 +327,24 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+        
+        self.mapView.startMarker.map = nil
+        self.mapView.startMarker = GMSMarker(position: location)
+        self.mapView.startMarker.map = self.mapView
+        self.mapView.startLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        self.searchView.fromTextField.text = name
+        
+    }
+
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        
+        self.mapView.startMarker.map = nil
+        self.mapView.startMarker = GMSMarker(position: coordinate)
+        self.mapView.startMarker.map = self.mapView
+        self.mapView.startLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        self.searchView.fromTextField.text = "Place did select."
+    }
+    
 }
+
