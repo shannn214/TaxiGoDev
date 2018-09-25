@@ -20,6 +20,7 @@ class SearchView: UIView {
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var hamburger: UIButton!
     
     weak var searchViewDelegate: SearchViewDelegate?
     
@@ -58,6 +59,7 @@ class SearchView: UIView {
     }
     
     override func layoutSubviews() {
+        
         shadowLayer = CAShapeLayer()
         shadowLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 5).cgPath
         shadowLayer.shadowColor = UIColor.black.cgColor
@@ -66,6 +68,7 @@ class SearchView: UIView {
         shadowLayer.shadowOpacity = 0.1
         shadowLayer.shadowRadius = 2
         self.layer.insertSublayer(shadowLayer, at: 0)
+        
     }
     
     @objc func triggerSearchAction(sender: UITextField) {
@@ -78,6 +81,10 @@ class SearchView: UIView {
         
         self.searchViewDelegate?.favBtnDidTap()
         
+    }
+    
+    @IBAction func hamburgerAction(_ sender: Any) {
+    
     }
     
 }

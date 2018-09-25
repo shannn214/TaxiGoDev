@@ -17,6 +17,9 @@
 		0950520B2152048E004C9C52 /* Web.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0950520A2152048E004C9C52 /* Web.storyboard */; };
 		0950520D21522E31004C9C52 /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0950520C21522E31004C9C52 /* UIStoryboard.swift */; };
 		0950520F215255BD004C9C52 /* TaxiGoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0950520E215255BD004C9C52 /* TaxiGoManager.swift */; };
+		095165BD215A1FFE00BBC290 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095165BC215A1FFE00BBC290 /* UIViewController.swift */; };
+		095165C0215A2EB500BBC290 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095165BF215A2EB500BBC290 /* UserView.xib */; };
+		095165C2215A2ED800BBC290 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095165C1215A2ED800BBC290 /* UserView.swift */; };
 		0952FCC0214B94C10026D98B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FCBF214B94C10026D98B /* Animation.swift */; };
 		0952FCC5214BA2740026D98B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC4214BA2740026D98B /* Login.storyboard */; };
 		0952FCC8214BAE710026D98B /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 0952FCC7214BAE710026D98B /* style.json */; };
@@ -65,6 +68,9 @@
 		0950520A2152048E004C9C52 /* Web.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Web.storyboard; sourceTree = "<group>"; };
 		0950520C21522E31004C9C52 /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		0950520E215255BD004C9C52 /* TaxiGoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiGoManager.swift; sourceTree = "<group>"; };
+		095165BC215A1FFE00BBC290 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		095165BF215A2EB500BBC290 /* UserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
+		095165C1215A2ED800BBC290 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		0952FCBF214B94C10026D98B /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		0952FCC4214BA2740026D98B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0952FCC7214BAE710026D98B /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
@@ -156,6 +162,15 @@
 			name = Custom;
 			sourceTree = "<group>";
 		};
+		095165BE215A2E6F00BBC290 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				095165BF215A2EB500BBC290 /* UserView.xib */,
+				095165C1215A2ED800BBC290 /* UserView.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		0952FCBE214B93870026D98B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +178,7 @@
 				094F631A2150A1AF00FE68C9 /* Date.swift */,
 				0950520C21522E31004C9C52 /* UIStoryboard.swift */,
 				097616F4215760E5009C5FC8 /* UITextField.swift */,
+				095165BC215A1FFE00BBC290 /* UIViewController.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -196,6 +212,7 @@
 		095D679A2146492B00F45EDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				095165BE215A2E6F00BBC290 /* User */,
 				097616F621576A00009C5FC8 /* Map */,
 				094FADFC2154E7C500166DD8 /* Custom */,
 				0952FCCD214BC2C30026D98B /* Driver */,
@@ -457,6 +474,7 @@
 				0952FCCF214BC2E20026D98B /* DriverView.xib in Resources */,
 				095DAAE521479DE4003443E8 /* SearchView.xib in Resources */,
 				095DAAE92147BCCF003443E8 /* FavoriteView.xib in Resources */,
+				095165C0215A2EB500BBC290 /* UserView.xib in Resources */,
 				0952FCC8214BAE710026D98B /* style.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				0950520B2152048E004C9C52 /* Web.storyboard in Resources */,
@@ -580,9 +598,11 @@
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
 				0952FCD1214BC3000026D98B /* DriverView.swift in Sources */,
 				097616F821576A2C009C5FC8 /* MapView.swift in Sources */,
+				095165C2215A2ED800BBC290 /* UserView.swift in Sources */,
 				097616F5215760E5009C5FC8 /* UITextField.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */,
+				095165BD215A1FFE00BBC290 /* UIViewController.swift in Sources */,
 				0952FCCB214BBBF30026D98B /* GoogleMap.swift in Sources */,
 				0950520D21522E31004C9C52 /* UIStoryboard.swift in Sources */,
 				095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */,

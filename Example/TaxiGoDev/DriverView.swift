@@ -42,13 +42,13 @@ class DriverView: UIView {
     
     func initDriverView() {
         
-//        statusView.alpha = 1
-//        driverInfoView.alpha = 0
-        status.text = "---"
-        name.text = "---"
-        plateNumber.text = "---"
-        vehicle.text = "---"
-        eta.text = "約 -- 分鐘後抵達"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { 
+            self.status.text = "---"
+            self.name.text = "---"
+            self.plateNumber.text = "---"
+            self.vehicle.text = "---"
+            self.eta.text = "約 -- 分鐘後抵達"
+        }
         
     }
 

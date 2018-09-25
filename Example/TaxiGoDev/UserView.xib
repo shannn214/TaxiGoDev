@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserView" customModule="TaxiGoDev_Example" customModuleProvider="target">
+            <connections>
+                <outlet property="containView" destination="iN0-l3-epB" id="HAB-2e-TVP"/>
+                <outlet property="logOutButton" destination="Lwh-8h-XSy" id="AgM-N0-12T"/>
+                <outlet property="userImage" destination="jcZ-fG-Fds" id="hWX-tc-erz"/>
+                <outlet property="userName" destination="Zgv-3W-9MO" id="2lk-Pl-18P"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="379" height="420"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="088-PH-r9G">
+                    <rect key="frame" x="0.0" y="0.0" width="379" height="210"/>
+                    <color key="backgroundColor" white="0.081000342210000006" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="210" id="cpf-G1-KFc"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lwh-8h-XSy">
+                    <rect key="frame" x="160" y="218" width="59" height="32"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <state key="normal" title="Log out">
+                        <color key="titleColor" red="0.99215686270000003" green="0.72156862749999995" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="logOutBtn:" destination="-1" eventType="touchUpInside" id="1LX-bI-e4b"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jcZ-fG-Fds">
+                    <rect key="frame" x="129.5" y="30" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="G8r-CD-Led"/>
+                        <constraint firstAttribute="height" constant="120" id="YWm-2j-cFL"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgv-3W-9MO">
+                    <rect key="frame" x="144" y="172" width="91" height="21"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Zgv-3W-9MO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="35A-gV-vh0"/>
+                <constraint firstItem="jcZ-fG-Fds" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="5Kn-VW-PzR"/>
+                <constraint firstItem="Lwh-8h-XSy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Mam-0v-C7q"/>
+                <constraint firstItem="Lwh-8h-XSy" firstAttribute="top" secondItem="088-PH-r9G" secondAttribute="bottom" constant="8" id="Oym-d2-vUH"/>
+                <constraint firstItem="088-PH-r9G" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="QXV-BZ-RwE"/>
+                <constraint firstItem="jcZ-fG-Fds" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mWO-f3-2uG"/>
+                <constraint firstItem="088-PH-r9G" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="oZe-xQ-Cx9"/>
+                <constraint firstItem="Zgv-3W-9MO" firstAttribute="top" secondItem="jcZ-fG-Fds" secondAttribute="bottom" constant="22" id="ot3-4q-ttD"/>
+                <constraint firstItem="088-PH-r9G" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zRJ-ZL-Y7h"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="141.59999999999999" y="265.36731634182911"/>
+        </view>
+    </objects>
+</document>

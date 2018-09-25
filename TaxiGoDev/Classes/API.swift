@@ -21,11 +21,6 @@ public class TaxiGo {
         
     }
     
-//    public static let shared: TaxiGo = {
-//        let instance = TaxiGo()
-//        return instance
-//    }()
-    
     public static let shared = TaxiGo()
     
     public class API {
@@ -46,7 +41,7 @@ public class TaxiGo {
                   _ method: SHHTTPMethod,
                   path: String,
                   parameter: [String: Any],
-                  complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
+                  complete: ((Error?, [String: Any]?, [[String: Any]]?, Int) -> Void)? = nil) -> URLSessionDataTask {
         
             let url = URL(string: "\(Constants.taxiGoUrl)" + "\(path)")
             let body = parameter
@@ -67,7 +62,7 @@ public class TaxiGo {
             
             //callback
             let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                
+
                 guard let response = response else { return }
                 let statusCode = (response as! HTTPURLResponse).statusCode
                 print("=====")
@@ -79,17 +74,17 @@ public class TaxiGo {
 
                         if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                             print(json)
-                            complete?(nil, json, nil)
+                            complete?(nil, json, nil, statusCode)
                             
                         } else if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                             print(json)
-                            complete?(nil, nil, json)
+                            complete?(nil, nil, json, statusCode)
                         }
 
                     } catch {
                         
                         print(error)
-                        complete?(error, nil, nil)
+                        complete?(error, nil, nil, statusCode)
                         
                     }
                 

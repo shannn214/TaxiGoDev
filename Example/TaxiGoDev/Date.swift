@@ -8,24 +8,6 @@
 
 import Foundation
 
-//func updateTime(timeStamp: Double) -> String {
-//
-//    let time = timeStamp
-//
-//    let interval = TimeInterval(time)
-//
-//    let date = Date(timeIntervalSince1970: interval)
-//
-//    let dateFormatter = DateFormatter()
-//
-//    dateFormatter.dateFormat = "mm"
-//
-//    let nowDate = dateFormatter.string(from: date)
-//
-//    return nowDate
-//
-//}
-
 func updateTime(timeStemp: Double) -> String {
     
     let time = timeStemp / 60

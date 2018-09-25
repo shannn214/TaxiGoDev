@@ -103,10 +103,12 @@ enum Status: String, CaseIterable {
             return "行程已開始"
         case .tripFinished:
             return "行程已完成"
-        case .pendingResponseDriver, .waitingSpecify:
+        case .pendingResponseDriver, .waitingSpecify, .requestingDriver:
             return "等候司機接單"
-        default:
-            return "測試"
+        case .driverReserved:
+            return "司機已接單"
+        case .tripPaymentProcessed:
+            return "支付款項中"
         }
     }
     

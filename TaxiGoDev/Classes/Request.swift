@@ -22,7 +22,7 @@ extension TaxiGo.API {
                              endLatitude: Double? = nil,
                              endLongitude: Double? = nil,
                              endAddress: String? = nil,
-                             success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) {
+                             success: @escaping (Ride, Int) -> Void, failure: @escaping (Error, Int) -> Void) {
         
         let param: [String: Any] = ["start_latitude": startLatitude,
                                     "start_longitude": startLongitude,
@@ -31,18 +31,18 @@ extension TaxiGo.API {
                                     "end_longitude": endLongitude ?? "",
                                     "end_address": endAddress ?? ""]
         
-        call(withAccessToken: withAccessToken, .post, path: "/ride", parameter: param) { [weak self] (err, dic, array) in
+        call(withAccessToken: withAccessToken, .post, path: "/ride", parameter: param) { [weak self] (err, dic, array, response) in
            
             if err == nil {
                 
                 guard let model = Ride.deserialize(from: dic) else { return }
                 self?.id = model.id
-                success(model)
+                success(model, response)
                 
                 self?.timer = Timer.scheduledTimer(timeInterval: 5, target: self!, selector: #selector(self?.tripUpdate), userInfo: nil, repeats: true)
 
             } else if let err = err {
-                failure(err)
+                failure(err, response)
                 print("Failed to request a ride.")
                 
             }
@@ -52,20 +52,20 @@ extension TaxiGo.API {
     
     public func cancelARide(withAccessToken: String,
                             id: String,
-                            success: @escaping (Ride) -> Void,
-                            failure: @escaping (Error) -> Void) {
+                            success: @escaping (Ride, Int) -> Void,
+                            failure: @escaping (Error, Int) -> Void) {
         
-        call(withAccessToken: withAccessToken, .delete, path: "/ride/\(id)", parameter: [:]) { (err, dic, array) in
+        call(withAccessToken: withAccessToken, .delete, path: "/ride/\(id)", parameter: [:]) { (err, dic, array, response) in
             
             if err == nil {
                 
                 guard let model = Ride.deserialize(from: dic) else { return }
-                success(model)
+                success(model, response)
                 print(model)
                 
             } else if let err = err {
                 
-                failure(err)
+                failure(err, response)
                 print("Failed to delete.")
                 
             }
@@ -75,19 +75,19 @@ extension TaxiGo.API {
     }
  
     public func getRidesHistory(withAccessToken: String,
-                                success: @escaping (Ride) -> Void,
-                                failure: @escaping (Error) -> Void) {
+                                success: @escaping (Ride, Int) -> Void,
+                                failure: @escaping (Error, Int) -> Void) {
         
-        call(withAccessToken: withAccessToken, .get, path: "/ride", parameter: [:]) { (err, dic, array) in
+        call(withAccessToken: withAccessToken, .get, path: "/ride", parameter: [:]) { (err, dic, array, response) in
             
             if err == nil {
                 
                 guard let model = Ride.deserialize(from: dic) else { return }
-                success(model)
+                success(model, response)
 
             } else if let err = err {
                 
-                failure(err)
+                failure(err, response)
                 print("Failed to get the history.")
                 
             }
@@ -98,19 +98,19 @@ extension TaxiGo.API {
     
     public func getSpecificRideHistory(withAccessToken: String,
                                        id: String,
-                                       success: @escaping (Ride) -> Void,
-                                       failure: @escaping (Error) -> Void) {
+                                       success: @escaping (Ride, Int) -> Void,
+                                       failure: @escaping (Error, Int) -> Void) {
         
-        call(withAccessToken: withAccessToken, .get, path: "/ride/\(id)", parameter: [:]) { (err, dic, array) in
+        call(withAccessToken: withAccessToken, .get, path: "/ride/\(id)", parameter: [:]) { (err, dic, array, response) in
             
             if err == nil {
                 
                 guard let model = Ride.deserialize(from: dic) else { return }
-                success(model)
+                success(model, response)
                 
             } else if let err = err {
                 
-                failure(err)
+                failure(err, response)
                 print("Failed to get the specific ride history.")
             
             }
@@ -124,10 +124,10 @@ extension TaxiGo.API {
         
         guard let rideID = id, let token = TaxiGo.shared.auth.accessToken else { return }
         
-        getSpecificRideHistory(withAccessToken: token, id: rideID, success: { [weak self] (ride) in
+        getSpecificRideHistory(withAccessToken: token, id: rideID, success: { [weak self] (ride, response) in
             
             // NOTE: can pass all the data outside
-            if ride.status == "TRIP_CANCELED" {
+            if ride.status == "TRIP_CANCELED" || ride.status == "TRIP_FINISHED" || ride.status == "TRIP_PAYMENT_PROCESSED" {
                 self?.taxiGoDelegate?.rideDidUpdate(status: ride.status!, ride: ride)
                 self?.timer.invalidate()
                 self?.id = nil
@@ -135,26 +135,26 @@ extension TaxiGo.API {
                 self?.taxiGoDelegate?.rideDidUpdate(status: ride.status!, ride: ride)
             }
             
-        }) { (err) in
+        }) { (err, response) in
             print("Failed to get the ride status.")
         }
 
     }
     
     public func getRiderInfo(withAccessToken: String,
-                             success: @escaping (Rider) -> Void,
-                             failure: @escaping (Error) -> Void) {
+                             success: @escaping (Rider, Int) -> Void,
+                             failure: @escaping (Error, Int) -> Void) {
         
-        call(withAccessToken: withAccessToken, .get, path: "/me", parameter: [:]) { (err, dic, array) in
+        call(withAccessToken: withAccessToken, .get, path: "/me", parameter: [:]) { (err, dic, array, response) in
             
             if err == nil {
                 
                 guard let model = Rider.deserialize(from: dic) else { return }
-                success(model)
+                success(model, response)
                 
             } else if let err = err {
                 
-                failure(err)
+                failure(err, response)
                 print("Failed to get the history.")
                 
             }
@@ -167,16 +167,21 @@ extension TaxiGo.API {
     public func getNearbyDriver(withAccessToken: String,
                                 lat: Double,
                                 lng: Double,
-                                success: @escaping ([NearbyDrivers?]) -> Void,
-                                failure: @escaping (Error) -> Void) {
+                                success: @escaping ([NearbyDrivers?], Int) -> Void,
+                                failure: @escaping (Error, Int) -> Void) {
         
-        call(withAccessToken: withAccessToken, .get, path: "/driver?lat=\(lat)&lng=\(lng)", parameter: [:]) { (err, dic, array) in
+        call(withAccessToken: withAccessToken, .get, path: "/driver?lat=\(lat)&lng=\(lng)", parameter: [:]) { (err, dic, array, response) in
             
             if err == nil {
                 
                 if let driver = [NearbyDrivers].deserialize(from: array) {
                     
-                    success(driver)
+                    success(driver, response)
+                    
+                } else if let err = err {
+                    
+                    failure(err, response)
+                    print("Failed to get nearby drivers. Error: \(err.localizedDescription)")
                     
                 }
                 
