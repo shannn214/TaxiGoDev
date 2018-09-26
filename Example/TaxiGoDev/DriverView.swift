@@ -37,6 +37,7 @@ class DriverView: UIView {
         addSubview(containView)
         containView.frame = self.bounds
         containView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.alpha = 0
         
     }
     

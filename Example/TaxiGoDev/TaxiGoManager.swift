@@ -40,7 +40,6 @@ class TaxiGoManager {
             print("Failed to get token: \(err.localizedDescription)")
         }
         
-        
     }
     
     func checkUserToken() -> String? {

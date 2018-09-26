@@ -47,11 +47,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
         searchView.searchViewDelegate = self
         favoriteView.favoriteDelegate = self
-        
+        userView.userViewDelegate = self
         taxiGo.api.taxiGoDelegate = self
-        
-        driverView.alpha = 0
-        driverView.cancelButton.addTarget(self, action: #selector(cancelRide), for: .touchUpInside)
         
     }
 
@@ -66,6 +63,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         self.view.addSubview(userView)
         userView.frame = CGRect(x: -(UIScreen.main.bounds.width * 0.6), y: 0, width: UIScreen.main.bounds.width * 0.6, height: UIScreen.main.bounds.height)
+        
+        driverView.cancelButton.addTarget(self, action: #selector(cancelRide), for: .touchUpInside)
+
     }
     
     func getCurrentPlace() {
@@ -146,7 +146,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     @IBAction func confirmBtn(_ sender: Any) {
         
         if mapView.startLocation == nil {
-            presentAlert(title: "請輸入叫車地點", message: nil)
+            presentAlert(title: "請輸入叫車地點", message: nil, cancel: false, handler: nil)
             print("StartLocation: nil")
         }
 
@@ -167,7 +167,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                         fadeInAnimation(view: self!.driverView)
                                         return
                                     }
-                                    self?.presentAlert(title: "發生錯誤，請稍後再試。", message: nil)
+                                    self?.presentAlert(title: "發生錯誤，請稍後再試。", message: nil, cancel: false, handler: nil)
                                     self?.confirmButton.isUserInteractionEnabled = true
 
         }) { [weak self] (err, response) in
@@ -187,7 +187,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         taxiGo.api.cancelARide(withAccessToken: token, id: id, success: { (ride, response) in
             
             if response != 200 {
-                self.presentAlert(title: "發生錯誤，請稍後再試。", message: nil)
+                self.presentAlert(title: "發生錯誤，請稍後再試。", message: nil, cancel: false, handler: nil)
             }
             
         }) { (err, response) in

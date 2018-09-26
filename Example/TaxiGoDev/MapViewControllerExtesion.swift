@@ -63,6 +63,22 @@ extension MapViewController: SearchViewDelegate {
     
 }
 
+extension MapViewController: UserViewDelegate {
+    
+    func logoutDidTap() {
+        
+        presentAlert(title: "確認要登出裝置？", message: nil, cancel: true) { (UIAlertAction) in
+            let logoutDefault = UserDefaults.standard
+            logoutDefault.removeObject(forKey: "access_token")
+            logoutDefault.synchronize()
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = UIStoryboard.loginStoryboard().instantiateInitialViewController()
+        }
+        
+    }
+    
+}
+
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
@@ -146,3 +162,4 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     
 }
+

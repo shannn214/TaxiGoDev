@@ -11,11 +11,17 @@ import UIKit
 
 extension UIViewController {
     
-    func presentAlert(title: String, message: String?) {
+    func presentAlert(title: String, message: String?, cancel: Bool, handler: ((UIAlertAction) -> Void)?) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: handler)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+            return
+        })
         alertController.addAction(OKAction)
+        if cancel {
+            alertController.addAction(cancelAction)
+        }
         self.present(alertController, animated: true, completion: nil)
         
     }

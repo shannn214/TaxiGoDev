@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol UserViewDelegate: class {
+    func logoutDidTap()
+}
+
 class UserView: UIView {
 
     @IBOutlet var containView: UIView!
@@ -15,6 +19,8 @@ class UserView: UIView {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var bgUserImage: UIImageView!
+    
+    weak var userViewDelegate: UserViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +49,7 @@ class UserView: UIView {
     }
     
     @IBAction func logOutBtn(_ sender: Any) {
-        
+        self.userViewDelegate?.logoutDidTap()
     }
     
     @objc func panUserView(panGesture: UIPanGestureRecognizer) {
