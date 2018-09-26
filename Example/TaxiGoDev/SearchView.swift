@@ -9,9 +9,12 @@
 import UIKit
 
 protocol SearchViewDelegate: class {
+    
     func textFieldDidTap(sender: UITextField)
     
     func favBtnDidTap()
+
+    func hamburgerDidTap()
 }
 
 class SearchView: UIView {
@@ -23,6 +26,8 @@ class SearchView: UIView {
     @IBOutlet weak var hamburger: UIButton!
     
     weak var searchViewDelegate: SearchViewDelegate?
+    
+    var textFieldTag: Int?
     
     private var shadowLayer: CAShapeLayer!
     
@@ -73,6 +78,8 @@ class SearchView: UIView {
     
     @objc func triggerSearchAction(sender: UITextField) {
         
+        textFieldTag = sender.tag
+        
         self.searchViewDelegate?.textFieldDidTap(sender: sender)
         
     }
@@ -84,6 +91,8 @@ class SearchView: UIView {
     }
     
     @IBAction func hamburgerAction(_ sender: Any) {
+        
+        self.searchViewDelegate?.hamburgerDidTap()
     
     }
     

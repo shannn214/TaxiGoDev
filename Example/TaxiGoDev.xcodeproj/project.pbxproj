@@ -12,6 +12,9 @@
 		091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE621465E1A002AE9A9 /* CustomTextField.swift */; };
 		091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE821467F9C002AE9A9 /* CustomButton.swift */; };
 		091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AEA214682B4002AE9A9 /* Constants.swift */; };
+		09425CA3215B50D60021B82E /* GeocoderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA2215B50D60021B82E /* GeocoderManager.swift */; };
+		09425CA5215B6CAB0021B82E /* GeocodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA4215B6CAB0021B82E /* GeocodingManager.swift */; };
+		09425CA7215B7F510021B82E /* MapViewControllerExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA6215B7F510021B82E /* MapViewControllerExtesion.swift */; };
 		09425D38213E825A00280343 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425D37213E825A00280343 /* LoginViewController.swift */; };
 		094F631B2150A1AF00FE68C9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F631A2150A1AF00FE68C9 /* Date.swift */; };
 		0950520B2152048E004C9C52 /* Web.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0950520A2152048E004C9C52 /* Web.storyboard */; };
@@ -63,6 +66,9 @@
 		091E6AE621465E1A002AE9A9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		091E6AE821467F9C002AE9A9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		091E6AEA214682B4002AE9A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		09425CA2215B50D60021B82E /* GeocoderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderManager.swift; sourceTree = "<group>"; };
+		09425CA4215B6CAB0021B82E /* GeocodingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingManager.swift; sourceTree = "<group>"; };
+		09425CA6215B7F510021B82E /* MapViewControllerExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerExtesion.swift; sourceTree = "<group>"; };
 		09425D37213E825A00280343 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		094F631A2150A1AF00FE68C9 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0950520A2152048E004C9C52 /* Web.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Web.storyboard; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				091E6ADF214651E0002AE9A9 /* MapViewController.swift */,
+				09425CA6215B7F510021B82E /* MapViewControllerExtesion.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -187,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				0952FCC7214BAE710026D98B /* style.json */,
+				09425CA2215B50D60021B82E /* GeocoderManager.swift */,
+				09425CA4215B6CAB0021B82E /* GeocodingManager.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -588,6 +597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				095DAAE721479DFE003443E8 /* SearchView.swift in Sources */,
+				09425CA7215B7F510021B82E /* MapViewControllerExtesion.swift in Sources */,
 				094F631B2150A1AF00FE68C9 /* Date.swift in Sources */,
 				09D4BC6A2151371A00B19037 /* WebViewController.swift in Sources */,
 				0960A1EE214A3F4600880200 /* StatusView.swift in Sources */,
@@ -598,6 +608,7 @@
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
 				0952FCD1214BC3000026D98B /* DriverView.swift in Sources */,
 				097616F821576A2C009C5FC8 /* MapView.swift in Sources */,
+				09425CA5215B6CAB0021B82E /* GeocodingManager.swift in Sources */,
 				095165C2215A2ED800BBC290 /* UserView.swift in Sources */,
 				097616F5215760E5009C5FC8 /* UITextField.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -606,6 +617,7 @@
 				0952FCCB214BBBF30026D98B /* GoogleMap.swift in Sources */,
 				0950520D21522E31004C9C52 /* UIStoryboard.swift in Sources */,
 				095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */,
+				09425CA3215B50D60021B82E /* GeocoderManager.swift in Sources */,
 				091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */,
 				0952FCC0214B94C10026D98B /* Animation.swift in Sources */,
 				095DAAEE2147C83A003443E8 /* FavoriteTableViewCell.swift in Sources */,

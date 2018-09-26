@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserView" customModule="TaxiGoDev_Example" customModuleProvider="target">
             <connections>
+                <outlet property="bgUserImage" destination="nzf-JX-ddg" id="JPu-oa-6Wg"/>
                 <outlet property="containView" destination="iN0-l3-epB" id="HAB-2e-TVP"/>
                 <outlet property="logOutButton" destination="Lwh-8h-XSy" id="AgM-N0-12T"/>
                 <outlet property="userImage" destination="jcZ-fG-Fds" id="hWX-tc-erz"/>
@@ -25,9 +26,47 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="088-PH-r9G">
                     <rect key="frame" x="0.0" y="0.0" width="379" height="210"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nzf-JX-ddg">
+                            <rect key="frame" x="0.0" y="0.0" width="379" height="210"/>
+                        </imageView>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pex-Br-gvW">
+                            <rect key="frame" x="0.0" y="0.0" width="379" height="210"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1J9-Zn-fj4">
+                                <rect key="frame" x="0.0" y="0.0" width="379" height="210"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <blurEffect style="dark"/>
+                        </visualEffectView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jcZ-fG-Fds">
+                            <rect key="frame" x="139.5" y="55" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="G8r-CD-Led"/>
+                                <constraint firstAttribute="height" constant="100" id="YWm-2j-cFL"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgv-3W-9MO">
+                            <rect key="frame" x="144" y="163" width="91" height="21"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <color key="backgroundColor" white="0.081000342210000006" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="nzf-JX-ddg" firstAttribute="top" secondItem="088-PH-r9G" secondAttribute="top" id="4Jp-Ug-vNR"/>
+                        <constraint firstItem="Zgv-3W-9MO" firstAttribute="top" secondItem="jcZ-fG-Fds" secondAttribute="bottom" constant="8" id="7Dk-cx-mfQ"/>
+                        <constraint firstItem="jcZ-fG-Fds" firstAttribute="centerX" secondItem="088-PH-r9G" secondAttribute="centerX" id="AE2-6X-3ap"/>
+                        <constraint firstItem="Pex-Br-gvW" firstAttribute="top" secondItem="088-PH-r9G" secondAttribute="top" id="NaT-Qj-Hdz"/>
+                        <constraint firstAttribute="trailing" secondItem="nzf-JX-ddg" secondAttribute="trailing" id="RDI-nf-flc"/>
+                        <constraint firstItem="nzf-JX-ddg" firstAttribute="leading" secondItem="088-PH-r9G" secondAttribute="leading" id="V5S-iu-77Y"/>
+                        <constraint firstItem="Pex-Br-gvW" firstAttribute="leading" secondItem="088-PH-r9G" secondAttribute="leading" id="Zeq-xl-CjD"/>
+                        <constraint firstAttribute="bottom" secondItem="Pex-Br-gvW" secondAttribute="bottom" id="aP8-bV-dJP"/>
+                        <constraint firstItem="Zgv-3W-9MO" firstAttribute="centerX" secondItem="088-PH-r9G" secondAttribute="centerX" id="bfM-6E-aHi"/>
                         <constraint firstAttribute="height" constant="210" id="cpf-G1-KFc"/>
+                        <constraint firstAttribute="bottom" secondItem="nzf-JX-ddg" secondAttribute="bottom" id="g4y-ak-9IV"/>
+                        <constraint firstItem="jcZ-fG-Fds" firstAttribute="top" secondItem="088-PH-r9G" secondAttribute="top" constant="55" id="qbR-DB-plq"/>
+                        <constraint firstAttribute="trailing" secondItem="Pex-Br-gvW" secondAttribute="trailing" id="wUx-cU-v8Y"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lwh-8h-XSy">
@@ -40,30 +79,13 @@
                         <action selector="logOutBtn:" destination="-1" eventType="touchUpInside" id="1LX-bI-e4b"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jcZ-fG-Fds">
-                    <rect key="frame" x="129.5" y="30" width="120" height="120"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="120" id="G8r-CD-Led"/>
-                        <constraint firstAttribute="height" constant="120" id="YWm-2j-cFL"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgv-3W-9MO">
-                    <rect key="frame" x="144" y="172" width="91" height="21"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Zgv-3W-9MO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="35A-gV-vh0"/>
-                <constraint firstItem="jcZ-fG-Fds" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="5Kn-VW-PzR"/>
                 <constraint firstItem="Lwh-8h-XSy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Mam-0v-C7q"/>
                 <constraint firstItem="Lwh-8h-XSy" firstAttribute="top" secondItem="088-PH-r9G" secondAttribute="bottom" constant="8" id="Oym-d2-vUH"/>
                 <constraint firstItem="088-PH-r9G" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="QXV-BZ-RwE"/>
-                <constraint firstItem="jcZ-fG-Fds" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mWO-f3-2uG"/>
-                <constraint firstItem="088-PH-r9G" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="oZe-xQ-Cx9"/>
-                <constraint firstItem="Zgv-3W-9MO" firstAttribute="top" secondItem="jcZ-fG-Fds" secondAttribute="bottom" constant="22" id="ot3-4q-ttD"/>
+                <constraint firstItem="088-PH-r9G" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ycx-W6-3cj"/>
                 <constraint firstItem="088-PH-r9G" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zRJ-ZL-Y7h"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
