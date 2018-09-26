@@ -12,12 +12,8 @@ import WebKit
 class WebViewController: UIViewController {
     
     var webView = WKWebView()
-    
     var cancelBtn = UIBarButtonItem()
-
     var progBar = UIProgressView()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +23,7 @@ class WebViewController: UIViewController {
         setProgBar()
         
     }
-    
+    // NOTE: URL!!
     private func initialSetup() {
         
         guard let url = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=-LKPYysKDcIdNs7CLYa3&redirect_uri=https://dev-user.taxigo.com.tw/oauth/test") else { return }

@@ -18,23 +18,15 @@ var taxiGo = TaxiGoManager.shared.taxiGo
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: MapView!
-
     @IBOutlet weak var searchView: SearchView!
-    
     @IBOutlet weak var favoriteView: FavoriteView!
-    
     @IBOutlet weak var driverView: DriverView!
-    
     @IBOutlet weak var confirmButton: CustomButton!
-    
     @IBOutlet weak var favHeightConstaint: NSLayoutConstraint!
     
     var userView = UserView()
-    
     var nativeGeoManager = GeocodingManager()
-    
     var dic = [Status: String]()
-    
     var status: String?
     
     override func viewDidLoad() {

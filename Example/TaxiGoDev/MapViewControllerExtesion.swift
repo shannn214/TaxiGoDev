@@ -16,13 +16,14 @@ import GooglePlacePicker
 // MARK: The extensions below are mainly for handling Google Map without any TaxiGo api usage. You can just skip them in this part.
 extension MapViewController: FavoriteViewDelegate {
     
-    func favoriteCellDidTap(index: IndexPath) {
+    func favoriteCellDidTap(_ favoriteView: FavoriteView, index: IndexPath) {
         
         guard let start = mapView.startLocation else { return }
         
         searchView.fromTextField.text = favoriteView.favorite[index.row].address
         mapView.startAdd = favoriteView.favorite[index.row].address
-        mapView.startLocation = CLLocation(latitude: favoriteView.favorite[index.row].lat!, longitude: favoriteView.favorite[index.row].lng!)
+        mapView.startLocation = CLLocation(latitude: favoriteView.favorite[index.row].lat!,
+                                           longitude: favoriteView.favorite[index.row].lng!)
         mapView.startMarker.position = (mapView.startLocation?.coordinate)!
         mapView.startMarker.map = mapView
         
@@ -35,37 +36,42 @@ extension MapViewController: FavoriteViewDelegate {
         }
         
     }
-    
+
 }
 
 extension MapViewController: SearchViewDelegate {
     
-    func hamburgerDidTap() {
-        
-        UIView.animate(withDuration: 0.2) {
-            self.userView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.6, height: UIScreen.main.bounds.height)
-        }
-        
-    }
-    
-    func favBtnDidTap() {
-        favoriteView.isHidden = !favoriteView.isHidden
-    }
-    
-    func textFieldDidTap(sender: UITextField) {
+    func textFieldDidTap(_ searchView: SearchView, sender: UITextField) {
         
         let autoconpleteController = GMSAutocompleteViewController()
         autoconpleteController.delegate = self
         autoconpleteController.modalPresentationStyle = .overCurrentContext
         present(autoconpleteController, animated: true, completion: nil)
+    
+    }
+    
+    func favBtnDidTap(_ searchView: SearchView) {
         
+        favoriteView.isHidden = !favoriteView.isHidden
+
+    }
+    
+    func hamburgerDidTap(_ searchView: SearchView) {
+       
+        UIView.animate(withDuration: 0.2) {
+            self.userView.frame = CGRect(x: 0,
+                                         y: 0,
+                                         width: UIScreen.main.bounds.width * 0.6,
+                                         height: UIScreen.main.bounds.height)
+        }
+    
     }
     
 }
 
 extension MapViewController: UserViewDelegate {
     
-    func logoutDidTap() {
+    func logoutDidTap(_ userView: UserView) {
         
         presentAlert(title: "確認要登出裝置？", message: nil, cancel: true) { (UIAlertAction) in
             let logoutDefault = UserDefaults.standard
@@ -79,6 +85,7 @@ extension MapViewController: UserViewDelegate {
     
 }
 
+// NOTE: Should refactor switch tag part.
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {

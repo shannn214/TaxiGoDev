@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FavoriteViewDelegate: class {
-    func favoriteCellDidTap(index: IndexPath)
+    func favoriteCellDidTap(_ favoriteView: FavoriteView, index: IndexPath)
 }
 
 class FavoriteView: UIView {
@@ -81,7 +81,7 @@ extension FavoriteView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.favoriteDelegate?.favoriteCellDidTap(index: indexPath)
+        self.favoriteDelegate?.favoriteCellDidTap(self, index: indexPath)
     }
     
 }

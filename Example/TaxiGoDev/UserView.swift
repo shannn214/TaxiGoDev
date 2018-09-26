@@ -9,7 +9,7 @@
 import UIKit
 
 protocol UserViewDelegate: class {
-    func logoutDidTap()
+    func logoutDidTap(_ userView: UserView)
 }
 
 class UserView: UIView {
@@ -49,7 +49,7 @@ class UserView: UIView {
     }
     
     @IBAction func logOutBtn(_ sender: Any) {
-        self.userViewDelegate?.logoutDidTap()
+        self.userViewDelegate?.logoutDidTap(self)
     }
     
     @objc func panUserView(panGesture: UIPanGestureRecognizer) {

@@ -92,7 +92,7 @@
                                 <constraint firstAttribute="width" secondItem="p2f-sL-NDB" secondAttribute="height" multiplier="32:5" id="ndR-jN-hDu"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                            <state key="normal" title="Cancel">
+                            <state key="normal" title="取消行程">
                                 <color key="titleColor" red="0.99215686274509807" green="0.72156862745098038" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>

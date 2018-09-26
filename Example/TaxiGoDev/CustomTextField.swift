@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol CustomTextFieldDelegate: class {
-    func textFieldDidTap(_ controller: CustomTextField)
+    func textFieldDidTap(_ customTextField: CustomTextField)
 }
 
 class CustomTextField: UITextField, UITextFieldDelegate {
