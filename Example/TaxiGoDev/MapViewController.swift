@@ -51,10 +51,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     fileprivate func setupMapView() {
         
         mapView.delegate = self
-        mapView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        mapView.frame = CGRect(x: 0,
+                               y: 0,
+                               width: UIScreen.main.bounds.width,
+                               height: UIScreen.main.bounds.height)
         
         self.view.addSubview(userView)
-        userView.frame = CGRect(x: -(UIScreen.main.bounds.width * 0.6), y: 0, width: UIScreen.main.bounds.width * 0.6, height: UIScreen.main.bounds.height)
+        userView.frame = CGRect(x: -(UIScreen.main.bounds.width * 0.6),
+                                y: 0,
+                                width: UIScreen.main.bounds.width * 0.6,
+                                height: UIScreen.main.bounds.height)
         
         driverView.cancelButton.addTarget(self, action: #selector(cancelRide), for: .touchUpInside)
 
@@ -71,31 +77,36 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 print("Current place error: \(err.localizedDescription)")
             }
             
-            if let placeList = placeList {
-                let place = placeList.likelihoods.first?.place
-                if let place = place {
-                    self.searchView.fromTextField.text = "\(place.name)"
-                    self.mapView.startAdd = place.name
-                    self.mapView.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-                    let position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-                    self.mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
-                    // MARK: Requesting the nearby driver. Note that the rate limit: 5 calls per minutes.
-                    taxiGo.api.getNearbyDriver(withAccessToken: token, lat: place.coordinate.latitude, lng: place.coordinate.longitude, success: { (nearbyDrivers, response) in
-                        
-                        print("Success get nearby driver.")
-                        nearbyDrivers.forEach({ [weak self] (driver) in
-                            self?.mapView.driverMarker.icon = UIImage(named: "car")
-                            self?.mapView.driverMarker.position = CLLocationCoordinate2D(latitude: (driver?.lat)!, longitude: (driver?.lng)!)
-                            self?.mapView.driverMarker.map = self?.mapView
-                        })
-
-                    }, failure: { (err, response) in
-                        print(err.localizedDescription)
-                    })
-                    
-                }
+            guard let placeList = placeList,
+                  let place = placeList.likelihoods.first?.place else { return }
+            
+            self.searchView.fromTextField.text = "\(place.name)"
+            self.mapView.startAdd = place.name
+            self.mapView.startLocation = CLLocation(latitude: place.coordinate.latitude,
+                                                    longitude: place.coordinate.longitude)
+            let position = CLLocationCoordinate2D(latitude: place.coordinate.latitude,
+                                                  longitude: place.coordinate.longitude)
+            self.mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
+            // MARK: Requesting the nearby driver. Note that the rate limit: 5 calls per minutes.
+            taxiGo.api.getNearbyDriver(withAccessToken: token,
+                                       lat: place.coordinate.latitude,
+                                       lng: place.coordinate.longitude,
+                                       success: { (nearbyDrivers, response) in
                 
-            }
+                nearbyDrivers.forEach({ [weak self] (driver) in
+                    guard let self = self,
+                        let driver = driver,
+                        let lat = driver.lat,
+                        let lng = driver.lng else { return }
+                    self.mapView.driverMarker.icon = UIImage(named: "car")
+                    self.mapView.driverMarker.position = CLLocationCoordinate2D(latitude: lat,
+                                                                                longitude: lng)
+                    self.mapView.driverMarker.map = self.mapView
+                })
+
+            }, failure: { (err, response) in
+                print(err.localizedDescription)
+            })
             
         }
         
@@ -113,21 +124,23 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         // MARK: Get rider's information.
         taxiGo.api.getRiderInfo(withAccessToken: token, success: { [weak self] (rider, response) in
             
+            guard let self = self else { return }
             let url = URL(string: rider.profile_img ?? "")
-            self?.userView.userImage.kf.setImage(with: url)
-            self?.userView.bgUserImage.kf.setImage(with: url)
-            self?.userView.userName.text = rider.name
+            self.userView.userImage.kf.setImage(with: url)
+            self.userView.bgUserImage.kf.setImage(with: url)
+            self.userView.userName.text = rider.name
             
             rider.favorite?.forEach({ [weak self] (info) in
-                guard let address = info.address,
+                guard let self = self,
+                    let address = info.address,
                     let lat = info.lat,
                     let lng = info.lng else { return }
                 let favorite = Favorite(address: address, lat: lat, lng: lng)
-                self?.favoriteView.favorite.append(favorite)
+                self.favoriteView.favorite.append(favorite)
             })
 
-            self?.favoriteView.favTableView.reloadData()
-            self?.favHeightConstaint.constant = self?.favoriteView.favTableView.contentSize.height ?? 0
+            self.favoriteView.favTableView.reloadData()
+            self.favHeightConstaint.constant = self.favoriteView.favTableView.contentSize.height 
 
         }) { (err, response) in
             print(err.localizedDescription)
@@ -140,9 +153,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         if mapView.startLocation == nil {
             presentAlert(title: "請輸入叫車地點", message: nil, cancel: false, handler: nil)
             print("StartLocation: nil")
+            return
         }
 
-        guard let token = taxiGo.auth.accessToken, let start = mapView.startLocation, let startAddress = mapView.startAdd else { return }
+        guard let token = taxiGo.auth.accessToken,
+            let start = mapView.startLocation,
+            let startAddress = mapView.startAdd else { return }
 
         confirmButton.isUserInteractionEnabled = false
 
@@ -155,23 +171,26 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                 endAddress: mapView.endAdd,
                                 success: { [weak self] (ride, response) in
 
+                                    guard let self = self else { return }
                                     if response == 200 {
-                                        fadeInAnimation(view: self!.driverView)
+                                        fadeInAnimation(view: self.driverView)
                                         return
                                     }
-                                    self?.presentAlert(title: "發生錯誤，請稍後再試。", message: nil, cancel: false, handler: nil)
-                                    self?.confirmButton.isUserInteractionEnabled = true
+                                    self.presentAlert(title: "發生錯誤，請稍後再試。", message: nil, cancel: false, handler: nil)
+                                    self.confirmButton.isUserInteractionEnabled = true
 
         }) { [weak self] (err, response) in
+            guard let self = self else { return }
             print("Failed to request a ride. Error: \(err.localizedDescription)")
-            self?.confirmButton.isUserInteractionEnabled = true
+            self.confirmButton.isUserInteractionEnabled = true
         }
         
     }
     
     @objc func cancelRide() {
         
-        guard let token = taxiGo.auth.accessToken, let id = taxiGo.api.id else { return }
+        guard let token = taxiGo.auth.accessToken,
+            let id = taxiGo.api.id else { return }
         
         confirmButton.isUserInteractionEnabled = true
         
@@ -206,7 +225,8 @@ extension MapViewController: TaxiGoAPIDelegate {
     // It will stop abserving the ride when the ride are canceled or finished.
     func rideDidUpdate(status: String, ride: TaxiGo.API.Ride) {
         
-        guard let sta = Status(rawValue: status), let updateStatus = dic[sta] else { return }
+        guard let sta = Status(rawValue: status),
+            let updateStatus = dic[sta] else { return }
         driverView.status.text = updateStatus
         statusAction(status: sta)
 

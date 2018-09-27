@@ -18,13 +18,16 @@ extension MapViewController: FavoriteViewDelegate {
     
     func favoriteCellDidTap(_ favoriteView: FavoriteView, index: IndexPath) {
         
-        guard let start = mapView.startLocation else { return }
+        guard let start = mapView.startLocation,
+            let startLocation = mapView.startLocation,
+            let lat = favoriteView.favorite[index.row].lat,
+            let lng = favoriteView.favorite[index.row].lng else { return }
         
         searchView.fromTextField.text = favoriteView.favorite[index.row].address
         mapView.startAdd = favoriteView.favorite[index.row].address
-        mapView.startLocation = CLLocation(latitude: favoriteView.favorite[index.row].lat!,
-                                           longitude: favoriteView.favorite[index.row].lng!)
-        mapView.startMarker.position = (mapView.startLocation?.coordinate)!
+        mapView.startLocation = CLLocation(latitude: lat,
+                                           longitude: lng)
+        mapView.startMarker.position = startLocation.coordinate
         mapView.startMarker.map = mapView
         
         if mapView.endLocation?.coordinate == nil {
@@ -161,12 +164,12 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
                 self.searchView.toTextField.text = add
                 self.mapView.endAdd = add
             })
+            
         default:
             break
         }
         
     }
-    
     
 }
 

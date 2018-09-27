@@ -21,13 +21,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyAsTGKqYqUFXmAyAGFkj3Xr8AHyQI75U1E") // <YOUR_GMS_API_KEY>
         GMSPlacesClient.provideAPIKey("AIzaSyAe8rnl49gZp8i1Zt37Ze5UhbOFscFVhxg") // <YOUR_GMS_API_KEY>
-
+        
         // MARK: Check if the user has logged in before.
         guard TaxiGoManager.shared.checkUserToken() == nil else {
-            // MARK: Setup the token in TaxiGoDev and switch the VC to map
-            TaxiGoManager.shared.taxiGo.auth.accessToken = TaxiGoManager.shared.checkUserToken()
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
+            // MARK: Check if the token is valid or not.
+            let now = NSDate().timeIntervalSince1970
+            guard let expiredTime = UserDefaults.standard.value(forKey: "token_expired_date") as? Double else { return true }
+            if now > expiredTime {
+                
+                TaxiGoManager.shared.refreshToken { (isValid) in
+                    
+                    if isValid {
+                        // MARK: Setup the token in TaxiGoDev and switch the VC to map
+                        TaxiGoManager.shared.taxiGo.auth.accessToken = TaxiGoManager.shared.checkUserToken()
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
+                        
+                    } else {
+                        
+                        print("Failed to refresh token.")
+                        
+                    }
+                    
+                }
+                
+            } else {
+                
+                TaxiGoManager.shared.taxiGo.auth.accessToken = TaxiGoManager.shared.checkUserToken()
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
+                
+            }
 
             return true
         }

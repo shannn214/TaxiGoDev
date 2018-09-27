@@ -65,19 +65,23 @@ public class TaxiGo {
 
                 guard let response = response else { return }
                 let statusCode = (response as! HTTPURLResponse).statusCode
-                print("=====")
                 print("Status Code: \(statusCode)")
+                print("=====")
                 
                 DispatchQueue.main.async {
                 
                     do {
 
                         if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                            print(json)
+                            if statusCode != 200 {
+                                print(json) // NOTE: Only print error message.
+                            }
                             complete?(nil, json, nil, statusCode)
                             
                         } else if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
-                            print(json)
+                            if statusCode != 200 {
+                                print(json)
+                            }
                             complete?(nil, nil, json, statusCode)
                         }
 
@@ -113,6 +117,8 @@ public class TaxiGo {
         
         public var accessToken: String?
         
+        public var refreshToken: String?
+        
         public init() {}
         
         func call(path: String,
@@ -144,6 +150,9 @@ public class TaxiGo {
                     do {
                         
                         if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                            if statusCode != 200 {
+                                print(json) // NOTE: Only print error message.
+                            }
                             complete?(nil, json)
                         }
                         

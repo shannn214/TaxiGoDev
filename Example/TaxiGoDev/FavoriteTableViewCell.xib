@@ -25,11 +25,11 @@
                         <color key="textColor" white="0.22117887903945616" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maps-and-flags" translatesAutoresizingMaskIntoConstraints="NO" id="Dy8-2z-Ajt">
-                        <rect key="frame" x="30" y="40.5" width="10" height="10"/>
+                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baseline_person_pin_circle_black_48pt_2x" translatesAutoresizingMaskIntoConstraints="NO" id="Dy8-2z-Ajt">
+                        <rect key="frame" x="28" y="38" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="10" id="3b4-S0-ltO"/>
-                            <constraint firstAttribute="height" constant="10" id="Ynh-NC-ych"/>
+                            <constraint firstAttribute="width" constant="15" id="3b4-S0-ltO"/>
+                            <constraint firstAttribute="height" constant="15" id="Ynh-NC-ych"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -37,7 +37,7 @@
                 <constraints>
                     <constraint firstItem="Dy8-2z-Ajt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="801-RQ-DMr"/>
                     <constraint firstItem="cZ6-Hs-7kp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9Tq-B9-ey1"/>
-                    <constraint firstItem="Dy8-2z-Ajt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="BfL-mA-Amd"/>
+                    <constraint firstItem="Dy8-2z-Ajt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="BfL-mA-Amd"/>
                     <constraint firstItem="cZ6-Hs-7kp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="68" id="wPk-eE-few"/>
                 </constraints>
             </tableViewCellContentView>
@@ -49,6 +49,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="maps-and-flags" width="32" height="32"/>
+        <image name="baseline_person_pin_circle_black_48pt_2x" width="48" height="48"/>
     </resources>
 </document>

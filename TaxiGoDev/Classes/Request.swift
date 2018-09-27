@@ -34,12 +34,13 @@ extension TaxiGo.API {
         call(withAccessToken: withAccessToken, .post, path: "/ride", parameter: param) { [weak self] (err, dic, array, response) in
            
             if err == nil {
-                
+
+                guard let self = self else { return }
                 guard let model = Ride.deserialize(from: dic) else { return }
-                self?.id = model.id
+                self.id = model.id
                 success(model, response)
                 
-                self?.timer = Timer.scheduledTimer(timeInterval: 5, target: self!, selector: #selector(self?.tripUpdate), userInfo: nil, repeats: true)
+                self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.tripUpdate), userInfo: nil, repeats: true)
 
             } else if let err = err {
                 failure(err, response)
@@ -126,13 +127,14 @@ extension TaxiGo.API {
         
         getSpecificRideHistory(withAccessToken: token, id: rideID, success: { [weak self] (ride, response) in
             
-            // NOTE: can pass all the data outside
+            guard let self = self, let status = ride.status else { return }
+
             if ride.status == "TRIP_CANCELED" || ride.status == "TRIP_FINISHED" || ride.status == "TRIP_PAYMENT_PROCESSED" {
-                self?.taxiGoDelegate?.rideDidUpdate(status: ride.status!, ride: ride)
-                self?.timer.invalidate()
-                self?.id = nil
+                self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
+                self.timer.invalidate()
+                self.id = nil
             } else {
-                self?.taxiGoDelegate?.rideDidUpdate(status: ride.status!, ride: ride)
+                self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
             }
             
         }) { (err, response) in
@@ -211,8 +213,8 @@ extension TaxiGo.Auth {
             
             if err == nil {
                 
-                guard let auth = Oauth.deserialize(from: dic) else { return }
-                self?.accessToken = auth.access_token
+                guard let auth = Oauth.deserialize(from: dic), let self = self else { return }
+                self.accessToken = auth.access_token
                 success(auth)
                 
             } else if let err = err {
@@ -223,8 +225,7 @@ extension TaxiGo.Auth {
         
     }
     
-    public func refreshToken(refreshToken: String,
-                             success: @escaping (Oauth) -> Void,
+    public func refreshToken(success: @escaping (RefreshToken) -> Void,
                              failure: @escaping (Error) -> Void) {
         
         let params = ["app_id": appID,
@@ -235,8 +236,8 @@ extension TaxiGo.Auth {
             
             if err == nil {
                 
-                guard let refreshToken = Oauth.deserialize(from: dic) else { return }
-                self?.accessToken = refreshToken.access_token
+                guard let refreshToken = RefreshToken.deserialize(from: dic), let self = self else { return }
+                self.accessToken = refreshToken.access_token
                 success(refreshToken)
                 
             } else if let err = err {

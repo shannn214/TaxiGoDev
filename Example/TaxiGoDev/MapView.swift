@@ -48,7 +48,6 @@ class MapView: GMSMapView {
         self.mapStyle(withFileName: "style", andType: "json")
 
     }
-    
 
 }
 

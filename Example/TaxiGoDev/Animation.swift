@@ -24,3 +24,5 @@ func fadeOutAnimation(view: UIView) {
     }
     
 }
+
+
