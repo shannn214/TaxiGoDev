@@ -65,8 +65,8 @@ public class TaxiGo {
 
                 guard let response = response else { return }
                 let statusCode = (response as! HTTPURLResponse).statusCode
-                print("Status Code: \(statusCode)")
-                print("=====")
+//                print("Status Code: \(statusCode)")
+//                print("=====")
                 
                 DispatchQueue.main.async {
                 
@@ -142,7 +142,7 @@ public class TaxiGo {
                 
                 guard let response = response else { return }
                 let statusCode = (response as! HTTPURLResponse).statusCode
-                print("Status Code: \(statusCode)")
+                print("Auth Status Code: \(statusCode)")
                 print("=====")
                 
                 DispatchQueue.main.async {
