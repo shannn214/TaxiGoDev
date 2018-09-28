@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         TaxiGoManager.shared.setup()
         
-        GMSServices.provideAPIKey("AIzaSyAsTGKqYqUFXmAyAGFkj3Xr8AHyQI75U1E") // <YOUR_GMS_API_KEY>
-        GMSPlacesClient.provideAPIKey("AIzaSyAe8rnl49gZp8i1Zt37Ze5UhbOFscFVhxg") // <YOUR_GMS_API_KEY>
+        GMSServices.provideAPIKey("<YOUR_GMS_API_KEY>")
+        GMSPlacesClient.provideAPIKey("<YOUR_GMS_API_KEY>")
         
         // MARK: Check if the user has logged in before.
         guard TaxiGoManager.shared.checkUserToken() == nil else {

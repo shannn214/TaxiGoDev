@@ -176,7 +176,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                     guard let self = self else { return }
                                     if response == 200 {
                                         fadeInAnimation(view: self.driverView)
-                                        self.lottieManager.playLottieAnimation(view: self.driverView) // Start loading animation
                                         return
                                     }
                                     self.presentAlert(title: "發生錯誤，請稍後再試。", message: nil, cancel: false, handler: nil)
@@ -234,7 +233,6 @@ extension MapViewController: TaxiGoAPIDelegate {
         statusAction(status: sta)
 
         guard let eta = ride.driver?.eta else { return }
-        lottieManager.stopLottieAnimation() // Stop loading animation
         driverView.name.text = ride.driver?.name
         driverView.eta.text = "預計 \(updateTime(timeStemp: eta)) 分鐘後抵達"
         driverView.plateNumber.text = ride.driver?.plate_number

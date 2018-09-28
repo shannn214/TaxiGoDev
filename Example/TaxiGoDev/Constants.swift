@@ -10,10 +10,10 @@ import Foundation
 
 struct Constants {
     
-    static let appID = "-LKPYysKDcIdNs7CLYa3" // <YOUR_APPID>
+    static let appID = "<YOUR_APPID>"
     
-    static let appSecret = "ktOg9LHSZeGOIHxrp5beuYjNpacI7nu4xMAf" // <YOUR_APPSECRET>
+    static let appSecret = "<YOUR_APPSECRET>"
     
-    static let redirectURL = "https://dev-user.taxigo.com.tw/oauth/test" // <YOUR_REDIRECTURL>
+    static let redirectURL = "<YOUR_REDIRECTURL>"
         
 }

@@ -12,7 +12,6 @@
 		091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE621465E1A002AE9A9 /* CustomTextField.swift */; };
 		091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE821467F9C002AE9A9 /* CustomButton.swift */; };
 		091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AEA214682B4002AE9A9 /* Constants.swift */; };
-		09425CA3215B50D60021B82E /* GeocoderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA2215B50D60021B82E /* GeocoderManager.swift */; };
 		09425CA5215B6CAB0021B82E /* GeocodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA4215B6CAB0021B82E /* GeocodingManager.swift */; };
 		09425CA7215B7F510021B82E /* MapViewControllerExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA6215B7F510021B82E /* MapViewControllerExtesion.swift */; };
 		09425D38213E825A00280343 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425D37213E825A00280343 /* LoginViewController.swift */; };
@@ -70,7 +69,6 @@
 		091E6AE621465E1A002AE9A9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		091E6AE821467F9C002AE9A9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		091E6AEA214682B4002AE9A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		09425CA2215B50D60021B82E /* GeocoderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderManager.swift; sourceTree = "<group>"; };
 		09425CA4215B6CAB0021B82E /* GeocodingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingManager.swift; sourceTree = "<group>"; };
 		09425CA6215B7F510021B82E /* MapViewControllerExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerExtesion.swift; sourceTree = "<group>"; };
 		09425D37213E825A00280343 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				0952FCC7214BAE710026D98B /* style.json */,
-				09425CA2215B50D60021B82E /* GeocoderManager.swift */,
 				09425CA4215B6CAB0021B82E /* GeocodingManager.swift */,
 			);
 			name = Map;
@@ -641,7 +638,6 @@
 				0950520D21522E31004C9C52 /* UIStoryboard.swift in Sources */,
 				09B5992C215DE8E9003B6895 /* LottieManager.swift in Sources */,
 				095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */,
-				09425CA3215B50D60021B82E /* GeocoderManager.swift in Sources */,
 				091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */,
 				0952FCC0214B94C10026D98B /* Animation.swift in Sources */,
 				095DAAEE2147C83A003443E8 /* FavoriteTableViewCell.swift in Sources */,
