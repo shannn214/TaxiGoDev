@@ -1,25 +1,4 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -32,11 +11,11 @@ PODS:
     - GoogleMaps/Base (= 2.7.0)
   - HandyJSON (4.2.0)
   - Kingfisher (4.10.0)
+  - lottie-ios (2.5.0)
   - NVActivityIndicatorView (4.4.0):
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
   - TaxiGoDev (0.1.0):
-    - AFNetworking (~> 2.3)
     - HandyJSON (~> 4.2.0-beta1)
 
 DEPENDENCIES:
@@ -44,17 +23,18 @@ DEPENDENCIES:
   - GooglePlacePicker
   - GooglePlaces
   - Kingfisher (~> 4.0)
+  - lottie-ios
   - NVActivityIndicatorView
   - TaxiGoDev (from `../`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
     - HandyJSON
     - Kingfisher
+    - lottie-ios
     - NVActivityIndicatorView
 
 EXTERNAL SOURCES:
@@ -62,15 +42,15 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
-  TaxiGoDev: eaba0a1e51e262c70fa270f7108770c20874a45e
+  TaxiGoDev: 81e131365c45c2cc63c1b0741c3c5840e078119c
 
-PODFILE CHECKSUM: d6bea53f1e8cd4963a762fe61f080fb3aacf57da
+PODFILE CHECKSUM: 7180b2974a7a85e7191bb628b9e198bac65c6f63
 
 COCOAPODS: 1.5.0

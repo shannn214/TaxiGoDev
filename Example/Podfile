@@ -9,6 +9,7 @@ target 'TaxiGoDev_Example' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
+  pod 'lottie-ios'
 
   target 'TaxiGoDev_Tests' do
     inherit! :search_paths

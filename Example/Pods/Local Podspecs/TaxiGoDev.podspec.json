@@ -20,9 +20,6 @@
   },
   "source_files": "TaxiGoDev/Classes/",
   "dependencies": {
-    "AFNetworking": [
-      "~> 2.3"
-    ],
     "HandyJSON": [
       "~> 4.2.0-beta1"
     ]

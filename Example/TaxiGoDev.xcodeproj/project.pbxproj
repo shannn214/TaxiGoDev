@@ -40,6 +40,10 @@
 		0960A1F1214A3F8600880200 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0960A1F0214A3F8600880200 /* StatusView.xib */; };
 		097616F5215760E5009C5FC8 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097616F4215760E5009C5FC8 /* UITextField.swift */; };
 		097616F821576A2C009C5FC8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097616F721576A2C009C5FC8 /* MapView.swift */; };
+		09B5992C215DE8E9003B6895 /* LottieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B5992B215DE8E9003B6895 /* LottieManager.swift */; };
+		09B5992E215DEA33003B6895 /* loader1.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B5992D215DEA33003B6895 /* loader1.json */; };
+		09B59930215DEDBD003B6895 /* simple_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B5992F215DEDBD003B6895 /* simple_loader.json */; };
+		09B59932215DEEDD003B6895 /* scaling_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B59931215DEEDD003B6895 /* scaling_loader.json */; };
 		09D4BC6A2151371A00B19037 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D4BC692151371A00B19037 /* WebViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -94,6 +98,10 @@
 		0960A1F0214A3F8600880200 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		097616F4215760E5009C5FC8 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		097616F721576A2C009C5FC8 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		09B5992B215DE8E9003B6895 /* LottieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieManager.swift; sourceTree = "<group>"; };
+		09B5992D215DEA33003B6895 /* loader1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader1.json; sourceTree = "<group>"; };
+		09B5992F215DEDBD003B6895 /* simple_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simple_loader.json; sourceTree = "<group>"; };
+		09B59931215DEEDD003B6895 /* scaling_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scaling_loader.json; sourceTree = "<group>"; };
 		09D4BC692151371A00B19037 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3883F0C9649C92A9EA9EAE7F /* Pods-TaxiGoDev_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5ACD16D8491CA58E920B4B3E /* Pods-TaxiGoDev_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +220,7 @@
 		095D67992146492000F45EDD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				09B5992A215DE8D7003B6895 /* Lottie */,
 				0952FCC6214BAE490026D98B /* Map */,
 				095DAAE1214767EB003443E8 /* TaxiGo */,
 			);
@@ -295,6 +304,17 @@
 				097616F721576A2C009C5FC8 /* MapView.swift */,
 			);
 			name = Map;
+			sourceTree = "<group>";
+		};
+		09B5992A215DE8D7003B6895 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				09B5992D215DEA33003B6895 /* loader1.json */,
+				09B5992F215DEDBD003B6895 /* simple_loader.json */,
+				09B59931215DEEDD003B6895 /* scaling_loader.json */,
+				09B5992B215DE8E9003B6895 /* LottieManager.swift */,
+			);
+			name = Lottie;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -482,11 +502,14 @@
 			files = (
 				0952FCCF214BC2E20026D98B /* DriverView.xib in Resources */,
 				095DAAE521479DE4003443E8 /* SearchView.xib in Resources */,
+				09B59930215DEDBD003B6895 /* simple_loader.json in Resources */,
 				095DAAE92147BCCF003443E8 /* FavoriteView.xib in Resources */,
+				09B5992E215DEA33003B6895 /* loader1.json in Resources */,
 				095165C0215A2EB500BBC290 /* UserView.xib in Resources */,
 				0952FCC8214BAE710026D98B /* style.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				0950520B2152048E004C9C52 /* Web.storyboard in Resources */,
+				09B59932215DEEDD003B6895 /* scaling_loader.json in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */,
 				0952FCC5214BA2740026D98B /* Login.storyboard in Resources */,
@@ -512,19 +535,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/TaxiGoDev/TaxiGoDev.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TaxiGoDev.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -616,6 +639,7 @@
 				095165BD215A1FFE00BBC290 /* UIViewController.swift in Sources */,
 				0952FCCB214BBBF30026D98B /* GoogleMap.swift in Sources */,
 				0950520D21522E31004C9C52 /* UIStoryboard.swift in Sources */,
+				09B5992C215DE8E9003B6895 /* LottieManager.swift in Sources */,
 				095DAAEB2147BCF5003443E8 /* FavoriteView.swift in Sources */,
 				09425CA3215B50D60021B82E /* GeocoderManager.swift in Sources */,
 				091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */,
