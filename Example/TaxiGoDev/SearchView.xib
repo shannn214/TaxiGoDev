@@ -86,11 +86,11 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="185.59999999999999" y="-31.484257871064472"/>
+            <point key="canvasLocation" x="-101" y="-51"/>
         </view>
     </objects>
     <resources>
-        <image name="baseline_dehaze_white_48pt_2x" width="48" height="48"/>
-        <image name="baseline_more_horiz_white_48pt_2x" width="48" height="48"/>
+        <image name="baseline_dehaze_white_48pt_2x" width="96" height="96"/>
+        <image name="baseline_more_horiz_white_48pt_2x" width="96" height="96"/>
     </resources>
 </document>
