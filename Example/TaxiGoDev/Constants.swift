@@ -15,5 +15,6 @@ struct Constants {
     static let appSecret = "<YOUR_APPSECRET>"
     
     static let redirectURL = "<YOUR_REDIRECTURL>"
+
         
 }

@@ -26,7 +26,11 @@ class WebViewController: UIViewController {
     // NOTE: URL!!
     private func initialSetup() {
         
+<<<<<<< HEAD
         guard let url = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=\(Constants.appID)&redirect_uri=\(Constants.redirectURL)") else { return }
+=======
+        guard let url = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=-LKPYysKDcIdNs7CLYa3&redirect_uri=taxigo-example://callback") else { return }
+>>>>>>> develop
         guard let navHeight = self.navigationController?.navigationBar.frame.height else { return }
         let statusHeight = UIApplication.shared.statusBarFrame.height
         webView = WKWebView(frame: CGRect(x: 0, y: statusHeight + navHeight, width: self.view.frame.width, height: self.view.frame.height))
