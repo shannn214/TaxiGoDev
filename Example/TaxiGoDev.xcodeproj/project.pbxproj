@@ -43,7 +43,6 @@
 		09B5992E215DEA33003B6895 /* loader1.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B5992D215DEA33003B6895 /* loader1.json */; };
 		09B59930215DEDBD003B6895 /* simple_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B5992F215DEDBD003B6895 /* simple_loader.json */; };
 		09B59932215DEEDD003B6895 /* scaling_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B59931215DEEDD003B6895 /* scaling_loader.json */; };
-		09D4BC6A2151371A00B19037 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D4BC692151371A00B19037 /* WebViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -100,7 +99,6 @@
 		09B5992D215DEA33003B6895 /* loader1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader1.json; sourceTree = "<group>"; };
 		09B5992F215DEDBD003B6895 /* simple_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simple_loader.json; sourceTree = "<group>"; };
 		09B59931215DEEDD003B6895 /* scaling_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scaling_loader.json; sourceTree = "<group>"; };
-		09D4BC692151371A00B19037 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3883F0C9649C92A9EA9EAE7F /* Pods-TaxiGoDev_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5ACD16D8491CA58E920B4B3E /* Pods-TaxiGoDev_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGoDev_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGoDev_Example/Pods-TaxiGoDev_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TaxiGoDev_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiGoDev_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				09425D37213E825A00280343 /* LoginViewController.swift */,
-				09D4BC692151371A00B19037 /* WebViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -619,7 +616,6 @@
 				095DAAE721479DFE003443E8 /* SearchView.swift in Sources */,
 				09425CA7215B7F510021B82E /* MapViewControllerExtesion.swift in Sources */,
 				094F631B2150A1AF00FE68C9 /* Date.swift in Sources */,
-				09D4BC6A2151371A00B19037 /* WebViewController.swift in Sources */,
 				0960A1EE214A3F4600880200 /* StatusView.swift in Sources */,
 				091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */,
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,
