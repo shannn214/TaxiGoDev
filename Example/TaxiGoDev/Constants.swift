@@ -14,6 +14,6 @@ struct Constants {
     
     static let appSecret = "ktOg9LHSZeGOIHxrp5beuYjNpacI7nu4xMAf" // <YOUR_APPSECRET>
     
-    static let redirectURL = "https://dev-user.taxigo.com.tw/oauth/test" // <YOUR_REDIRECTURL>
+    static let redirectURL = "taxigo-example://callback" // <YOUR_REDIRECTURL>
         
 }
