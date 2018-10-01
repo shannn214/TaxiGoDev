@@ -239,7 +239,6 @@ extension MapViewController: TaxiGoAPIDelegate {
         driverView.eta.text = "預計 \(updateTime(timeStemp: eta)) 分鐘後抵達"
         driverView.plateNumber.text = ride.driver?.plate_number
         driverView.vehicle.text = ride.driver?.vehicle
-        
 
     }
     

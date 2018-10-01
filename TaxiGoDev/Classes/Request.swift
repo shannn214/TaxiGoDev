@@ -248,4 +248,13 @@ extension TaxiGo.Auth {
         
     }
     
+    public func getAuthCode(url: URL) -> String {
+        
+        guard let code = NSURLComponents(string: "\(url)")?.queryItems?.filter({ $0.name == "code" }).first,
+            let authCode = code.value else { return "Failed to get auth code." }
+        
+        return authCode
+        
+    }
+    
 }
