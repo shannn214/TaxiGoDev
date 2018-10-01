@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewSearch" customModule="TaxiGoDev_Example" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomSearch" destination="Hf6-9m-hYe" id="fHS-HQ-yi1"/>
+                <outlet property="containView" destination="iN0-l3-epB" id="Cqs-Yx-3cD"/>
+                <outlet property="topSearch" destination="kLM-mm-GO2" id="G1B-Fs-lFO"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="447" height="363"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-mm-GO2">
+                    <rect key="frame" x="0.0" y="0.0" width="447" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="3OK-1q-RTQ"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Hf6-9m-hYe">
+                    <rect key="frame" x="0.0" y="56" width="447" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="0l2-0D-c3W"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Hf6-9m-hYe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Fl3-b2-IDR"/>
+                <constraint firstItem="kLM-mm-GO2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="cHN-uY-Xd5"/>
+                <constraint firstItem="Hf6-9m-hYe" firstAttribute="top" secondItem="kLM-mm-GO2" secondAttribute="bottom" id="jF5-Kf-1th"/>
+                <constraint firstItem="kLM-mm-GO2" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nHK-I9-SOr"/>
+                <constraint firstItem="Hf6-9m-hYe" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="xyD-Xh-eLe"/>
+                <constraint firstItem="kLM-mm-GO2" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="y0w-X9-Ya8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="111.2" y="184.85757121439281"/>
+        </view>
+        <searchDisplayController id="Ldl-Jl-Qdn"/>
+    </objects>
+</document>

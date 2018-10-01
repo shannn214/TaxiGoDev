@@ -24,7 +24,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var driverView: DriverView!
     @IBOutlet weak var confirmButton: CustomButton!
     @IBOutlet weak var favHeightConstaint: NSLayoutConstraint!
-    
+        
     var userView = UserView()
     var nativeGeoManager = GeocodingManager()
     var lottieManager = LottieManager()

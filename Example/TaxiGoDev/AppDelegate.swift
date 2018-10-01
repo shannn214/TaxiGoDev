@@ -28,29 +28,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let now = NSDate().timeIntervalSince1970
             guard let expiredTime = UserDefaults.standard.value(forKey: "token_expired_date") as? Double else { return true }
             if now > expiredTime {
-                
+
                 TaxiGoManager.shared.refreshToken { (isValid) in
-                    
+
                     if isValid {
                         // MARK: Setup the token in TaxiGoDev and switch the VC to map
                         TaxiGoManager.shared.taxiGo.auth.accessToken = TaxiGoManager.shared.checkUserToken()
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         appDelegate.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
-                        
+
                     } else {
-                        
+
                         print("Failed to refresh token.")
-                        
+
                     }
-                    
+
                 }
-                
+
             } else {
-                
+
                 TaxiGoManager.shared.taxiGo.auth.accessToken = TaxiGoManager.shared.checkUserToken()
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
-                
+
             }
 
             return true

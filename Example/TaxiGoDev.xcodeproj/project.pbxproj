@@ -12,6 +12,10 @@
 		091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE621465E1A002AE9A9 /* CustomTextField.swift */; };
 		091E6AE921467F9C002AE9A9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AE821467F9C002AE9A9 /* CustomButton.swift */; };
 		091E6AEB214682B4002AE9A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E6AEA214682B4002AE9A9 /* Constants.swift */; };
+		093FCB0E2162107800DD28AA /* NewSearch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093FCB0D2162107800DD28AA /* NewSearch.xib */; };
+		093FCB102162109200DD28AA /* NewSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093FCB0F2162109200DD28AA /* NewSearch.swift */; };
+		093FCB1321621B6600DD28AA /* NewSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093FCB1221621B6600DD28AA /* NewSearchViewController.swift */; };
+		093FCB1521621B9D00DD28AA /* NewSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093FCB1421621B9D00DD28AA /* NewSearch.storyboard */; };
 		09425CA3215B50D60021B82E /* GeocoderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA2215B50D60021B82E /* GeocoderManager.swift */; };
 		09425CA5215B6CAB0021B82E /* GeocodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA4215B6CAB0021B82E /* GeocodingManager.swift */; };
 		09425CA7215B7F510021B82E /* MapViewControllerExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09425CA6215B7F510021B82E /* MapViewControllerExtesion.swift */; };
@@ -69,6 +73,10 @@
 		091E6AE621465E1A002AE9A9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		091E6AE821467F9C002AE9A9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		091E6AEA214682B4002AE9A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		093FCB0D2162107800DD28AA /* NewSearch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewSearch.xib; sourceTree = "<group>"; };
+		093FCB0F2162109200DD28AA /* NewSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSearch.swift; sourceTree = "<group>"; };
+		093FCB1221621B6600DD28AA /* NewSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSearchViewController.swift; sourceTree = "<group>"; };
+		093FCB1421621B9D00DD28AA /* NewSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewSearch.storyboard; sourceTree = "<group>"; };
 		09425CA2215B50D60021B82E /* GeocoderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderManager.swift; sourceTree = "<group>"; };
 		09425CA4215B6CAB0021B82E /* GeocodingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingManager.swift; sourceTree = "<group>"; };
 		09425CA6215B7F510021B82E /* MapViewControllerExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerExtesion.swift; sourceTree = "<group>"; };
@@ -165,6 +173,23 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		093FCB0C2162105E00DD28AA /* NewSearch */ = {
+			isa = PBXGroup;
+			children = (
+				093FCB0D2162107800DD28AA /* NewSearch.xib */,
+				093FCB0F2162109200DD28AA /* NewSearch.swift */,
+			);
+			name = NewSearch;
+			sourceTree = "<group>";
+		};
+		093FCB1121621B3D00DD28AA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				093FCB1221621B6600DD28AA /* NewSearchViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		094FADFC2154E7C500166DD8 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +252,7 @@
 		095D679A2146492B00F45EDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				093FCB0C2162105E00DD28AA /* NewSearch */,
 				095165BE215A2E6F00BBC290 /* User */,
 				097616F621576A00009C5FC8 /* Map */,
 				094FADFC2154E7C500166DD8 /* Custom */,
@@ -241,6 +267,7 @@
 		095D679B2146493100F45EDD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				093FCB1121621B3D00DD28AA /* Search */,
 				091E6AE521465DE5002AE9A9 /* Login */,
 				091E6AE421465DDE002AE9A9 /* Map */,
 			);
@@ -253,6 +280,7 @@
 				091E6AE121465312002AE9A9 /* Map.storyboard */,
 				0952FCC4214BA2740026D98B /* Login.storyboard */,
 				0950520A2152048E004C9C52 /* Web.storyboard */,
+				093FCB1421621B9D00DD28AA /* NewSearch.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -504,6 +532,7 @@
 				09B5992E215DEA33003B6895 /* loader1.json in Resources */,
 				095165C0215A2EB500BBC290 /* UserView.xib in Resources */,
 				0952FCC8214BAE710026D98B /* style.json in Resources */,
+				093FCB1521621B9D00DD28AA /* NewSearch.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				0950520B2152048E004C9C52 /* Web.storyboard in Resources */,
 				09B59932215DEEDD003B6895 /* scaling_loader.json in Resources */,
@@ -511,6 +540,7 @@
 				095DAAEF2147C83A003443E8 /* FavoriteTableViewCell.xib in Resources */,
 				0952FCC5214BA2740026D98B /* Login.storyboard in Resources */,
 				0960A1F1214A3F8600880200 /* StatusView.xib in Resources */,
+				093FCB0E2162107800DD28AA /* NewSearch.xib in Resources */,
 				091E6AE221465312002AE9A9 /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,10 +648,12 @@
 			files = (
 				095DAAE721479DFE003443E8 /* SearchView.swift in Sources */,
 				09425CA7215B7F510021B82E /* MapViewControllerExtesion.swift in Sources */,
+				093FCB1321621B6600DD28AA /* NewSearchViewController.swift in Sources */,
 				094F631B2150A1AF00FE68C9 /* Date.swift in Sources */,
 				0960A1EE214A3F4600880200 /* StatusView.swift in Sources */,
 				091E6AE721465E1A002AE9A9 /* CustomTextField.swift in Sources */,
 				09425D38213E825A00280343 /* LoginViewController.swift in Sources */,
+				093FCB102162109200DD28AA /* NewSearch.swift in Sources */,
 				095DAAE0214767E4003443E8 /* TaxiGo.swift in Sources */,
 				0950520F215255BD004C9C52 /* TaxiGoManager.swift in Sources */,
 				091E6AE0214651E0002AE9A9 /* MapViewController.swift in Sources */,
