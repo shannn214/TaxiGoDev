@@ -29,6 +29,8 @@ class SearchView: UIView {
     
     var textFieldTag: Int?
     
+    var activeTextField: UITextField?
+    
     private var shadowLayer: CAShapeLayer!
     
     override init(frame: CGRect) {
