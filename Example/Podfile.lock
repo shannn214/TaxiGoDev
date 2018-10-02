@@ -15,7 +15,7 @@ PODS:
   - NVActivityIndicatorView (4.4.0):
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
-  - TaxiGoDev (0.1.0):
+  - TaxiGoDev (0.3.0):
     - HandyJSON (~> 4.2.0-beta1)
 
 DEPENDENCIES:
@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
-  TaxiGoDev: 81e131365c45c2cc63c1b0741c3c5840e078119c
+  TaxiGoDev: de7d312a7ec81a2577e92a83b91294a1cfc845c3
 
 PODFILE CHECKSUM: 7180b2974a7a85e7191bb628b9e198bac65c6f63
 
