@@ -83,11 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
-//        guard let code = NSURLComponents(string: "\(url)")?.queryItems?.filter({ $0.name == "code" }).first,
-//            let authCode = code.value else { return false }
-        
-        taxiGo.auth.authCode = taxiGo.auth.getAuthCode(url: url)
-        TaxiGoManager.shared.getAccessToken()
+        taxiGoManager.taxiGo.auth.authCode = taxiGoManager.taxiGo.auth.getAuthCode(url: url)
+        taxiGoManager.getAccessToken()
         let delegate = UIApplication.shared.delegate as? AppDelegate
         delegate?.window?.rootViewController = UIStoryboard.mapStoryboard().instantiateInitialViewController()
         

@@ -22,7 +22,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func LoginBtn(_ sender: Any) {
         
+
         guard let url = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=\(Constants.appID)&redirect_uri=taxigo-example://callback") else { return }
+
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
         
     }
