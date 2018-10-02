@@ -50,6 +50,7 @@ extension MapViewController: SearchViewDelegate {
         autoconpleteController.delegate = self
         autoconpleteController.modalPresentationStyle = .overCurrentContext
         present(autoconpleteController, animated: true, completion: nil)
+        self.searchView.activeTextField = sender
     
     }
     
@@ -93,9 +94,10 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
-        switch searchView.textFieldTag {
-        case 11:
-            searchView.fromTextField.text = place.name
+        self.searchView.activeTextField?.text = place.name
+        
+        switch searchView.activeTextField {
+        case searchView.fromTextField:
             mapView.startAdd = place.name
             mapView.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             mapView.startMarker.position = place.coordinate
@@ -109,8 +111,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
                 mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 80, left: 50, bottom: 60, right: 50))!
             }
             
-        case 22:
-            searchView.toTextField.text = place.name
+        case searchView.toTextField:
             mapView.endAdd = place.name
             mapView.endLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             mapView.endMarker.position = place.coordinate
@@ -140,9 +141,9 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
-        switch searchView.textFieldTag {
+        switch searchView.activeTextField {
             
-        case 11:
+        case searchView.fromTextField:
             self.mapView.startMarker.map = nil
             self.mapView.startMarker = GMSMarker(position: coordinate)
             self.mapView.startMarker.map = self.mapView
@@ -153,7 +154,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
                 self.searchView.fromTextField.text = add
                 self.mapView.startAdd = add
             })
-        case 22:
+        case searchView.toTextField:
             self.mapView.endMarker.map = nil
             self.mapView.endMarker = GMSMarker(position: coordinate)
             self.mapView.endMarker.map = self.mapView
