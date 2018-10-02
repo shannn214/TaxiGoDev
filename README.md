@@ -23,9 +23,10 @@ pod 'TaxiGoDev'
 ## Usage
 You can access an API like this:
 ```
-taxiGo = TaxiGo.shared
+var taxiGo = TaxiGo.shared
 ```
-####Authorization
+
+#### Authorization
 
 ```
 func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TaxiGoDev'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'Open API of TaxiGo.'
 
 # This description is used to generate tags and improve search results.
