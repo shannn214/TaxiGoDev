@@ -44,6 +44,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         userView.userViewDelegate = self
         taxiGo.api.taxiGoDelegate = self
         
+        print(taxiGo.auth.accessToken)
     }
 
     override func didReceiveMemoryWarning() {
@@ -175,6 +176,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
                                     guard let self = self else { return }
                                     if response == 200 {
+                                        taxiGo.api.startObservingStatus = true
                                         fadeInAnimation(view: self.driverView)
                                         self.lottieManager.playLottieAnimation(view: self.driverView) // Start loading animation
                                         return
@@ -203,6 +205,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             if response != 200 {
                 self.presentAlert(title: "發生錯誤，請稍後再試。", message: nil, cancel: false, handler: nil)
             }
+            taxiGo.api.startObservingStatus = false
             
         }) { (err, response) in
             print("Failed to cancel the ride. Error: \(err.localizedDescription)")
@@ -232,7 +235,7 @@ extension MapViewController: TaxiGoAPIDelegate {
             let updateStatus = dic[sta] else { return }
         driverView.status.text = updateStatus
         statusAction(status: sta)
-
+        
         guard let eta = ride.driver?.eta else { return }
         lottieManager.stopLottieAnimation() // Stop loading animation
         driverView.name.text = ride.driver?.name
@@ -252,6 +255,7 @@ extension MapViewController: TaxiGoAPIDelegate {
                 fadeOutAnimation(view: self.driverView)
                 self.driverView.initDriverView()
                 self.driverView.cancelButton.isUserInteractionEnabled = true
+                taxiGo.api.startObservingStatus = false
             }
             confirmButton.isUserInteractionEnabled = true
         default:

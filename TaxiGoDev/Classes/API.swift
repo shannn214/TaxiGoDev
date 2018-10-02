@@ -28,13 +28,19 @@ public class TaxiGo {
         public weak var taxiGoDelegate: TaxiGoAPIDelegate?
         
         public var id: String?
+
+        public var url: String?
+        
+        public var apiKey: String?
+        
+        public var startObservingStatus: Bool = false
         
         weak var parent: TaxiGo! = nil
 
         var timer = Timer()
         
         var token: String?
-                        
+        
         public init() {}
         
         func call(withAccessToken: String,
@@ -43,7 +49,8 @@ public class TaxiGo {
                   parameter: [String: Any],
                   complete: ((Error?, [String: Any]?, [[String: Any]]?, Int) -> Void)? = nil) -> URLSessionDataTask {
         
-            let url = URL(string: "\(Constants.taxiGoUrl)" + "\(path)")
+            guard let endPoint = self.url else { return URLSessionDataTask() }
+            let url = URL(string: endPoint + "\(path)")
             let body = parameter
             let token = "Bearer \(withAccessToken)"
             
@@ -52,6 +59,8 @@ public class TaxiGo {
             request.setValue(token, forHTTPHeaderField: "Authorization")
             request.addValue("application/json; charset=utf-8",
                              forHTTPHeaderField: "Content-Type")
+            guard let key = self.apiKey else { return URLSessionDataTask() }
+            request.addValue("x-api-key", forHTTPHeaderField: key)
             
             //send body
             do {
@@ -65,20 +74,18 @@ public class TaxiGo {
 
                 guard let response = response else { return }
                 let statusCode = (response as! HTTPURLResponse).statusCode
-//                print("Status Code: \(statusCode)")
-//                print("=====")
                 
                 DispatchQueue.main.async {
                 
                     do {
 
-                        if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                        if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
                             if statusCode != 200 {
                                 print(json) // NOTE: Only print error message.
                             }
                             complete?(nil, json, nil, statusCode)
                             
-                        } else if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
+                        } else if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String: Any]] {
                             if statusCode != 200 {
                                 print(json)
                             }

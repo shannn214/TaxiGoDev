@@ -79,9 +79,7 @@ class SearchView: UIView {
     }
     
     @objc func triggerSearchAction(sender: UITextField) {
-        
-        textFieldTag = sender.tag
-        
+                
         self.searchViewDelegate?.textFieldDidTap(self, sender: sender)
         
     }
