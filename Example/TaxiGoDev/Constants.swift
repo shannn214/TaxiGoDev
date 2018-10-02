@@ -18,7 +18,7 @@ struct Constants {
     
     static let sandBoxUrl = "https://api-sandbox.taxigo.io/v1"
     
-    static let productionUrl = "https://18gxfaafi6.execute-api.ap-northeast-1.amazonaws.com/prod"
+    static let productionUrl = "https://api.taxigo.io/v1"
     
     static let apiKey = "Xs5ocLVHQC9vzhDzvPErf55UlgaujNm25lsj4Iql" // <YOUR_API_KEY>
         
