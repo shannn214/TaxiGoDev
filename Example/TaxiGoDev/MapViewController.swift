@@ -13,9 +13,6 @@ import GooglePlaces
 import GooglePlacePicker
 import Kingfisher
 
-
-var taxiGo = TaxiGoManager.shared.taxiGo
-
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: MapView!
@@ -42,9 +39,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         searchView.searchViewDelegate = self
         favoriteView.favoriteDelegate = self
         userView.userViewDelegate = self
-        taxiGo.api.taxiGoDelegate = self
+        taxiGoManager.taxiGo.api.taxiGoDelegate = self
         
-        print(taxiGo.auth.accessToken)
+        print(taxiGoManager.taxiGo.auth.accessToken)
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,7 +68,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     func getCurrentPlace() {
 
-        guard let token = taxiGo.auth.accessToken else { return }
+        guard let token = taxiGoManager.taxiGo.auth.accessToken else { return }
 
         // MARK: Google Map
         mapView.placesClient.currentPlace { (placeList, err) in
@@ -91,7 +88,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                                   longitude: place.coordinate.longitude)
             self.mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
             // MARK: Requesting the nearby driver. Note that the rate limit: 5 calls per minutes.
-            taxiGo.api.getNearbyDriver(withAccessToken: token,
+            taxiGoManager.taxiGo.api.getNearbyDriver(withAccessToken: token,
                                        lat: place.coordinate.latitude,
                                        lng: place.coordinate.longitude,
                                        success: { (nearbyDrivers, response) in
@@ -123,9 +120,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     func loadFavList() {
         
         favoriteView.isHidden = true
-        guard let token = taxiGo.auth.accessToken else { return }
+        guard let token = taxiGoManager.taxiGo.auth.accessToken else { return }
         // MARK: Get rider's information.
-        taxiGo.api.getRiderInfo(withAccessToken: token, success: { [weak self] (rider, response) in
+        taxiGoManager.taxiGo.api.getRiderInfo(withAccessToken: token, success: { [weak self] (rider, response) in
             
             guard let self = self else { return }
             let url = URL(string: rider.profile_img ?? "")
@@ -159,13 +156,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             return
         }
 
-        guard let token = taxiGo.auth.accessToken,
+        guard let token = taxiGoManager.taxiGo.auth.accessToken,
             let start = mapView.startLocation,
             let startAddress = mapView.startAdd else { return }
 
         confirmButton.isUserInteractionEnabled = false
 
-        taxiGo.api.requestARide(withAccessToken: token,
+        taxiGoManager.taxiGo.api.requestARide(withAccessToken: token,
                                 startLatitude: start.coordinate.latitude,
                                 startLongitude: start.coordinate.longitude,
                                 startAddress: startAddress,
@@ -176,7 +173,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
                                     guard let self = self else { return }
                                     if response == 200 {
-                                        taxiGo.api.startObservingStatus = true
+                                        taxiGoManager.taxiGo.api.startObservingStatus = true
                                         fadeInAnimation(view: self.driverView)
                                         return
                                     }
@@ -193,18 +190,18 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @objc func cancelRide() {
         
-        guard let token = taxiGo.auth.accessToken,
-            let id = taxiGo.api.id else { return }
+        guard let token = taxiGoManager.taxiGo.auth.accessToken,
+            let id = taxiGoManager.taxiGo.api.id else { return }
         
         confirmButton.isUserInteractionEnabled = true
         
         // MARK: Basically, TaxiGoDev will save the ride's id when you successfully request a ride.
-        taxiGo.api.cancelARide(withAccessToken: token, id: id, success: { (ride, response) in
+        taxiGoManager.taxiGo.api.cancelARide(withAccessToken: token, id: id, success: { (ride, response) in
             
             if response != 200 {
                 self.presentAlert(title: "發生錯誤，請稍後再試。", message: nil, cancel: false, handler: nil)
             }
-            taxiGo.api.startObservingStatus = false
+            taxiGoManager.taxiGo.api.startObservingStatus = false
             
         }) { (err, response) in
             print("Failed to cancel the ride. Error: \(err.localizedDescription)")
@@ -253,7 +250,7 @@ extension MapViewController: TaxiGoAPIDelegate {
                 fadeOutAnimation(view: self.driverView)
                 self.driverView.initDriverView()
                 self.driverView.cancelButton.isUserInteractionEnabled = true
-                taxiGo.api.startObservingStatus = false
+                taxiGoManager.taxiGo.api.startObservingStatus = false
             }
             confirmButton.isUserInteractionEnabled = true
         default:

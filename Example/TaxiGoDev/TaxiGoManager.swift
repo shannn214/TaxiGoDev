@@ -9,6 +9,8 @@
 import Foundation
 import TaxiGoDev
 
+var taxiGoManager = TaxiGoManager.shared
+
 // MARK: This class manages the requirement data.
 class TaxiGoManager {
     
@@ -22,7 +24,7 @@ class TaxiGoManager {
         taxiGo.auth.appID = Constants.appID
         taxiGo.auth.appSecret = Constants.appSecret
         taxiGo.auth.redirectURL = Constants.redirectURL
-        taxiGo.api.url = Constants.sandBoxUrl
+        taxiGo.api.url = Constants.productionUrl
         taxiGo.api.apiKey = Constants.apiKey
         
     }
