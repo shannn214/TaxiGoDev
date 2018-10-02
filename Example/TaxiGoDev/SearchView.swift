@@ -29,6 +29,8 @@ class SearchView: UIView {
     
     var textFieldTag: Int?
     
+    var activeTextField: UITextField?
+    
     private var shadowLayer: CAShapeLayer!
     
     override init(frame: CGRect) {
@@ -77,9 +79,7 @@ class SearchView: UIView {
     }
     
     @objc func triggerSearchAction(sender: UITextField) {
-        
-        textFieldTag = sender.tag
-        
+                
         self.searchViewDelegate?.textFieldDidTap(self, sender: sender)
         
     }

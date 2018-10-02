@@ -22,6 +22,8 @@ class TaxiGoManager {
         taxiGo.auth.appID = Constants.appID
         taxiGo.auth.appSecret = Constants.appSecret
         taxiGo.auth.redirectURL = Constants.redirectURL
+        taxiGo.api.url = Constants.sandBoxUrl
+        taxiGo.api.apiKey = Constants.apiKey
         
     }
     

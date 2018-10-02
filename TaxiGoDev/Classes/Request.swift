@@ -40,7 +40,9 @@ extension TaxiGo.API {
                 self.id = model.id
                 success(model, response)
                 
-                self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.tripUpdate), userInfo: nil, repeats: true)
+                if self.startObservingStatus {
+                    self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.tripUpdate), userInfo: nil, repeats: true)
+                }
 
             } else if let err = err {
                 failure(err, response)
@@ -128,13 +130,13 @@ extension TaxiGo.API {
         getSpecificRideHistory(withAccessToken: token, id: rideID, success: { [weak self] (ride, response) in
             
             guard let self = self, let status = ride.status else { return }
-
-            if ride.status == "TRIP_CANCELED" || ride.status == "TRIP_FINISHED" || ride.status == "TRIP_PAYMENT_PROCESSED" {
+            
+            if self.startObservingStatus {
+                self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
+            } else {
                 self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
                 self.timer.invalidate()
                 self.id = nil
-            } else {
-                self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
             }
             
         }) { (err, response) in

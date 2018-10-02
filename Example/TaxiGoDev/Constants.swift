@@ -15,5 +15,11 @@ struct Constants {
     static let appSecret = "<YOUR_APPSECRET>"
     
     static let redirectURL = "<YOUR_REDIRECTURL>"
-        
+    
+    static let sandBoxUrl = "https://api-sandbox.taxigo.io/v1"
+    
+    static let productionUrl = "https://api.taxigo.io/v1"
+    
+    static let apiKey = "<YOUR_API_KEY>"
+    
 }
