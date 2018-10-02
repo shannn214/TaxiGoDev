@@ -9,6 +9,8 @@
 import Foundation
 import TaxiGoDev
 
+var taxiGoManager = TaxiGoManager.shared
+
 // MARK: This class manages the requirement data.
 class TaxiGoManager {
     

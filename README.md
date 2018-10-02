@@ -28,6 +28,7 @@ var taxiGo = TaxiGo.shared
 
 #### Authorization
 
+In  `AppDelegate.swift`, add the following to your `application(_:open:options:)` method.
 ```
 func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
     taxiGo.auth.authCode = taxiGo.auth.getAuthCode(url: url)
