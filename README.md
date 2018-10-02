@@ -20,6 +20,19 @@ it, simply add the following line to your Podfile:
 pod 'TaxiGoDev'
 ```
 
+## Usage
+You can access an API like this:
+```
+taxiGo = TaxiGo.shared
+```
+####Authorization
+
+```
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    taxiGo.auth.authCode = taxiGo.auth.getAuthCode(url: url)
+}
+```
+
 ## Author
 
 shannn214, gracejin214@gmail.com
