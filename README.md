@@ -30,7 +30,7 @@ var taxiGo = TaxiGo.shared
 
 - Set up Your URL Types  
 Your Project -> TARGETS -> Info -> URL Types -> URL Schemes, Identifier -> <YOUR_SCHEMES>  
-![image](https://github.com/shannn214/TaxiGoDev/blob/develop/Example/TaxiGoDev/Images.xcassets/URL_Types.imageset/URL_Types.png)
+![image](https://github.com/shannn214/TaxiGoDev/blob/develop/Example/TaxiGoDev/Images.xcassets/URL_Types.imageset/URL_SCHEMES.png)
 ```swift
 taxiGo.auth.appID = <YOUR_APPID>
 taxiGo.auth.appSecret = <YOUR_APP_SECRET>
