@@ -26,6 +26,7 @@ class TaxiGoManager {
         taxiGo.auth.redirectURL = Constants.redirectURL
         taxiGo.api.url = Constants.productionUrl
         taxiGo.api.apiKey = Constants.apiKey
+//        taxiGo.api.startObservingStatus = false
         
     }
     

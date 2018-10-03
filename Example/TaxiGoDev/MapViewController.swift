@@ -162,6 +162,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
         confirmButton.isUserInteractionEnabled = false
 
+        taxiGoManager.taxiGo.api.startObservingStatus = true
+
         taxiGoManager.taxiGo.api.requestARide(withAccessToken: token,
                                 startLatitude: start.coordinate.latitude,
                                 startLongitude: start.coordinate.longitude,
@@ -173,7 +175,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
                                     guard let self = self else { return }
                                     if response == 200 {
-                                        taxiGoManager.taxiGo.api.startObservingStatus = true
                                         fadeInAnimation(view: self.driverView)
                                         self.lottieManager.playLottieAnimation(view: self.driverView) // Start loading animation
                                         return
