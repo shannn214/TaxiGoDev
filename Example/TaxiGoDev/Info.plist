@@ -27,7 +27,7 @@
 			<string>taxigo-example</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>&lt;YOUR_SCHEMES&gt;</string>
+				<string>taxigo-example</string>
 			</array>
 		</dict>
 	</array>
