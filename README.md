@@ -68,6 +68,20 @@ taxiGo.auth.getUserToken(success: { (auth) in
     // do somwthing with the err
 }
 ```
+- **Refresh token**
+The token you access before will be expired in a week. Please use `refresh_token` to get a new `access_token`.
+```swift
+taxiGo.auth.refreshToken(success: { (refreshToken) in
+            
+            // do something with the refreshToken
+            print(refreshToken.access_token)
+            ...
+
+        }) { (err) in
+            // do somwthing with the err
+        }
+```
+
 
 #### Request a ride
 ```swift
