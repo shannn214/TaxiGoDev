@@ -14,6 +14,25 @@ import GooglePlaces
 import GooglePlacePicker
 
 // MARK: The extensions below are mainly for handling Google Map without any TaxiGo api usage. You can just skip them in this part.
+
+extension MapViewController {
+    
+    func updateCamera() {
+        
+        guard let start = mapView.startLocation else { return }
+        
+        if mapView.endLocation?.coordinate == nil {
+            mapView.camera = GMSCameraPosition(target: start.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+        } else {
+            guard let end = mapView.endLocation else { return }
+            let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
+            mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 60, left: 50, bottom: 60, right: 50))!
+        }
+        
+    }
+    
+}
+
 extension MapViewController: FavoriteViewDelegate {
     
     func favoriteCellDidTap(_ favoriteView: FavoriteView, index: IndexPath) {
@@ -23,19 +42,30 @@ extension MapViewController: FavoriteViewDelegate {
             let lat = favoriteView.favorite[index.row].lat,
             let lng = favoriteView.favorite[index.row].lng else { return }
         
-        searchView.fromTextField.text = favoriteView.favorite[index.row].address
-        mapView.startAdd = favoriteView.favorite[index.row].address
-        mapView.startLocation = CLLocation(latitude: lat,
-                                           longitude: lng)
-        mapView.startMarker.position = startLocation.coordinate
-        mapView.startMarker.map = mapView
+        self.searchView.activeTextField?.text = favoriteView.favorite[index.row].address
         
-        if mapView.endLocation?.coordinate == nil {
-            mapView.camera = GMSCameraPosition(target: start.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-        } else {
+        switch searchView.activeTextField {
+        case searchView.fromTextField:
+            mapView.startAdd = favoriteView.favorite[index.row].address
+            mapView.startLocation = CLLocation(latitude: lat,
+                                               longitude: lng)
+            mapView.startMarker.position = startLocation.coordinate
+            mapView.startMarker.map = mapView
+            
+            updateCamera()
+            
+        case searchView.toTextField:
+            mapView.endAdd = favoriteView.favorite[index.row].address
+            mapView.endLocation = CLLocation(latitude: lat,
+                                               longitude: lng)
             guard let end = mapView.endLocation else { return }
-            let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
-            mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 60, left: 50, bottom: 60, right: 50))!
+            mapView.endMarker.position = end.coordinate
+            mapView.endMarker.map = mapView
+
+            updateCamera()
+            
+        default:
+            break
         }
         
     }
@@ -102,14 +132,8 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
             mapView.startLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             mapView.startMarker.position = place.coordinate
             mapView.startMarker.map = mapView
-            
-            if mapView.endLocation?.coordinate == nil {
-                mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            } else {
-                guard let start = mapView.startLocation, let end = mapView.endLocation else { return }
-                let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
-                mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 80, left: 50, bottom: 60, right: 50))!
-            }
+
+            updateCamera()
             
         case searchView.toTextField:
             mapView.endAdd = place.name
@@ -117,11 +141,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
             mapView.endMarker.position = place.coordinate
             mapView.endMarker.map = mapView
             
-            guard let start = mapView.startLocation, let end = mapView.endLocation else {
-                dismiss(animated: true, completion: nil)
-                return }
-            let bounds = GMSCoordinateBounds(coordinate: start.coordinate, coordinate: end.coordinate)
-            mapView.camera = mapView.camera(for: bounds, insets: UIEdgeInsets(top: 80, left: 50, bottom: 60, right: 50))!
+            updateCamera()
             
         default:
             break
@@ -154,6 +174,9 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
                 self.searchView.fromTextField.text = add
                 self.mapView.startAdd = add
             })
+
+            updateCamera()
+
         case searchView.toTextField:
             self.mapView.endMarker.map = nil
             self.mapView.endMarker = GMSMarker(position: coordinate)
@@ -165,6 +188,8 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
                 self.searchView.toTextField.text = add
                 self.mapView.endAdd = add
             })
+            
+            updateCamera()
             
         default:
             break

@@ -26,7 +26,7 @@
             <subviews>
                 <textField opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="現在位置" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t8d-Vb-cPi">
                     <rect key="frame" x="60" y="50" width="458" height="35"/>
-                    <color key="backgroundColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="4bL-Bf-lRe"/>
                     </constraints>
@@ -36,7 +36,7 @@
                 </textField>
                 <textField opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="目的地" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V7f-20-XxS">
                     <rect key="frame" x="60" y="95" width="458" height="35"/>
-                    <color key="backgroundColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="OcD-Bg-kgb"/>
                     </constraints>
@@ -69,7 +69,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.095805366039276127" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="V7f-20-XxS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="3tn-I5-vfz"/>
                 <constraint firstItem="V7f-20-XxS" firstAttribute="top" secondItem="t8d-Vb-cPi" secondAttribute="bottom" constant="10" id="4ZC-9u-IBZ"/>
@@ -90,7 +90,7 @@
         </view>
     </objects>
     <resources>
-        <image name="baseline_dehaze_white_48pt_2x" width="48" height="48"/>
-        <image name="baseline_more_horiz_white_48pt_2x" width="48" height="48"/>
+        <image name="baseline_dehaze_white_48pt_2x" width="96" height="96"/>
+        <image name="baseline_more_horiz_white_48pt_2x" width="96" height="96"/>
     </resources>
 </document>

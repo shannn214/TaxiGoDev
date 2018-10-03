@@ -98,10 +98,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                         let driver = driver,
                         let lat = driver.lat,
                         let lng = driver.lng else { return }
-                    self.mapView.driverMarker.icon = UIImage(named: "car")
-                    self.mapView.driverMarker.position = CLLocationCoordinate2D(latitude: lat,
-                                                                                longitude: lng)
-                    self.mapView.driverMarker.map = self.mapView
+                    
+                    let driverMarker = GMSMarker()
+                    driverMarker.icon = UIImage(named: "car")
+                    driverMarker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                    driverMarker.map = self.mapView
+                    self.mapView.driversMarker.append(driverMarker)
                 })
 
             }, failure: { (err, response) in

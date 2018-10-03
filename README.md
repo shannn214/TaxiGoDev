@@ -23,6 +23,7 @@ pod 'TaxiGoDev'
 ## Usage
 You can access TaxiGoDev API like this:
 ```swift
+import TaxiGoDev
 var taxiGo = TaxiGo.shared
 ```
 
@@ -62,15 +63,19 @@ taxiGo.auth.getUserToken(success: { (auth) in
 
     // do something with the auth
     print(auth.access_token)
+    print(auth.refresh_token)
     ...
 
 }) { (err) in
     // do somwthing with the err
 }
 ```
-- **Refresh token**
-The token you access before will be expired in a week. Please use `refresh_token` to get a new `access_token`.
+- **Refresh token**  
+The token you access before will be expired in a week. Please use `refresh_token` to get a new `access_token`. 
 ```swift
+
+taxiGo.auth.refreshToken = <YOUR_REFRESH_TOKEN>
+
 taxiGo.auth.refreshToken(success: { (refreshToken) in
             
             // do something with the refreshToken
