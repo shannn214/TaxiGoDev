@@ -162,6 +162,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
         confirmButton.isUserInteractionEnabled = false
 
+        taxiGoManager.taxiGo.api.startObservingStatus = true
+
         taxiGoManager.taxiGo.api.requestARide(withAccessToken: token,
                                 startLatitude: start.coordinate.latitude,
                                 startLongitude: start.coordinate.longitude,
@@ -173,7 +175,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
                                     guard let self = self else { return }
                                     if response == 200 {
-                                        taxiGoManager.taxiGo.api.startObservingStatus = true
                                         fadeInAnimation(view: self.driverView)
                                         return
                                     }
@@ -184,6 +185,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             guard let self = self else { return }
             print("Failed to request a ride. Error: \(err.localizedDescription)")
             self.confirmButton.isUserInteractionEnabled = true
+            taxiGoManager.taxiGo.api.startObservingStatus = false
         }
         
     }
@@ -224,7 +226,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 extension MapViewController: TaxiGoAPIDelegate {
 
     // MARK: By conforming TaxiGoAPIDelegate, rideDidUpdate() will keep providing the current status of your ride request.
-    // It will stop abserving the ride when the ride are canceled or finished.
     func rideDidUpdate(status: String, ride: TaxiGo.API.Ride) {
         
         guard let sta = Status(rawValue: status),
