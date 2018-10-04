@@ -174,7 +174,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                                 endLongitude: mapView.endLocation?.coordinate.longitude,
                                 endAddress: mapView.endAdd,
                                 success: { [weak self] (ride, response) in
-
+                                    
                                     guard let self = self else { return }
                                     if response == 200 {
                                         fadeInAnimation(view: self.driverView)
@@ -258,6 +258,10 @@ extension MapViewController: TaxiGoAPIDelegate {
                 taxiGoManager.taxiGo.api.startObservingStatus = false
             }
             confirmButton.isUserInteractionEnabled = true
+        case .driverEnroute:
+            print("show enroute driver on map")
+//            self.mapView.clear()
+            
         default:
             break
         }
