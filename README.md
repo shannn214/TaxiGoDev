@@ -106,12 +106,8 @@ taxiGo.api.requestARide(withAccessToken: String,
     // do something with the err
 }
 ```
-We also provide `taxiGo.api.startObservingStatus` to observe the status of the ride you request. Remember to start the observing **before** you request the ride.  
-Sweet reminder: It will keep observing until you set the value as `false`.
+We also provide `taxiGo.api.startObservingStatus()` to observe the status of the ride you request. It will keep observing until you call `taxiGo.api.stopObservingStatus()`.
 
-```swift
-taxiGo.api.startObservingStatus = true
-```
 If you start to observe the ride's status, you'll need to implement delegate: `TaxiGoAPIDelegate` to access the callback. It will update the status every 5 seconds.
 ```swift
 taxiGo.api.taxiGoDelegate = self
