@@ -242,6 +242,9 @@ extension MapViewController: TaxiGoAPIDelegate {
         driverView.eta.text = "預計 \(updateTime(timeStemp: eta)) 分鐘後抵達"
         driverView.plateNumber.text = ride.driver?.plate_number
         driverView.vehicle.text = ride.driver?.vehicle
+        guard let lat = ride.driver?.driver_latitude,
+            let lng = ride.driver?.driver_longitude else { return }
+        mapView.driverLocation = CLLocation(latitude: lat, longitude: lng)
 
     }
     
@@ -258,9 +261,18 @@ extension MapViewController: TaxiGoAPIDelegate {
                 taxiGoManager.taxiGo.api.startObservingStatus = false
             }
             confirmButton.isUserInteractionEnabled = true
+            mapView.driverMarker.map = nil
+            getCurrentPlace()
         case .driverEnroute:
             print("show enroute driver on map")
-//            self.mapView.clear()
+            self.mapView.driversMarker.forEach { (driver) in
+                driver.map = nil
+            }
+            self.mapView.driversMarker.removeAll()
+            guard let location = mapView.driverLocation?.coordinate else { return }
+            mapView.driverMarker.icon = UIImage(named: "car")
+            mapView.driverMarker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            mapView.driverMarker.map = mapView
             
         default:
             break

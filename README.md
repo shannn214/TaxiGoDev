@@ -78,13 +78,13 @@ taxiGo.auth.refreshToken = <YOUR_REFRESH_TOKEN>
 
 taxiGo.auth.refreshToken(success: { (refreshToken) in
             
-            // do something with the refreshToken
-            print(refreshToken.access_token)
-            ...
+    // do something with the refreshToken
+    print(refreshToken.access_token)
+    ...
 
-        }) { (err) in
-            // do somwthing with the err
-        }
+}) { (err) in
+    // do somwthing with the err
+}
 ```
 
 
@@ -170,11 +170,11 @@ taxiGo.api.getNearbyDriver(withAccessToken: token,
 ```swift
 taxiGo.api.getRiderInfo(withAccessToken: token, success: { (rider, response) in
             
-            print(rider.name)
-            
-            rider.favorite?.forEach({ (info) in
-                print(info.address)
-            })
+    print(rider.name)
+    
+    rider.favorite?.forEach({ (info) in
+        print(info.address)
+    })
 
 }) { (err, response) in
     // do something with the err

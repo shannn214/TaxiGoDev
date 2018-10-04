@@ -19,6 +19,7 @@ class MapView: GMSMapView {
     var driverMarker = GMSMarker()
     var driversMarker = [GMSMarker]()
     var geocoder = GMSGeocoder()
+    var driverLocation: CLLocation?
     var startLocation: CLLocation?
     var endLocation: CLLocation?
     var startAdd: String?
