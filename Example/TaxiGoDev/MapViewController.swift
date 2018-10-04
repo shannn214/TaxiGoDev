@@ -64,6 +64,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         driverView.cancelButton.addTarget(self, action: #selector(cancelRide), for: .touchUpInside)
 
+        
     }
     
     func getCurrentPlace() {
@@ -164,7 +165,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
         confirmButton.isUserInteractionEnabled = false
 
-        taxiGoManager.taxiGo.api.startObservingStatus = true
+//        taxiGoManager.taxiGo.api.startObservingStatus = true
+        taxiGoManager.taxiGo.api.startObservingStatus()
 
         taxiGoManager.taxiGo.api.requestARide(withAccessToken: token,
                                 startLatitude: start.coordinate.latitude,
@@ -188,7 +190,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             guard let self = self else { return }
             print("Failed to request a ride. Error: \(err.localizedDescription)")
             self.confirmButton.isUserInteractionEnabled = true
-            taxiGoManager.taxiGo.api.startObservingStatus = false
+//            taxiGoManager.taxiGo.api.startObservingStatus = false
+            taxiGoManager.taxiGo.api.stopObservingStatus()
         }
         
     }
@@ -206,7 +209,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             if response != 200 {
                 self.presentAlert(title: "發生錯誤，請稍後再試。", message: nil, cancel: false, handler: nil)
             }
-            taxiGoManager.taxiGo.api.startObservingStatus = false
+//            taxiGoManager.taxiGo.api.startObservingStatus = false
             
         }) { (err, response) in
             print("Failed to cancel the ride. Error: \(err.localizedDescription)")
@@ -258,7 +261,8 @@ extension MapViewController: TaxiGoAPIDelegate {
                 fadeOutAnimation(view: self.driverView)
                 self.driverView.initDriverView()
                 self.driverView.cancelButton.isUserInteractionEnabled = true
-                taxiGoManager.taxiGo.api.startObservingStatus = false
+//                taxiGoManager.taxiGo.api.startObservingStatus = false
+                taxiGoManager.taxiGo.api.stopObservingStatus()
             }
             confirmButton.isUserInteractionEnabled = true
             mapView.driverMarker.map = nil
@@ -270,7 +274,6 @@ extension MapViewController: TaxiGoAPIDelegate {
             }
             self.mapView.driversMarker.removeAll()
             guard let location = mapView.driverLocation?.coordinate else { return }
-            mapView.driverMarker.icon = UIImage(named: "car")
             mapView.driverMarker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             mapView.driverMarker.map = mapView
             

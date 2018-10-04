@@ -33,7 +33,7 @@ public class TaxiGo {
         
         public var apiKey: String?
         
-        public var startObservingStatus: Bool = false
+        var startObserving: Bool = false
         
         weak var parent: TaxiGo! = nil
 

@@ -79,6 +79,9 @@ extension MapViewController: SearchViewDelegate {
         let autoconpleteController = GMSAutocompleteViewController()
         autoconpleteController.delegate = self
         autoconpleteController.modalPresentationStyle = .overCurrentContext
+        let northEast = CLLocationCoordinate2D(latitude: 25.325972, longitude: 122.308595)
+        let southWest = CLLocationCoordinate2D(latitude: 21.687813, longitude: 119.723752)
+        autoconpleteController.autocompleteBounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
         present(autoconpleteController, animated: true, completion: nil)
         self.searchView.activeTextField = sender
     

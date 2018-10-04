@@ -58,6 +58,26 @@ class TaxiGoManager {
         
     }
     
+    func checkUserStatus(success: @escaping (Bool) -> Void) {
+        
+        guard let token = taxiGo.auth.accessToken else { return }
+        
+        taxiGo.api.getRidesHistory(withAccessToken: token, success: { (ride, response) in
+         
+            print(ride.driver)
+            print(ride.id)
+            
+            guard let id = ride.id else { return }
+            self.taxiGo.api.id = id
+            self.taxiGo.api.startObservingStatus()
+            success(true)
+            
+        }) { (err, response) in
+            print("Failed to get user status: \(err.localizedDescription)")
+        }
+        
+    }
+    
     func refreshToken(success: @escaping (Bool) -> Void) {
         
         let token = UserDefaults.standard.value(forKey: "refresh_token")

@@ -48,6 +48,8 @@ class MapView: GMSMapView {
         self.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
         startLocation = self.myLocation
         self.mapStyle(withFileName: "style", andType: "json")
+        driverMarker.icon = UIImage(named: "car")
+        
 
     }
 

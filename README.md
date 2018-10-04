@@ -185,7 +185,7 @@ taxiGo.api.getRiderInfo(withAccessToken: token, success: { (rider, response) in
 
 ## Author
 
-shannn214, gracejin214@gmail.com
+TaxiGo, hello@taxigo.com.tw
 
 ## License
 

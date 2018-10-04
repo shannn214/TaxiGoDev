@@ -40,15 +40,47 @@ extension TaxiGo.API {
                 self.id = model.id
                 success(model, response)
                 
-                if self.startObservingStatus {
-                    self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.tripUpdate), userInfo: nil, repeats: true)
-                }
+//                if self.startObserving {
+//                    self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.tripUpdate), userInfo: nil, repeats: true)
+//                }
 
             } else if let err = err {
                 failure(err, response)
                 print("Failed to request a ride.")
                 
             }
+        }
+        
+    }
+    
+    public func startObservingStatus() {
+        startObserving = true
+        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.tripUpdate), userInfo: nil, repeats: true)
+    }
+    
+    public func stopObservingStatus() {
+        startObserving = false
+    }
+    
+    // NOTE: for observe status
+    @objc func tripUpdate() {
+        
+        guard let rideID = id, let token = TaxiGo.shared.auth.accessToken else { return }
+        
+        getSpecificRideHistory(withAccessToken: token, id: rideID, success: { [weak self] (ride, response) in
+            
+            guard let self = self, let status = ride.status else { return }
+            
+            if self.startObserving {
+                self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
+            } else {
+                self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
+                self.timer.invalidate()
+                self.id = nil
+            }
+            
+        }) { (err, response) in
+            print("Failed to get the ride status.")
         }
         
     }
@@ -120,29 +152,6 @@ extension TaxiGo.API {
             
         }
         
-    }
-    
-    // NOTE: for observe status
-    @objc func tripUpdate() {
-        
-        guard let rideID = id, let token = TaxiGo.shared.auth.accessToken else { return }
-        
-        getSpecificRideHistory(withAccessToken: token, id: rideID, success: { [weak self] (ride, response) in
-            
-            guard let self = self, let status = ride.status else { return }
-            
-            if self.startObservingStatus {
-                self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
-            } else {
-                self.taxiGoDelegate?.rideDidUpdate(status: status, ride: ride)
-                self.timer.invalidate()
-                self.id = nil
-            }
-            
-        }) { (err, response) in
-            print("Failed to get the ride status.")
-        }
-
     }
     
     public func getRiderInfo(withAccessToken: String,
